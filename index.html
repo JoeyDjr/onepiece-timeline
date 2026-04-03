@@ -1,0 +1,4326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050810'/><text x='50' y='72' font-size='72' text-anchor='middle' fill='%23c9a227'>☠</text></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chronologie interactive du monde de One Piece — frise temporelle, carte du monde, fiches personnages. De la Préhistoire à l'arc Egghead.">
+<meta property="og:title" content="One Piece Timeline — Chronologie Universelle">
+<meta property="og:description" content="Frise interactive, carte du monde, événements et personnages. Projet fan non officiel.">
+<meta property="og:type" content="website">
+<title>One Piece Timeline — Chronologie Universelle</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050810;
+  --bg2: #0b1120;
+  --bg3: #111827;
+  --card: #0d1a2e;
+  --card-hover: #13233d;
+  --border: #1e3050;
+  --border-light: #2a4070;
+  --gold: #c9a227;
+  --gold-light: #e8c84a;
+  --gold-dim: rgba(201,162,39,0.15);
+  --text: #d4dce8;
+  --text-dim: #7a8fa8;
+  --text-faint: #3a4f6a;
+  
+  --c-ere: #c9a227;
+  --c-naissance: #00b4d8;
+  --c-mort: #e63946;
+  --c-guerre: #f4a261;
+  --c-politique: #9b5de5;
+  --c-mystere: #4361ee;
+  --c-aventure: #52b788;
+  --c-piraterie: #ffd60a;
+  
+  --era-prehistoric: #3d2b1a;
+  --era-antiquite: #1a3a2a;
+  --era-vide: #2a1a3a;
+  --era-post_vide: #1a2a3a;
+  --era-rocks: #3a1a1a;
+  --era-roger: #3a2f0a;
+  --era-pre_histoire: #1a1e3a;
+  --era-histoire: #0a1e3a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── HEADER ─── */
+#app-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(5,8,16,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 0 8px;
+}
+
+.app-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.app-title span {
+  color: var(--text-dim);
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+#search-box {
+  flex: 1;
+  max-width: 400px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 14px;
+  color: var(--text);
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#search-box:focus { border-color: var(--gold); }
+#search-box::placeholder { color: var(--text-faint); }
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover { border-color: var(--gold); color: var(--gold); }
+.btn.primary { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.btn.primary:hover { background: rgba(201,162,39,0.25); }
+
+/* Filters */
+.filters-bar {
+  display: flex;
+  gap: 6px;
+  padding: 8px 0 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
+  margin-right: 4px;
+}
+
+.type-pill {
+  font-size: 0.72rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.06em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.15s;
+  opacity: 0.5;
+}
+.type-pill.active { opacity: 1; }
+.type-pill[data-type="ere"]        { border-color: var(--c-ere);        color: var(--c-ere); }
+.type-pill[data-type="naissance"]  { border-color: var(--c-naissance);  color: var(--c-naissance); }
+.type-pill[data-type="mort"]       { border-color: var(--c-mort);       color: var(--c-mort); }
+.type-pill[data-type="guerre"]     { border-color: var(--c-guerre);     color: var(--c-guerre); }
+.type-pill[data-type="politique"]  { border-color: var(--c-politique);  color: var(--c-politique); }
+.type-pill[data-type="mystere"]    { border-color: var(--c-mystere);    color: var(--c-mystere); }
+.type-pill[data-type="aventure"]   { border-color: var(--c-aventure);   color: var(--c-aventure); }
+.type-pill[data-type="piraterie"]  { border-color: var(--c-piraterie);  color: var(--c-piraterie); }
+
+.type-pill.active[data-type="ere"]        { background: rgba(201,162,39,0.12); }
+.type-pill.active[data-type="naissance"]  { background: rgba(0,180,216,0.12); }
+.type-pill.active[data-type="mort"]       { background: rgba(230,57,70,0.12); }
+.type-pill.active[data-type="guerre"]     { background: rgba(244,162,97,0.12); }
+.type-pill.active[data-type="politique"]  { background: rgba(155,93,229,0.12); }
+.type-pill.active[data-type="mystere"]    { background: rgba(67,97,238,0.12); }
+.type-pill.active[data-type="aventure"]   { background: rgba(82,183,136,0.12); }
+.type-pill.active[data-type="piraterie"]  { background: rgba(255,214,10,0.12); }
+
+/* Era nav */
+.era-nav {
+  display: flex;
+  gap: 0;
+  padding-bottom: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.era-nav::-webkit-scrollbar { display: none; }
+
+.era-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.era-btn:hover { color: var(--text); }
+.era-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ─── MAIN LAYOUT ─── */
+#main {
+  display: flex;
+  margin-top: 154px; padding-bottom: 38px;
+}
+
+/* ─── TIMELINE ─── */
+#timeline-container {
+  flex: 1;
+  padding: 32px 24px 80px;
+  min-width: 0;
+  transition: margin-right 0.3s;
+}
+#timeline-container.panel-open {
+  margin-right: 420px;
+}
+
+/* Era section */
+.era-section {
+  margin-bottom: 48px;
+}
+
+.era-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border-left: 3px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.era-header:hover { background: rgba(255,255,255,0.02); }
+
+.era-header[data-era="prehistoric"]  { border-color: #8b5e3c; background: rgba(61,43,26,0.3); }
+.era-header[data-era="antiquite"]    { border-color: #4a8c6a; background: rgba(26,58,42,0.3); }
+.era-header[data-era="vide"]         { border-color: #7b4a8b; background: rgba(42,26,58,0.3); }
+.era-header[data-era="post_vide"]    { border-color: #3a7a8b; background: rgba(26,42,58,0.3); }
+.era-header[data-era="rocks"]        { border-color: #8b3a3a; background: rgba(58,26,26,0.3); }
+.era-header[data-era="roger"]        { border-color: #c9a227; background: rgba(58,47,10,0.3); }
+.era-header[data-era="pre_histoire"] { border-color: #3a4a8b; background: rgba(26,30,58,0.3); }
+.era-header[data-era="histoire"]     { border-color: #2a6ab0; background: rgba(10,30,58,0.3); }
+
+.era-icon { font-size: 1.6rem; }
+.era-title-block {}
+.era-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+.era-range {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.era-count {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  font-family: 'JetBrains Mono', monospace;
+}
+.era-toggle {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+}
+.era-toggle.collapsed { transform: rotate(-90deg); }
+
+.era-events {
+  position: relative;
+  padding-left: 40px;
+}
+.era-events.collapsed { display: none; }
+
+/* Timeline line */
+.era-events::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border), transparent);
+}
+
+/* Event card */
+.event-card {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.event-card:hover {
+  background: var(--card-hover);
+  border-color: var(--border-light);
+  transform: translateX(2px);
+}
+.event-card.selected {
+  border-color: var(--gold);
+  background: rgba(201,162,39,0.05);
+}
+
+/* Dot on timeline */
+.event-card::before {
+  content: '';
+  position: absolute;
+  left: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 2px solid var(--border-light);
+}
+
+.event-card.type-ere::before       { border-color: var(--c-ere); background: rgba(201,162,39,0.3); }
+.event-card.type-naissance::before { border-color: var(--c-naissance); background: rgba(0,180,216,0.3); }
+.event-card.type-mort::before      { border-color: var(--c-mort); background: rgba(230,57,70,0.3); }
+.event-card.type-guerre::before    { border-color: var(--c-guerre); background: rgba(244,162,97,0.3); }
+.event-card.type-politique::before { border-color: var(--c-politique); background: rgba(155,93,229,0.3); }
+.event-card.type-mystere::before   { border-color: var(--c-mystere); background: rgba(67,97,238,0.3); }
+.event-card.type-aventure::before  { border-color: var(--c-aventure); background: rgba(82,183,136,0.3); }
+.event-card.type-piraterie::before { border-color: var(--c-piraterie); background: rgba(255,214,10,0.3); }
+
+.event-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 2px;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ev-year-k {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+.ev-years-ago {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+}
+
+.ev-date-only {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+}
+
+.event-content { flex: 1; min-width: 0; }
+
+.event-type-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  padding: 1px 7px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  border: 1px solid;
+}
+
+.event-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.event-preview {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+.tag {
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+}
+
+/* ─── DETAIL PANEL ─── */
+#detail-panel {
+  position: fixed;
+  top: 154px;
+  right: -440px;
+  width: 420px;
+  bottom: 0;
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 50;
+}
+#detail-panel.open { right: 0; }
+
+.panel-close {
+  position: sticky;
+  top: 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+.panel-close-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.panel-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.panel-type-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.panel-body { padding: 24px 20px; }
+
+.panel-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.panel-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.panel-description {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.panel-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.meta-row {
+  display: flex;
+  gap: 10px;
+  font-size: 0.83rem;
+}
+.meta-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  min-width: 90px;
+  padding-top: 1px;
+}
+.meta-value { color: var(--text-dim); }
+
+.panel-chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ─── NAVIGATION CROISÉE — éléments cliquables ─── */
+.char-tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--c-naissance);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-block;
+}
+.char-tag:hover {
+  border-color: var(--c-naissance);
+  background: rgba(0,180,216,0.1);
+  transform: translateY(-1px);
+}
+.char-tag.no-profile {
+  cursor: default;
+  opacity: 0.7;
+}
+.char-tag.no-profile:hover {
+  transform: none;
+  background: var(--bg3);
+  border-color: var(--border);
+}
+
+.loc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 4px;
+  background: rgba(82,183,136,0.08);
+  border: 1px solid rgba(82,183,136,0.25);
+  font-size: 0.78rem;
+  color: #52b788;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.loc-tag:hover {
+  background: rgba(82,183,136,0.18);
+  border-color: #52b788;
+  transform: translateY(-1px);
+}
+.loc-tag.no-map {
+  cursor: default;
+  opacity: 0.7;
+}
+.loc-tag.no-map:hover { transform: none; background: rgba(82,183,136,0.08); }
+.loc-tag::before { content: '📍'; font-size: 0.7rem; }
+
+/* Lieux inline dans le panneau événement */
+.panel-locs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+/* Miniature "Voir fiche" dans événements liés */
+.cp-ev-chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 4px;
+}
+.cp-ev-char-tag {
+  font-size: 0.62rem;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: rgba(0,180,216,0.08);
+  border: 1px solid rgba(0,180,216,0.2);
+  color: var(--c-naissance);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.cp-ev-char-tag:hover { background: rgba(0,180,216,0.18); border-color: var(--c-naissance); }
+
+/* Tooltip de navigation */
+.nav-hint {
+  font-size: 0.62rem;
+  color: var(--text-faint);
+  font-style: italic;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+
+.panel-source {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.015);
+  border-radius: 0 0 6px 6px;
+}
+.panel-source::before {
+  content: '📖';
+  font-style: normal;
+  font-size: 0.85rem;
+}
+
+/* Source badge on event cards */
+.ev-source-badge {
+  font-size: 0.62rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-faint);
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ev-source-badge::before { content: '📖 '; }
+
+/* Source in character panel */
+.cp-source-note {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cp-source-note::before { content: '📖'; font-style: normal; }
+
+/* Source in linked event items */
+.cp-ev-source, .mp-ev-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text-faint);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Source in map info panel */
+.mp-source-footer {
+  padding: 12px 16px;
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+/* ─── STATS BAR ─── */
+#stats-bar {
+  position: fixed;
+  bottom: 46px;
+  right: 20px;
+  z-index: 55;
+  display: none; /* géré par setView */
+  gap: 8px;
+}
+#chars-stat-bar {
+  position: fixed;
+  bottom: 46px;
+  right: 20px;
+  z-index: 55;
+  display: none;
+  gap: 8px;
+}
+.stat-chip {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+/* ─── EMPTY STATE ─── */
+.empty-state {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--text-faint);
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-state p { font-size: 1rem; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+/* ─── NOTIFICATION ─── */
+.notif {
+  position: fixed;
+  top: 160px;
+  right: 24px;
+  background: var(--bg3);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: all 0.3s;
+  pointer-events: none;
+}
+.notif.show { opacity: 1; transform: translateY(0); }
+
+/* Type badge colors */
+.badge-ere        { border-color: var(--c-ere);       color: var(--c-ere); }
+.badge-naissance  { border-color: var(--c-naissance); color: var(--c-naissance); }
+.badge-mort       { border-color: var(--c-mort);      color: var(--c-mort); }
+.badge-guerre     { border-color: var(--c-guerre);    color: var(--c-guerre); }
+.badge-politique  { border-color: var(--c-politique); color: var(--c-politique); }
+.badge-mystere    { border-color: var(--c-mystere);   color: var(--c-mystere); }
+.badge-aventure   { border-color: var(--c-aventure);  color: var(--c-aventure); }
+.badge-piraterie  { border-color: var(--c-piraterie); color: var(--c-piraterie); }
+
+.type-ere        .event-date, .type-ere        .event-title { color: var(--c-ere); }
+
+/* ─── VIEW TOGGLE ─── */
+#view-toggle {
+  display: flex;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.view-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.view-btn.active { background: var(--gold-dim); color: var(--gold); }
+.view-btn:hover:not(.active) { color: var(--text); }
+
+/* ─── FRISE VIEW ─── */
+#frise-view {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 154px; left: 0; right: 0; bottom: 38px;
+  overflow: hidden;
+}
+
+/* Minimap */
+#minimap-wrap {
+  flex-shrink: 0;
+  padding: 6px 24px 4px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.minimap-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.minimap-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
+}
+.minimap-hint {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  font-style: italic;
+}
+#minimap-svg {
+  width: 100%;
+  height: 56px;
+  cursor: crosshair;
+  display: block;
+  border-radius: 4px;
+  overflow: visible;
+}
+
+/* Main canvas area */
+#frise-main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  user-select: none;
+}
+#frise-canvas {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+/* Zoom controls */
+#frise-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+.frise-ctrl-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  font-family: monospace;
+}
+.frise-ctrl-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+/* Viewport readout */
+#viewport-info {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Tooltip */
+#frise-tooltip {
+  position: fixed;
+  background: var(--bg2);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 10px 14px;
+  pointer-events: none;
+  z-index: 300;
+  display: none;
+  max-width: 280px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.tt-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.tt-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); margin-bottom: 3px; }
+.tt-title { font-size: 0.92rem; font-family: 'Cinzel', serif; font-weight: 600; color: #fff; line-height: 1.3; }
+.tt-hint { font-size: 0.75rem; color: var(--text-faint); margin-top: 5px; font-style: italic; }
+
+/* Era legend in frise */
+#era-legend {
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  z-index: 10;
+  pointer-events: none;
+}
+.era-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+.era-legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ─── MAP VIEW ─── */
+#map-view {
+  display: none;
+  position: fixed;
+  top: 154px; left: 0; right: 0; bottom: 38px;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+#map-canvas-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #04090f;
+}
+#map-canvas {
+  display: block;
+  cursor: grab;
+}
+#map-canvas:active { cursor: grabbing; }
+
+/* Map filter bar */
+#map-filters {
+  position: absolute;
+  top: 12px; left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+#map-era-select {
+  background: rgba(5,8,16,0.88);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+}
+#map-era-select:focus { border-color: var(--gold); }
+#map-era-select option { background: #0b1120; }
+
+.map-type-legend {
+  background: rgba(5,8,16,0.88);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.map-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+.map-legend-row.active { opacity: 1; }
+.map-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* Map zoom controls */
+#map-zoom-controls {
+  position: absolute;
+  bottom: 20px; left: 12px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+.map-ctrl-btn {
+  background: rgba(5,8,16,0.88);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 30px; height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  font-family: monospace;
+}
+.map-ctrl-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Map info badge */
+#map-info-badge {
+  position: absolute;
+  bottom: 20px; right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  background: rgba(5,8,16,0.8);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 10px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Map tooltip */
+#map-tooltip {
+  position: fixed;
+  background: var(--bg2);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 10px 14px;
+  pointer-events: none;
+  z-index: 300;
+  display: none;
+  max-width: 220px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+.mtt-name  { font-family: 'Cinzel', serif; font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.mtt-zone  { font-size: 0.72rem; color: var(--text-faint); font-style: italic; margin-bottom: 6px; }
+.mtt-count { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); }
+.mtt-hint  { font-size: 0.7rem; color: var(--text-faint); margin-top: 4px; }
+
+/* Map side panel */
+#map-panel {
+  width: 0;
+  overflow: hidden;
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+#map-panel.open { width: 380px; }
+
+#map-panel-header {
+  flex-shrink: 0;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--bg2);
+}
+.mp-loc-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.mp-loc-zone {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  font-style: italic;
+  margin-top: 2px;
+}
+.mp-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 26px; height: 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+.mp-close:hover { border-color: var(--gold); color: var(--gold); }
+
+#map-panel-events {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px 40px;
+}
+.mp-event-item {
+  display: flex;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+}
+.mp-event-item:hover { background: rgba(255,255,255,0.04); border-color: var(--border); }
+.mp-ev-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.mp-ev-date { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--text-faint); margin-bottom: 2px; }
+.mp-ev-title { font-family: 'Cinzel', serif; font-size: 0.82rem; color: var(--text); line-height: 1.3; }
+.mp-ev-type { font-size: 0.6rem; font-family: 'Cinzel', serif; letter-spacing: 0.08em; color: var(--text-faint); margin-top: 2px; }
+
+/* ─── CHARACTERS VIEW ─── */
+#chars-view {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 154px; left: 0; right: 0; bottom: 38px;
+  overflow: hidden;
+}
+
+#chars-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+#chars-search {
+  flex: 1;
+  min-width: 180px;
+  max-width: 320px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: var(--text);
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  outline: none;
+}
+#chars-search:focus { border-color: var(--gold); }
+#chars-search::placeholder { color: var(--text-faint); }
+
+.cat-pill {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cat-pill:hover { color: var(--text); border-color: var(--border-light); }
+.cat-pill.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+.cat-pill[data-cat="pirate"].active         { background: rgba(255,214,10,0.1); border-color: #ffd60a; color: #ffd60a; }
+.cat-pill[data-cat="marine"].active         { background: rgba(67,97,238,0.12); border-color: #4361ee; color: #8aadff; }
+.cat-pill[data-cat="revolutionnaire"].active{ background: rgba(230,57,70,0.12); border-color: #e63946; color: #ff7a85; }
+.cat-pill[data-cat="corsaire"].active       { background: rgba(155,93,229,0.12); border-color: #9b5de5; color: #c8a0ff; }
+.cat-pill[data-cat="historique"].active     { background: rgba(201,162,39,0.12); border-color: #c9a227; color: #c9a227; }
+.cat-pill[data-cat="autre"].active          { background: rgba(82,183,136,0.12); border-color: #52b788; color: #52b788; }
+
+#chars-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  margin-left: auto;
+}
+
+/* Grid */
+#chars-grid-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 24px 80px;
+}
+
+#chars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+/* Character card */
+.char-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.char-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.char-card:hover { background: var(--card-hover); border-color: var(--border-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.char-card:hover::before { opacity: 1; }
+.char-card.selected { border-color: var(--gold); background: rgba(201,162,39,0.04); }
+
+.char-card[data-cat="pirate"]::before         { background: #ffd60a; }
+.char-card[data-cat="marine"]::before         { background: #4361ee; }
+.char-card[data-cat="revolutionnaire"]::before{ background: #e63946; }
+.char-card[data-cat="corsaire"]::before       { background: #9b5de5; }
+.char-card[data-cat="historique"]::before     { background: #c9a227; }
+.char-card[data-cat="autre"]::before          { background: #52b788; }
+
+.char-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.char-cat-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.char-cat-badge.pirate          { border-color:#ffd60a; color:#ffd60a; }
+.char-cat-badge.marine          { border-color:#4361ee; color:#8aadff; }
+.char-cat-badge.revolutionnaire { border-color:#e63946; color:#ff7a85; }
+.char-cat-badge.corsaire        { border-color:#9b5de5; color:#c8a0ff; }
+.char-cat-badge.historique      { border-color:#c9a227; color:#c9a227; }
+.char-cat-badge.autre           { border-color:#52b788; color:#52b788; }
+
+.char-status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.char-status-dot.vivant   { background: #52b788; box-shadow: 0 0 4px #52b788; }
+.char-status-dot.mort     { background: #e63946; }
+.char-status-dot.inconnu  { background: #7a8fa8; }
+
+.char-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.char-aliases {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.char-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-bottom: 3px;
+}
+.char-meta-line strong { color: var(--text-dim); }
+
+.char-fruit-tag {
+  font-size: 0.65rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(67,97,238,0.12);
+  border: 1px solid rgba(67,97,238,0.3);
+  color: #8aadff;
+  margin-top: 6px;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.char-ev-count {
+  position: absolute;
+  bottom: 12px; right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+}
+
+/* ─── CHARACTER PROFILE PANEL ─── */
+#char-panel {
+  position: fixed;
+  top: 154px;
+  right: -520px;
+  width: 500px;
+  bottom: 0;
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 50;
+}
+#char-panel.open { right: 0; }
+#chars-view.panel-open { margin-right: 500px; }
+
+#char-panel-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 20px;
+  z-index: 1;
+}
+
+.cp-close-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  float: right;
+  margin-left: 12px;
+}
+.cp-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.cp-cat-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.cp-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.cp-aliases {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.cp-body { padding: 20px; }
+
+.cp-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.cp-stat {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.cp-stat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+}
+.cp-stat-val {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cp-fruit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(67,97,238,0.08);
+  border: 1px solid rgba(67,97,238,0.25);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.cp-fruit-icon { font-size: 1.2rem; }
+.cp-fruit-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-faint); }
+.cp-fruit-name { font-size: 0.88rem; color: #8aadff; line-height: 1.3; }
+
+.cp-bounty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(255,214,10,0.06);
+  border: 1px solid rgba(255,214,10,0.2);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.cp-bounty-icon { font-size: 1.1rem; }
+.cp-bounty-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-faint); }
+.cp-bounty-val { font-size: 0.95rem; color: #ffd60a; font-family: 'JetBrains Mono', monospace; }
+
+.cp-description {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.cp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.cp-tag {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-faint);
+}
+
+.cp-events-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cp-event-item {
+  display: flex;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+  margin-bottom: 4px;
+}
+.cp-event-item:hover { background: rgba(255,255,255,0.04); }
+
+.cp-ev-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.cp-ev-info { flex: 1; min-width: 0; }
+.cp-ev-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  margin-bottom: 2px;
+}
+.cp-ev-title {
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+  color: var(--text);
+  line-height: 1.3;
+}
+.cp-ev-arrow { color: var(--text-faint); font-size: 0.8rem; align-self: center; }
+
+/* ─── FOOTER ─── */
+#site-footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 40;
+  height: 38px;
+  background: rgba(5,8,16,0.97);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  gap: 16px;
+}
+.footer-credit {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.footer-credit strong { color: var(--text-dim); }
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.kofi-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  background: rgba(255,94,0,0.12);
+  border: 1px solid rgba(255,94,0,0.4);
+  border-radius: 4px;
+  color: #ff7a35;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.kofi-btn:hover { background: rgba(255,94,0,0.22); border-color: #ff7a35; }
+.footer-link {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: var(--gold); }
+
+.footer-version {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.footer-sep {
+  color: var(--text-faint);
+  margin: 0 4px;
+}
+
+/* ─── À PROPOS VIEW ─── */
+#about-view {
+  display: none;
+  position: fixed;
+  top: 154px; left: 0; right: 0; bottom: 38px;
+  overflow-y: auto;
+  background: var(--bg);
+}
+
+#about-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.about-hero {
+  text-align: center;
+  padding: 40px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.about-skull {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  filter: sepia(1) saturate(3) hue-rotate(10deg);
+}
+.about-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.about-subtitle {
+  font-size: 1rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.about-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+.about-card:hover { border-color: var(--border-light); }
+.about-card-kofi { border-color: rgba(255,94,0,0.3); background: rgba(255,94,0,0.04); }
+.about-card-kofi:hover { border-color: rgba(255,94,0,0.6); }
+
+.about-card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+.about-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.about-card p {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+.about-card a {
+  color: var(--c-naissance);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.about-card a:hover { color: var(--gold); text-decoration: underline; }
+
+.about-kofi-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 20px;
+  background: rgba(255,94,0,0.15);
+  border: 1px solid rgba(255,94,0,0.5);
+  border-radius: 6px;
+  color: #ff7a35 !important;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-decoration: none !important;
+  transition: all 0.15s;
+}
+.about-kofi-btn:hover { background: rgba(255,94,0,0.25) !important; border-color: #ff7a35 !important; }
+
+.about-nav-guide {
+  border-top: 1px solid var(--border);
+  padding-top: 36px;
+}
+.about-nav-guide h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.about-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.about-nav-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.about-nav-icon {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+.about-nav-item strong { color: var(--text); }
+
+@media (max-width: 600px) {
+  .about-nav-grid { grid-template-columns: 1fr; }
+  .about-title { font-size: 1.6rem; }
+}
+
+
+/* ─── ONBOARDING MODAL ─── */
+#onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3,6,14,0.88);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.4s ease;
+}
+#onboarding-overlay.hidden { display: none; }
+
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+@keyframes slideUp { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
+
+#onboarding-modal {
+  background: var(--bg2);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 40px 36px 32px;
+  max-width: 460px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  animation: slideUp 0.4s ease 0.1s both;
+}
+
+.ob-skull { font-size: 2.8rem; margin-bottom: 12px; }
+.ob-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.ob-sub {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.ob-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.ob-feat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.ob-feat span:first-child {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.ob-tip {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  margin-bottom: 24px;
+  padding: 8px 14px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,162,39,0.2);
+  border-radius: 6px;
+}
+.ob-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 12px 32px;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+}
+.ob-btn:hover { background: rgba(201,162,39,0.25); }
+.ob-nevershow {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.ob-nevershow:hover { color: var(--text-dim); }
+
+
+.panel-frise-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 7px 16px;
+  background: rgba(201,162,39,0.08);
+  border: 1px solid rgba(201,162,39,0.35);
+  border-radius: 6px;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  justify-content: center;
+}
+.panel-frise-btn:hover {
+  background: rgba(201,162,39,0.18);
+  border-color: var(--gold);
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="app-header">
+  <div class="header-top">
+    <div class="app-title">☠ ONE PIECE <span>— Chronologie Universelle</span></div>
+    <input type="text" id="search-box" placeholder="Rechercher un événement, personnage, lieu…">
+    <div class="header-actions">
+      <div id="view-toggle">
+        <button class="view-btn active" id="btn-list"  onclick="setView('list')">≡ ÉVÉNEMENTS</button>
+        <button class="view-btn"        id="btn-frise" onclick="setView('frise')">◉ FRISE</button>
+        <button class="view-btn"        id="btn-chars" onclick="setView('chars')">☽ PERSONNAGES</button>
+        <button class="view-btn"        id="btn-map"   onclick="setView('map')">🗺 CARTE</button>
+        <button class="view-btn" id="btn-about" onclick="setView('about')">ℹ À PROPOS</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-bar">
+    <span class="filter-label">FILTRES :</span>
+    <span class="type-pill active" data-type="ere"        onclick="toggleFilter('ere')">⭐ Ère</span>
+    <span class="type-pill active" data-type="naissance"  onclick="toggleFilter('naissance')">🌊 Naissance</span>
+    <span class="type-pill active" data-type="mort"       onclick="toggleFilter('mort')">💀 Mort</span>
+    <span class="type-pill active" data-type="guerre"     onclick="toggleFilter('guerre')">⚔ Guerre</span>
+    <span class="type-pill active" data-type="politique"  onclick="toggleFilter('politique')">⚖ Politique</span>
+    <span class="type-pill active" data-type="mystere"    onclick="toggleFilter('mystere')">🔮 Mystère</span>
+    <span class="type-pill active" data-type="aventure"   onclick="toggleFilter('aventure')">⚓ Aventure</span>
+    <span class="type-pill active" data-type="piraterie"  onclick="toggleFilter('piraterie')">🏴 Piraterie</span>
+  </div>
+
+  <div class="era-nav">
+    <button class="era-btn" onclick="jumpToEra('prehistoric')">🦕 Préhistoire</button>
+    <button class="era-btn" onclick="jumpToEra('antiquite')">🌿 Antiquité</button>
+    <button class="era-btn" onclick="jumpToEra('vide')">📜 Siècle Oublié</button>
+    <button class="era-btn" onclick="jumpToEra('post_vide')">⚖ Post-Siècle Oublié</button>
+    <button class="era-btn" onclick="jumpToEra('rocks')">💀 Ère des Rocks</button>
+    <button class="era-btn" onclick="jumpToEra('roger')">👑 Ère de Roger</button>
+    <button class="era-btn" onclick="jumpToEra('pre_histoire')">🌅 Grande Ère de la Piraterie</button>
+    <button class="era-btn" onclick="jumpToEra('histoire')">⚓ Histoire Principale</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="timeline-container">
+    <div id="timeline-content"></div>
+  </div>
+</div>
+
+<!-- CHARACTERS VIEW -->
+<div id="chars-view">
+  <div id="chars-toolbar">
+    <input type="text" id="chars-search" placeholder="Rechercher un personnage, alias, fruit…" oninput="renderChars()">
+    <button class="cat-pill active" data-cat="all"              onclick="setCatFilter('all')">Tous</button>
+    <button class="cat-pill"        data-cat="pirate"           onclick="setCatFilter('pirate')">🏴 Pirates</button>
+    <button class="cat-pill"        data-cat="marine"           onclick="setCatFilter('marine')">⚓ Marine</button>
+    <button class="cat-pill"        data-cat="revolutionnaire"  onclick="setCatFilter('revolutionnaire')">✊ Révolutionnaires</button>
+    <button class="cat-pill"        data-cat="corsaire"         onclick="setCatFilter('corsaire')">⚔ Corsaires</button>
+    <button class="cat-pill"        data-cat="historique"       onclick="setCatFilter('historique')">📜 Historiques</button>
+    <button class="cat-pill"        data-cat="autre"            onclick="setCatFilter('autre')">◈ Autres</button>
+    <span id="chars-count"></span>
+  </div>
+  <div id="chars-grid-wrap">
+    <div id="chars-grid"></div>
+  </div>
+</div>
+
+
+<!-- ABOUT VIEW -->
+<div id="about-view">
+  <div id="about-wrap">
+    <div class="about-hero">
+      <div class="about-skull">☠</div>
+      <h1 class="about-title">One Piece Timeline</h1>
+      <p class="about-subtitle">Chronologie Universelle du Monde de One Piece</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-icon">📖</div>
+        <h3>Le Projet</h3>
+        <p>Un outil fan pour explorer l'immense histoire du monde de One Piece — de la Préhistoire (il y a 5 000 ans) jusqu'aux derniers chapitres. Chaque événement est sourcé et daté selon le calendrier Kaienreki du manga.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🗺</div>
+        <h3>4 Vues Complémentaires</h3>
+        <p><strong>Événements</strong> — liste filtrée de tous les événements.<br>
+        <strong>Frise</strong> — timeline interactive avec zoom jusqu'au mois.<br>
+        <strong>Personnages</strong> — 58 fiches avec biographies et primes.<br>
+        <strong>Carte</strong> — le monde de One Piece et ses 85 lieux.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <h3>Chiffres clés</h3>
+        <p id="about-stats">Chargement…</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📚</div>
+        <h3>Sources</h3>
+        <p>
+          <a href="https://thelibraryofohara.com/the-one-piece-timeline/" target="_blank" rel="noopener">The Library of Ohara v5.0</a> — référence principale des dates<br><br>
+          <a href="https://onepiece.fandom.com/fr/wiki/Wiki_One_Piece" target="_blank" rel="noopener">Wiki One Piece (FR)</a> — données complémentaires<br><br>
+          SBS & Vivre Cards — dates de naissance officielles d'Eiichiro Oda
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚠</div>
+        <h3>Mention légale</h3>
+        <p>Projet fan non officiel, sans affiliation avec Shueisha ou Toei Animation.<br><br>
+        One Piece est la propriété d'<strong>Eiichiro Oda / Shueisha / Toei Animation</strong>.<br><br>
+        Toutes les données sont issues de sources publiques et utilisées à des fins non commerciales.</p>
+      </div>
+      <div class="about-card about-card-kofi">
+        <div class="about-card-icon">☕</div>
+        <h3>Soutenir le projet</h3>
+        <p>Ce projet est gratuit et sans publicité intrusive. Si tu l'apprécies, un café est toujours bienvenu !</p>
+        <a href="https://ko-fi.com/joeydjr" target="_blank" rel="noopener" class="about-kofi-btn">
+          ☕ Soutenir sur Ko-fi
+        </a>
+      </div>
+    </div>
+
+    <div class="about-nav-guide">
+      <h3>Comment naviguer</h3>
+      <div class="about-nav-grid">
+        <div class="about-nav-item">
+          <span class="about-nav-icon">≡</span>
+          <div><strong>Événements</strong><br>Filtrer par type (naissance, mort, guerre…) et par ère. Cliquer un événement pour le détail complet.</div>
+        </div>
+        <div class="about-nav-item">
+          <span class="about-nav-icon">◉</span>
+          <div><strong>Frise</strong><br>Molette pour zoomer, glisser pour naviguer. La minimap en haut donne une vue d'ensemble. Cliquer sur un point pour le détail.</div>
+        </div>
+        <div class="about-nav-item">
+          <span class="about-nav-icon">☽</span>
+          <div><strong>Personnages</strong><br>Filtrer par catégorie. La fiche d'un personnage liste tous ses événements liés avec un lien direct.</div>
+        </div>
+        <div class="about-nav-item">
+          <span class="about-nav-icon">🗺</span>
+          <div><strong>Carte</strong><br>Cliquer un marqueur pour voir les événements du lieu. Filtrer par ère ou type. Les personnages dans les événements sont cliquables.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP VIEW -->
+<div id="map-view">
+  <div id="map-canvas-wrap">
+    <canvas id="map-canvas"></canvas>
+    <div id="map-filters">
+      <select id="map-era-select" onchange="mapEraFilter=this.value; drawMap()">
+        <option value="all">Toutes les ères</option>
+        <option value="prehistoric">Préhistoire</option>
+        <option value="antiquite">Antiquité</option>
+        <option value="vide">Siècle Oublié</option>
+        <option value="post_vide">Post-Siècle Oublié</option>
+        <option value="rocks">Ère des Rocks</option>
+        <option value="roger">Ère de Roger</option>
+        <option value="pre_histoire">Grande Ère de la Piraterie</option>
+        <option value="histoire">Histoire Principale</option>
+      </select>
+      <div class="map-type-legend" id="map-type-legend"></div>
+    </div>
+    <div id="map-zoom-controls">
+      <button class="map-ctrl-btn" onclick="mapZoom(1.4)" title="Zoom +">+</button>
+      <button class="map-ctrl-btn" onclick="mapZoom(0.7)" title="Zoom −">−</button>
+      <button class="map-ctrl-btn" onclick="mapResetView()" title="Réinitialiser">↔</button>
+    </div>
+    <div id="map-info-badge" id="map-info"></div>
+  </div>
+  <div id="map-panel">
+    <div id="map-panel-header">
+      <div>
+        <div class="mp-loc-name" id="mp-loc-name"></div>
+        <div class="mp-loc-zone" id="mp-loc-zone"></div>
+      </div>
+      <button class="mp-close" onclick="closeMapPanel()">✕</button>
+    </div>
+    <div id="map-panel-events"></div>
+  </div>
+</div>
+
+<div id="map-tooltip">
+  <div class="mtt-name" id="mtt-name"></div>
+  <div class="mtt-zone" id="mtt-zone"></div>
+  <div class="mtt-count" id="mtt-count"></div>
+  <div class="mtt-hint">Cliquer pour voir les événements</div>
+</div>
+
+<!-- CHARACTER PROFILE PANEL -->
+<div id="char-panel">
+  <div id="char-panel-header">
+    <button class="cp-close-btn" onclick="closeCharPanel()">✕</button>
+    <div class="cp-cat-badge" id="cp-cat-badge"></div>
+    <div class="cp-name" id="cp-name"></div>
+    <div class="cp-aliases" id="cp-aliases"></div>
+  </div>
+  <div class="cp-body" id="cp-body"></div>
+</div>
+
+<!-- FRISE VIEW -->
+<div id="frise-view">
+  <div id="minimap-wrap">
+    <div class="minimap-label-row">
+      <span class="minimap-title">▸ CHRONOLOGIE COMPLÈTE — Cliquer/glisser pour naviguer</span>
+      <span class="minimap-hint" id="minimap-hint-text"></span>
+    </div>
+    <svg id="minimap-svg"></svg>
+  </div>
+  <div id="frise-main">
+    <canvas id="frise-canvas"></canvas>
+    <div id="era-legend"></div>
+    <div id="frise-controls">
+      <button class="frise-ctrl-btn" onclick="friseZoomBtn(0.4)" title="Zoom +">+</button>
+      <button class="frise-ctrl-btn" onclick="friseZoomBtn(2.5)" title="Zoom −">−</button>
+      <button class="frise-ctrl-btn" onclick="friseReset()" title="Tout afficher">↔</button>
+    </div>
+    <div id="viewport-info"></div>
+  </div>
+</div>
+
+<!-- FRISE TOOLTIP -->
+<div id="frise-tooltip">
+  <div class="tt-badge" id="tt-badge"></div>
+  <div class="tt-date" id="tt-date"></div>
+  <div class="tt-title" id="tt-title"></div>
+  <div class="tt-hint">Cliquer pour plus de détails</div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div id="detail-panel">
+  <div class="panel-close">
+    <span class="panel-type-badge" id="panel-type-badge"></span>
+    <button class="panel-close-btn" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<!-- STATS BAR -->
+<div id="stats-bar">
+  <div class="stat-chip" id="stat-shown">0 événements</div>
+  <div class="stat-chip" id="stat-total">0 total</div>
+</div>
+<div id="chars-stat-bar">
+  <div class="stat-chip" id="stat-chars">0 personnages</div>
+</div>
+
+
+<!-- FOOTER -->
+<div id="site-footer">
+  <span class="footer-credit">
+    ☠ <strong>One Piece Timeline</strong>
+    <span class="footer-version" id="footer-version">v1.0</span>
+    <span class="footer-sep">·</span>
+    Projet fan non officiel · One Piece © Eiichiro Oda / Shueisha
+  </span>
+  <span class="footer-links">
+    <a href="https://ko-fi.com/joeydjr" target="_blank" rel="noopener" class="kofi-btn">
+      ☕ Soutenir sur Ko-fi
+    </a>
+    <a href="https://thelibraryofohara.com" target="_blank" rel="noopener" class="footer-link">
+      Library of Ohara
+    </a>
+    <a href="https://onepiece.fandom.com/fr/wiki/Wiki_One_Piece" target="_blank" rel="noopener" class="footer-link">
+      Wiki One Piece
+    </a>
+  </span>
+</div>
+
+
+<!-- ONBOARDING MODAL -->
+<div id="onboarding-overlay" onclick="closeOnboarding()">
+  <div id="onboarding-modal" onclick="event.stopPropagation()">
+    <div class="ob-skull">☠</div>
+    <h2 class="ob-title">Bienvenue sur<br>One Piece Timeline</h2>
+    <p class="ob-sub">La chronologie interactive du monde de One Piece</p>
+    <div class="ob-features" id="ob-features">
+      <div class="ob-feat"><span>≡</span><span id="ob-ev-count">Tous les événements filtrables par ère et type</span></div>
+      <div class="ob-feat"><span>◉</span><span>Frise interactive — zoom jusqu'au mois</span></div>
+      <div class="ob-feat"><span>☽</span><span id="ob-char-count">Fiches personnages avec événements liés</span></div>
+      <div class="ob-feat"><span>🗺</span><span id="ob-loc-count">Carte du monde avec lieux cartographiés</span></div>
+    </div>
+    <p class="ob-tip">💡 Les personnages et lieux sont <strong>cliquables</strong> dans les fiches détail</p>
+    <button class="ob-btn" onclick="closeOnboarding()">✦ Explorer la Chronologie</button>
+    <label class="ob-nevershow">
+      <input type="checkbox" id="ob-never"> Ne plus afficher
+    </label>
+  </div>
+</div>
+
+<!-- NOTIF -->
+<div class="notif" id="notif"></div>
+
+<script src="data.js"></script>
+<script>
+// ══════════════════════════════════════════════════════════
+//  DATA — Source: The Library of Ohara v5.0 + connaissance
+// ══════════════════════════════════════════════════════════
+
+// ══════════════════════════════════════════════════════════
+//  POSITIONS PRÉCISES — HISTOIRE RÉCENTE
+//  Surcharge years_before pour les événements dont les dates
+//  se chevauchaient (arcs de l'histoire principale, etc.)
+// ══════════════════════════════════════════════════════════
+;(function applyPositionOverrides() {
+  const POS = {
+    // ── AUTOUR DE L'EXÉCUTION DE ROGER (24 ans) ─────────
+    'bp001': 24.3, 'bp002': 24.1,
+    'ro009': 24.0, 'ro010': 23.9, 'ro008': 24.15,
+
+    // ── PRÉ-HISTOIRE — événements du même cluster ~22 ans ─
+    'ph001': 22.5,  // Ohara
+    'ph002': 22.3,  // Luffy né
+    'ph003': 22.2,  // Ace né
+    'phx001':22.0,  // Mort Portgas D. Rouge
+    'phx002':21.8,  // Mort Bell-Mère
+
+    // ── HISTOIRE PRINCIPALE — PRÉ-TIMESKIP ──────────────
+    // Spread sur 2.5 → 0.85 (histoire commence à 2.5 ans)
+    'h001':  2.42,  // Luffy quitte Foosha
+    'hx001': 2.38,  // Zoro recruté
+    'h002':  2.32,  // Arc Orange Town / Nami
+    'h003':  2.22,  // Arc Baratie / Sanji
+    'hx002': 2.18,  // Première prime 30M Berrys
+    'h004':  2.10,  // Arc Arlong Park
+    'h005':  2.00,  // Arc Loguetown
+    'h007':  1.88,  // Arc Drum Island / Chopper
+    'h006':  1.76,  // Arc Alabasta
+    'hx003': 1.65,  // Jaya — Luffy gifle Bellamy
+    'hx004': 1.60,  // Long Ring Long Land / Foxy
+    'h008':  1.52,  // Arc Skypiea
+    'h009':  1.36,  // Arc Water 7 & Enies Lobby
+    'hx005': 1.34,  // Brûler drapeau du Gouvernement
+    'h010':  1.22,  // Arc Thriller Bark
+    'h011':  1.12,  // Arc Archipel Sabaody
+    'hx006': 1.10,  // Luffy frappe Saint Charloss
+    'hx007': 1.05,  // Infiltration Impel Down
+    'h012':  0.98,  // Guerre du Meilleur — Marineford
+    'h013':  0.95,  // Mort de Portgas D. Ace
+    'h014':  0.94,  // Mort de Barbe-Blanche
+    'hx008': 0.92,  // BB vole les pouvoirs de WB
+    'hx009': 0.90,  // Shanks arrête Marineford
+    'hx010': 0.87,  // Message 3D2Y
+    'h015':  0.80,  // Timeskip — 2 ans d'entraînement
+
+    // ── HISTOIRE PRINCIPALE — POST-TIMESKIP ─────────────
+    // Spread sur 0.70 → 0.05
+    'h016':  0.68,  // Arc Punk Hazard
+    'h017':  0.55,  // Arc Dressrosa
+    'hx011': 0.52,  // Retour de Sabo
+    'hx012': 0.44,  // Reverie
+    'h018':  0.34,  // Arc Whole Cake Island
+    'h019':  0.20,  // Arc Wano
+    'hx013': 0.17,  // Mort Kaidou & Big Mom
+    'rv001': 0.16,  // Révélation Fruit Nika / Gear Fifth
+    'bp003': 0.14,  // Prime Luffy 3 Md Berrys
+    'bp004': 0.13,  // Primes équipage post-Wano
+    'rv003': 0.12,  // Imu détruit Lulusia
+    'h020':  0.10,  // Arc Egghead
+    'rv002': 0.08,  // Technologie du Grand Royaume révélée
+    'hx014': 0.07,  // Message de Vegapunk au monde
+    'hx015': 0.06,  // Mort de Vegapunk
+    // ── Goa / Ace / Sabo ──────────────────────────────────────
+    'goa001': 13.3, 'goa002': 13.5, 'goa003': 12.2, 'goa004': 12.0, 'goa005': 6.0,
+    // East Blue détails
+    'eb001': 2.40, 'eb002': 2.30, 'eb003': 2.22, 'eb004': 2.10, 'eb005': 2.00,
+    // Reverie détails
+    'rev001': 0.44, 'rev002': 0.43, 'rev003': 0.42, 'rev004': 0.41, 'rev005': 0.40, 'rev006': 0.39,
+    // Ace backstory
+    'ace001': 6.2, 'ace002': 4.1, 'ace003': 3.1,
+    // Grand Line arcs
+    'gl001': 1.70, 'gl002': 1.60, 'gl003': 1.52, 'gl004': 1.25, 'gl005': 1.10,
+    // ── Naissances secondaires ──────────────────────────────
+    'b_usopp':    20.75, 'b_tashigi': 22.16, 'b_helmeppo': 21.20,
+    'b_hina':     34.00, 'b_kid':     22.97, 'b_bonney':   22.19,
+    'b_perona':   22.08, 'b_monet':   30.50, 'b_sugar':    18.62,
+    'b_cavendish':26.33, 'b_bartolomeo':24.23,
+    // Punk Hazard détails
+    'ph_v001': 0.685, 'ph_v002': 0.660,
+    // Dressrosa détails
+    'dr001': 0.540, 'dr002': 0.530, 'dr003': 0.525, 'dr004': 0.515, 'dr005': 0.505,
+    // Whole Cake Island détails
+    'wci001': 0.340, 'wci002': 0.330, 'wci003': 0.325, 'wci004': 0.315,
+    // Flashbacks
+    'fl001': 9.0, 'fl002': 14.0, 'fl003': 8.0,
+    // Goa détails
+    'goa001': 13.3, 'goa002': 13.5, 'goa003': 12.2, 'goa004': 12.0, 'goa005': 6.0,
+    // ── Ère des Rocks — spread naissances même année ────────
+    // An 1446 (78 ans) : Garp (mai) + Rayleigh (mai) → léger décalage
+    'g006': 78.62,  // Garp (2 mai)
+    'g004': 78.63,  // Rayleigh (14 mai) → légèrement après
+    // An 1450 (74 ans) : Barbe-Blanche seul → ok
+    // An 1465 (59 ans) : Oden (fév) + Kaidou (mai)
+    'g011': 59.83,  // Oden (fév)
+    'g012': 59.63,  // Kaidou (mai)
+    // An 1477 (47 ans) : Kuma (fév) + King (déc)
+    'nb009': 47.83, // Kuma (fév)
+    // An 1480 (44 ans) : Era Rocks début + naissances
+    'r001':  44.50, // Ère Rocks (début)
+    // An 1484 (40 ans) : Barbe-Noire (aoû) + inuarashi + nekomamushi
+    'r002':  40.33, // Barbe-Noire (août)
+    'wo006': 40.22, // Inuarashi (oct)
+    'wo007': 40.10, // Nekomamushi (nov)
+    // An 1485 (39 ans) : Shanks (mar) + Buggy (aoû) + Rosinante (juil)
+    'r003':  39.75, // Shanks (mar)
+    'r004':  39.33, // Buggy (aoû)
+    // An 1486 (38 ans) : God Valley + Fin Ère Rocks
+    'r005':  38.50, // God Valley (bataille)
+    'r006':  38.20, // Fin Ère Rocks → Ère Roger
+    // An 1468-1470 : cluster de naissances
+    'nb005': 55.37, // Akainu (aoû)
+    'nb006': 55.25, // Dragon (oct)
+    'nb007': 54.39, // Fujitora (aoû)
+    'wo003': 54.45, // Kanjuro (juil)
+    'wo004': 54.19, // Orochi (sep)
+
+    // ── Nouveaux événements ────────────────────────────────
+    'rn001': 45.08, 'rn002': 26.16, 'rn003': 25.0,  // Marco, Law, Hiyori
+    'ph_vivi': 18.08, 'ph_koby': 19.03, 'ph_shira': 16.25, 'ph_carrot': 16.4, // naissances
+    'law001': 13.0,  'law002': 10.0,   // Flevance, Corazon
+    'rog001': 26.3,  'rog002': 25.2,   // Roger : HF, Wano
+    // Île des Hommes-Poissons
+    'hf001': 0.58, 'hf002': 0.55, 'hf003': 0.52, 'hf004': 0.50,
+    // Zou
+    'zou001': 0.25, 'zou002': 0.23, 'zou003': 0.22, 'zou004': 0.21, 'zou005': 0.20,
+    // Wano supplémentaires
+    'wan001': 0.19, 'wan002': 0.18, 'wan003': 0.17, 'wan004': 0.16, 'wan005': 0.15, 'wan006': 0.14,
+    // Post-Wano
+    'pw001': 0.12, 'pw002': 0.11,
+    // Egghead supplémentaires
+    'egg001': 0.09, 'egg002': 0.08, 'egg003': 0.07, 'egg004': 0.06,
+  };
+  DATA.events.forEach(ev => {
+    if (POS[ev.id] !== undefined) ev.years_before = POS[ev.id];
+  });
+})();
+
+// ══════════════════════════════════════════════════════════
+//  DATE HELPERS
+// ══════════════════════════════════════════════════════════
+var MONTHS_FR      = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
+var MONTHS_FR_LONG = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+function formatKdate(year_k, month_k, day_k) {
+  if (!year_k) return '';
+  if (day_k && month_k) return `An\u00a0${year_k},\u00a0${day_k}\u00a0${MONTHS_FR[(month_k||1)-1]}.`;
+  if (month_k)          return `An\u00a0${year_k},\u00a0${MONTHS_FR[month_k-1]}.`;
+  return `An\u00a0${year_k}`;
+}
+
+// Convertit years_before → objet Kaienreki { year, month, day }
+function ybToKdate(yb) {
+  const k = Math.max(0, 1524 - yb);
+  const year  = Math.floor(k);
+  const rem   = k - year;
+  const month = Math.min(12, Math.floor(rem * 12) + 1);
+  const day   = Math.min(31, Math.floor((rem * 12 - (month-1)) * 28) + 1);
+  return { year, month, day, decimal: k };
+}
+
+// ══════════════════════════════════════════════════════════
+//  DATES PRÉCISES — Sources : SBS, Vivre Cards, Library of Ohara v5
+// ══════════════════════════════════════════════════════════
+;(function applyDatePrecision() {
+  const D = {
+    // ── PERSONNAGES HISTORIQUES — dates exactes SBS/Vivre Cards ──────────────
+    'g003': {m:4,  d:3},  // Brook          (Avr 3,  SBS Vol.51)
+    'g005': {m:12, d:31}, // Roger          (Déc 31, SBS Vol.82)
+    'g006': {m:5,  d:2},  // Garp           (Mai 2,  SBS Vol.82)
+    'g007': {m:4,  d:6},  // Barbe-Blanche  (Avr 6,  Ch.577)
+    'g008': {m:2,  d:15}, // Big Mom        (Fév 15, SBS Vol.85)
+    'g011': {m:2,  d:2},  // Oden           (Fév 2,  Vivre Card)
+    'g012': {m:5,  d:1},  // Kaidou         (Mai 1,  Vivre Card)
+    'g013': {m:4,  d:2},  // Jinbe          (Avr 2,  SBS Vol.58)
+    'g014': {m:3,  d:9},  // Mihawk         (Mar 9,  SBS Vol.58)
+    'g015': {m:10, d:23}, // Doflamingo     (Oct 23, SBS Vol.58)
+    'nb001':{m:5,  d:9},  // Sengoku        (Mai 9,  SBS Vol.82)
+    'nb003':{m:3,  d:26}, // Tsuru          (Mar 26, SBS Vol.82)
+    'nb004':{m:11, d:23}, // Kizaru         (Nov 23, Vol.1000)
+    'nb005':{m:8,  d:16}, // Akainu         (Aoû 16, Vol.1000)
+    'nb006':{m:10, d:5},  // Dragon         (Oct 5,  Vivre Card)
+    'nb007':{m:8,  d:10}, // Fujitora       (Aoû 10, Vivre Card)
+    'nb008':{m:9,  d:21}, // Aokiji         (Sep 21, Vol.1000)
+    'nb009':{m:2,  d:9},  // Kuma           (Fév 9,  SBS Vol.58)
+    'r002': {m:8,  d:3},  // Barbe-Noire    (Aoû 3,  SBS Vol.58)
+    'r003': {m:3,  d:9},  // Shanks         (Mar 9,  SBS Vol.4)
+    'r004': {m:8,  d:8},  // Buggy          (Aoû 8,  SBS Vol.84)
+    'ro001':{m:3,  d:8},  // Franky         (Mar 8,  Ch.353)
+    'ro002':{m:2,  d:6},  // Robin          (Fév 6,  Ch.218)
+    'wo001':{m:1,  d:29}, // Kin'emon       (Jan 29, Vivre Card)
+    'wo002':{m:9,  d:9},  // Kikunojo       (Sep 9,  Vivre Card)
+    'wo005':{m:10, d:26}, // Denjiro        (Oct 26, Vivre Card)
+    'wo006':{m:10, d:4},  // Inuarashi      (Oct 4,  Vivre Card — Oct 11 Library)
+    'wo007':{m:11, d:22}, // Nekomamushi    (Nov 22, Vivre Card)
+    'nc001':{m:5,  d:8},  // Shakky         (Mai 8,  Vivre Card)
+    'nc002':{m:9,  d:6},  // Moria          (Sep 6,  SBS Vol.58)
+    'nc003':{m:9,  d:5},  // Crocodile      (Sep 5,  SBS Vol.58)
+    'nc004':{m:5,  d:3},  // Arlong         (Mai 3,  Ch.621)
+    'nc005':{m:9,  d:2},  // Boa Hancock    (Sep 2,  SBS Vol.58)
+    'nc006':{m:9,  d:9},  // Hawkins        (Sep 9,  SBS Vol.68)
+    'nc007':{m:6,  d:16}, // Pedro          (Jun 16, Ch.878)
+    'cs003':{m:11, d:3},  // Yamato         (Nov 3,  Ch.985)
+    // ── CHAPEAUX DE PAILLE — dates exactes SBS ───────────────────────────────
+    'ph002':{m:5,  d:5},  // Luffy          (Mai 5)
+    'ph003':{m:1,  d:1},  // Ace            (Jan 1)
+    'ph004':{m:11, d:11}, // Zoro           (Nov 11)
+    'ph005':{m:7,  d:3},  // Nami           (Jul 3)
+    'ph006':{m:3,  d:2},  // Sanji          (Mar 2)
+    'ph007':{m:4,  d:1},  // Usopp          (Avr 1)
+    'ph008':{m:12, d:24}, // Chopper        (Déc 24)
+    // ── ÉVÉNEMENTS HISTORIQUES DATÉS (Library of Ohara) ──────────────────────
+    'nl001':{m:5,  d:12}, // Noland arrive sur Jaya        (12 Mai An 1122)
+    'nl002':{m:6       }, // Shandora projetée dans les cieux (Juin An 1126)
+    'nl003':{m:5       }, // Exécution de Noland           (Mai An 1128)
+    'ro009':{m:1       }, // Exécution de Roger            (Hiver An 1500, approx)
+    // ── ARCS HISTOIRE PRINCIPALE — mois approx (Vivre Cards + consensus) ─────
+    // Pre-timeskip : story starts February An 1522 (source : Vivre Cards)
+    'h001': {m:2},  'hx001':{m:2},  // Foosha / Zoro — Fév 1522
+    'h002': {m:3},  'h003': {m:3},  // Orange Town / Baratie — Mar 1522
+    'hx002':{m:4},  'h004': {m:4},  // Première prime / Arlong Park — Avr 1522
+    'h005': {m:4},                   // Loguetown — Avr 1522
+    'h007': {m:5},                   // Drum Island — Mai 1522
+    'h006': {m:6},                   // Alabasta — Jun 1522
+    'hx003':{m:7},  'hx004':{m:8},  // Jaya / Long Ring — Jul/Aoû 1522
+    'h008': {m:8},                   // Skypiea — Aoû 1522
+    'h009': {m:9},  'hx005':{m:9},  // Water 7 / brûler drapeau — Sep 1522
+    'h010': {m:10},                  // Thriller Bark — Oct 1522
+    'h011': {m:11}, 'hx006':{m:11}, // Sabaody / frappe Charloss — Nov 1522
+    'hx007':{m:11},                  // Impel Down — Nov 1522
+    'h012': {m:12}, 'h013': {m:12}, // Marineford / Mort Ace — Déc 1522
+    'h014': {m:12}, 'hx008':{m:12}, // Mort WB / BB vole WB — Déc 1522
+    'hx009':{m:12}, 'hx010':{m:12}, // Shanks / 3D2Y — Déc 1522
+    // Post-timeskip : reunion Sabaody Janvier An 1524
+    'h016': {m:1},  'h017': {m:3},  // Punk Hazard Jan / Dressrosa Mar — 1524
+    'hx011':{m:3},  'hx012':{m:5},  // Sabo / Reverie — Mar/Mai 1524
+    'h018': {m:7},                   // Whole Cake Island — Jul 1524
+    'h019': {m:10}, 'hx013':{m:11}, // Wano Oct / Mort Kaidou Nov — 1524
+    'rv001':{m:11}, 'bp003':{m:11}, // Révélation Nika / Prime 3Md — Nov 1524
+    'bp004':{m:11}, 'rv003':{m:12}, // Primes TS / Lulusia — Nov-Déc 1524
+    'h020': {m:1},  'rv002':{m:1},  // Egghead — Jan 1525
+    'hx014':{m:1},  'hx015':{m:1},  // Message Vegapunk / Mort Vegapunk — Jan 1525
+  };
+
+  DATA.events.forEach(ev => {
+    const p = D[ev.id];
+    if (!p || !ev.year_k) return;
+
+    ev.month_k = p.m;
+    if (p.d) ev.day_k = p.d;
+
+    // Recompute years_before avec précision pour les événements historiques (loin du présent)
+    // Les arcs récents gardent leurs valeurs FRISE_POS pour la disposition visuelle
+    const isHistorical = !ev.years_before || ev.years_before > 5;
+    if (isHistorical) {
+      const dec = ev.year_k + (p.m - 1) / 12 + ((p.d || 1) - 1) / 365.25;
+      ev.years_before = parseFloat((1524 - dec).toFixed(4));
+    }
+
+    // Mettre à jour date_label avec format propre
+    ev.date_label = formatKdate(ev.year_k, ev.month_k, ev.day_k);
+  });
+})();
+
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+let activeFilters = new Set(['ere','naissance','mort','guerre','politique','mystere','aventure','piraterie']);
+let selectedEventId = null;
+let eraCollapsed = {};
+let searchQuery = '';
+
+const TYPE_LABELS = {
+  ere:'Ère', naissance:'Naissance', mort:'Mort', guerre:'Guerre',
+  politique:'Politique', mystere:'Mystère', aventure:'Aventure', piraterie:'Piraterie'
+};
+
+const ERA_META = {
+  prehistoric:  { name:'Préhistoire',               icon:'🦕', range:'Il y a >1520 ans' },
+  antiquite:    { name:'Antiquité',                  icon:'🌿', range:'Il y a 1120 - 924 ans' },
+  vide:         { name:'Siècle Oublié',             icon:'📜', range:'Il y a 924 - 824 ans (An 600-700)' },
+  post_vide:    { name:'Post-Siècle Oublié',        icon:'⚖',  range:'Il y a 824 - 124 ans (An 700-1400)' },
+  rocks:        { name:"Ère des Rocks", icon:'💀', range:'Il y a 90 - 38 ans (An 1434-1486)' },
+  roger:        { name:"Ère de Roger",               icon:'👑', range:'Il y a 38 - 24 ans (An 1486-1500)' },
+  pre_histoire: { name:"Grande Ère de la Piraterie",           icon:'🌅', range:'Il y a 24 - 2 ans (An 1500-1522)' },
+  histoire:     { name:"Histoire Principale",        icon:'⚓', range:'An 1522-1524 (aujourd\'hui)' }
+};
+
+const ERAS_ORDER = ['prehistoric','antiquite','vide','post_vide','rocks','roger','pre_histoire','histoire'];
+
+// ══════════════════════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════════════════════
+function getFilteredEvents() {
+  return DATA.events.filter(e => {
+    if (!activeFilters.has(e.type)) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      return e.title.toLowerCase().includes(q)
+        || (e.description||'').toLowerCase().includes(q)
+        || (e.characters||[]).some(c=>c.toLowerCase().includes(q))
+        || (e.locations||[]).some(l=>l.toLowerCase().includes(q))
+        || (e.tags||[]).some(t=>t.toLowerCase().includes(q));
+    }
+    return true;
+  });
+}
+
+function render() {
+  const filtered = getFilteredEvents();
+  const byEra = {};
+  ERAS_ORDER.forEach(e => byEra[e] = []);
+  filtered.forEach(ev => {
+    if (byEra[ev.era]) byEra[ev.era].push(ev);
+  });
+
+  // Sort within each era
+  ERAS_ORDER.forEach(era => {
+    byEra[era].sort((a,b) => b.years_before - a.years_before);
+  });
+
+  let html = '';
+  let total = 0;
+  ERAS_ORDER.forEach(era => {
+    const events = byEra[era];
+    total += events.length;
+    const meta = ERA_META[era];
+    const collapsed = eraCollapsed[era];
+    html += `
+    <div class="era-section" id="era-${era}">
+      <div class="era-header" data-era="${era}" onclick="toggleEra('${era}')">
+        <div class="era-icon">${meta.icon}</div>
+        <div class="era-title-block">
+          <div class="era-name">${meta.name}</div>
+          <div class="era-range">${meta.range}</div>
+        </div>
+        <div class="era-count">${events.length} év.</div>
+        <div class="era-toggle ${collapsed?'collapsed':''}">▾</div>
+      </div>
+      <div class="era-events ${collapsed?'collapsed':''}">
+        ${events.length === 0 
+          ? '<div style="color:var(--text-faint);font-size:0.85rem;padding:12px 0">Aucun événement affiché pour cette ère.</div>'
+          : events.map(ev => renderCard(ev)).join('')}
+      </div>
+    </div>`;
+  });
+
+  if (filtered.length === 0) {
+    html = `<div class="empty-state"><div class="icon">🌊</div><p>Aucun événement ne correspond à votre recherche.</p></div>`;
+  }
+
+  document.getElementById('timeline-content').innerHTML = html;
+  document.getElementById('stat-shown').textContent = `${filtered.length} affichés`;
+  document.getElementById('stat-total').textContent = `${DATA.events.length} total`;
+}
+
+function renderCard(ev) {
+  const isSelected = ev.id === selectedEventId;
+  const chars = (ev.characters||[]).slice(0,3).map(c=>`<span class="tag">${c}</span>`).join('');
+  const extraChars = (ev.characters||[]).length > 3 ? `<span class="tag">+${(ev.characters||[]).length-3}</span>` : '';
+  const approxStr = ev.approx ? '~' : '';
+
+  // Date affichée : "An YYYY, DD Mois." si disponible, sinon date_label
+  let dateHtml;
+  if (ev.year_k) {
+    const dateStr = formatKdate(ev.year_k, ev.month_k, ev.day_k);
+    // "il y a X ans" en secondaire, arrondi à l'entier ou à 1 décimale si < 5
+    const yb = ev.years_before;
+    let agoStr = '';
+    if (yb && yb > 0) {
+      agoStr = yb < 5
+        ? `il y a ${(yb * 12).toFixed(0)} mois`
+        : `il y a ${Math.round(yb)} ans`;
+    }
+    dateHtml = `<div class="event-date">
+      <span class="ev-year-k">${dateStr}</span>
+      ${agoStr ? `<span class="ev-years-ago">${approxStr}${agoStr}</span>` : ''}
+    </div>`;
+  } else {
+    dateHtml = `<div class="event-date ev-date-only">${approxStr}${ev.date_label||''}</div>`;
+  }
+
+  return `
+  <div class="event-card type-${ev.type} ${isSelected?'selected':''}" onclick="selectEvent('${ev.id}')">
+    ${dateHtml}
+    <div class="event-content">
+      <div class="event-type-badge badge-${ev.type}">${TYPE_LABELS[ev.type]||ev.type}</div>
+      <div class="event-title">${ev.title}</div>
+      ${ev.description ? `<div class="event-preview">${ev.description}</div>` : ''}
+      ${chars ? `<div class="event-tags">${chars}${extraChars}</div>` : ''}
+      ${ev.source ? `<div class="ev-source-badge">${ev.source}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  INTERACTIONS
+// ══════════════════════════════════════════════════════════
+function toggleFilter(type) {
+  if (activeFilters.has(type)) {
+    activeFilters.delete(type);
+  } else {
+    activeFilters.add(type);
+  }
+  document.querySelectorAll('.type-pill').forEach(el => {
+    el.classList.toggle('active', activeFilters.has(el.dataset.type));
+  });
+  render();
+}
+
+function toggleEra(era) {
+  eraCollapsed[era] = !eraCollapsed[era];
+  render();
+}
+
+function jumpToEra(era) {
+  // Mode frise : zoomer directement sur l'ère
+  if (typeof currentView !== 'undefined' && currentView === 'frise' && typeof jumpViewToEra === 'function') {
+    jumpViewToEra(era);
+    return;
+  }
+  eraCollapsed[era] = false;
+  render();
+  setTimeout(() => {
+    const el = document.getElementById('era-'+era);
+    if (el) {
+      // ① offset du header fixe (~154px) + petite marge
+      const HEADER_H = 162;
+      const top = el.getBoundingClientRect().top + window.scrollY - HEADER_H;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, 80);
+  // ② comparaison exacte sur l'attribut data-era du bouton, pas sur le texte
+  document.querySelectorAll('.era-btn').forEach(b => {
+    const btnEra = b.getAttribute('onclick')?.match(/jumpToEra\('([^']+)'\)/)?.[1];
+    b.classList.toggle('active', btnEra === era);
+  });
+}
+
+function selectEvent(id) {
+  selectedEventId = id;
+  const ev = DATA.events.find(e => e.id === id);
+  if (!ev) return;
+  openPanel(ev);
+  render();
+}
+
+function openPanel(ev) {
+  const badge = document.getElementById('panel-type-badge');
+  badge.className = 'panel-type-badge badge-'+ev.type;
+  badge.textContent = TYPE_LABELS[ev.type]||ev.type;
+
+  // Personnages : cliquables si fiche dispo
+  const chars = (ev.characters||[]).map(c => {
+    const hasProfile = !!findCharByName(c);
+    return `<span class="char-tag${hasProfile?'':' no-profile'}" ${hasProfile?`onclick="goToCharacter('${c.replace(/'/g,"\\'")}')"`:''}>${c}${hasProfile?' ›':''}</span>`;
+  }).join('');
+
+  // Lieux : cliquables si sur la carte
+  const locsHtml = (ev.locations||[]).map(l => {
+    const onMap = !!findLocKey(l);
+    return `<span class="loc-tag${onMap?'':' no-map'}" ${onMap?`onclick="goToMapLocation('${l.replace(/'/g,"\\'")}')"`:''}>${l}${onMap?' →':''}</span>`;
+  }).join('');
+
+  document.getElementById('panel-body').innerHTML = `
+    <div class="panel-date">${ev.approx?'~':''}${ev.date_label||''}</div>
+    <div class="panel-title">${ev.title}</div>
+    <div class="panel-description">${ev.description||'Aucune description disponible.'}</div>
+    <div class="panel-meta">
+      ${ev.era ? `<div class="meta-row"><span class="meta-label">ÈRE</span><span class="meta-value">${ERA_META[ev.era]?.name||ev.era}</span></div>` : ''}
+      ${ev.year_k ? `<div class="meta-row"><span class="meta-label">AN KAIENREKI</span><span class="meta-value">${formatKdate(ev.year_k, ev.month_k, ev.day_k)}</span></div>` : ''}
+      ${ev.years_before ? `<div class="meta-row"><span class="meta-label">IL Y A</span><span class="meta-value">${ev.years_before < 5 ? (ev.years_before*12).toFixed(0)+' mois' : Math.round(ev.years_before)+' ans'} ${ev.approx?'(approx.)':''}</span></div>` : ''}
+      ${locsHtml ? `<div class="meta-row"><span class="meta-label">LIEU(X)</span><div class="panel-locs">${locsHtml}</div></div>` : ''}
+      ${(ev.tags||[]).length ? `<div class="meta-row"><span class="meta-label">TAGS</span><span class="meta-value">${ev.tags.join(', ')}</span></div>` : ''}
+    </div>
+    ${chars ? `<div style="margin-bottom:16px"><div class="meta-label" style="margin-bottom:8px">PERSONNAGES</div><div class="panel-chars">${chars}</div></div>` : ''}
+    <button class="panel-frise-btn" onclick="goToFrise('${ev.id}')">◉ Voir sur la Frise</button>
+    ${ev.source ? `<div class="panel-source">${ev.source}</div>` : ''}
+  `;
+
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('timeline-container').classList.add('panel-open');
+}
+
+function closePanel() {
+  selectedEventId = null;
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('timeline-container').classList.remove('panel-open');
+  render();
+  // Redraw frise si on est dans ce mode (ne pas patcher avec function — hoisting crée une boucle infinie)
+  if (typeof currentView !== 'undefined' && currentView === 'frise' && typeof drawFrise === 'function') {
+    drawFrise();
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════
+//  UTILS
+// ══════════════════════════════════════════════════════════
+function showNotif(msg) {
+  const el = document.getElementById('notif');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// Search
+document.getElementById('search-box').addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  render();
+});
+
+// ══════════════════════════════════════════════════════════
+//  VIEW SWITCHER
+// ══════════════════════════════════════════════════════════
+let currentView = 'list';
+// NOTE: setView() est défini plus bas dans la section MAP (version complète)
+
+// ══════════════════════════════════════════════════════════
+//  CHARACTERS
+// ══════════════════════════════════════════════════════════
+let charCatFilter = 'all';
+let selectedCharId = null;
+
+const CAT_LABELS = {
+  pirate:'Pirate', marine:'Marine', revolutionnaire:'Révolutionnaire',
+  corsaire:'Corsaire', historique:'Historique', autre:'Autre'
+};
+
+function setCatFilter(cat) {
+  charCatFilter = cat;
+  document.querySelectorAll('.cat-pill').forEach(el => {
+    el.classList.toggle('active', el.dataset.cat === cat);
+  });
+  renderChars();
+}
+
+function getCharEvents(char) {
+  const name = char.name.toLowerCase();
+  const aliases = (char.aliases||[]).map(a=>a.toLowerCase());
+  return DATA.events.filter(ev => {
+    const chars = (ev.characters||[]).map(c=>c.toLowerCase());
+    return chars.some(c => c === name || c.includes(name.split(' ').pop()) || aliases.some(a => c.includes(a.split(' ')[0].toLowerCase())));
+  }).sort((a,b) => b.years_before - a.years_before);
+}
+
+function getFilteredChars() {
+  const q = (document.getElementById('chars-search')?.value||'').toLowerCase();
+  return (DATA.characters||[]).filter(c => {
+    if (charCatFilter !== 'all' && c.cat !== charCatFilter) return false;
+    if (q) {
+      return c.name.toLowerCase().includes(q)
+        || (c.aliases||[]).some(a=>a.toLowerCase().includes(q))
+        || (c.fruit||'').toLowerCase().includes(q)
+        || (c.affiliation||[]).some(a=>a.toLowerCase().includes(q))
+        || (c.tags||[]).some(t=>t.toLowerCase().includes(q));
+    }
+    return true;
+  });
+}
+
+function renderChars() {
+  const chars = getFilteredChars();
+  document.getElementById('chars-count').textContent = `${chars.length} / ${(DATA.characters||[]).length} personnages`;
+  const sc = document.getElementById('stat-chars');
+  if (sc) sc.textContent = `${chars.length} personnage${chars.length>1?'s':''}`;
+
+  const grid = document.getElementById('chars-grid');
+  if (!chars.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="icon">🌊</div><p>Aucun personnage trouvé.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = chars.map(c => {
+    const evCount = getCharEvents(c).length;
+    const aliases = (c.aliases||[]).slice(0,2).join(' · ') || c.role || '';
+    const birthLabel = c.birth_yb ? `Il y a ${c.birth_yb} ans` : '';
+    const deathLabel = c.death_yb !== null && c.death_yb !== undefined ? (c.death_yb === 0 ? 'Présent' : `Il y a ${c.death_yb} ans`) : null;
+    const fruitShort = c.fruit ? (c.fruit.length > 36 ? c.fruit.slice(0,36)+'…' : c.fruit) : null;
+    const isSelected = c.id === selectedCharId;
+
+    return `<div class="char-card ${isSelected?'selected':''}" data-cat="${c.cat}" data-id="${c.id}" onclick="selectChar('${c.id}')">
+      <div class="char-card-top">
+        <span class="char-cat-badge ${c.cat}">${CAT_LABELS[c.cat]||c.cat}</span>
+        <span class="char-status-dot ${c.status||'inconnu'}" title="${c.status||'inconnu'}"></span>
+      </div>
+      <div class="char-name">${c.name}</div>
+      ${aliases ? `<div class="char-aliases">${aliases}</div>` : ''}
+      ${birthLabel ? `<div class="char-meta-line">🕐 <span><strong>Naissance :</strong> ${birthLabel}</span></div>` : ''}
+      ${deathLabel ? `<div class="char-meta-line">✦ <span><strong>Mort :</strong> ${deathLabel}</span></div>` : ''}
+      ${c.bounty && c.bounty !== 'inconnu' ? `<div class="char-meta-line">💰 <span>${c.bounty} B</span></div>` : ''}
+      ${fruitShort ? `<div class="char-fruit-tag">🍎 ${fruitShort}</div>` : ''}
+      <div class="char-ev-count">${evCount} événement${evCount!==1?'s':''}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectChar(id) {
+  selectedCharId = id;
+  const char = (DATA.characters||[]).find(c=>c.id===id);
+  if (!char) return;
+  renderChars();
+  openCharPanel(char);
+}
+
+function openCharPanel(char) {
+  // Header
+  const badge = document.getElementById('cp-cat-badge');
+  badge.className = 'cp-cat-badge ' + char.cat;
+  badge.textContent = CAT_LABELS[char.cat]||char.cat;
+  document.getElementById('cp-name').textContent = char.name;
+  document.getElementById('cp-aliases').textContent = (char.aliases||[]).join(' · ');
+
+  // Body
+  const birthLabel = char.birth_yb ? `Il y a ~${char.birth_yb} ans` : '—';
+  const deathLabel = char.death_yb !== null && char.death_yb !== undefined
+    ? (char.death_yb === 0 ? 'Présent' : `Il y a ~${char.death_yb} ans`) : '—';
+  const statusLabel = char.status === 'vivant' ? '🟢 Vivant' : char.status === 'mort' ? '🔴 Mort' : '⚫ Inconnu';
+
+  const affil = (char.affiliation||[]).join(', ') || '—';
+
+  const evList = getCharEvents(char);
+
+  document.getElementById('cp-body').innerHTML = `
+    <div class="cp-stats">
+      <div class="cp-stat"><div class="cp-stat-label">NAISSANCE</div><div class="cp-stat-val">${birthLabel}</div></div>
+      <div class="cp-stat"><div class="cp-stat-label">MORT</div><div class="cp-stat-val">${deathLabel}</div></div>
+      <div class="cp-stat"><div class="cp-stat-label">STATUT</div><div class="cp-stat-val">${statusLabel}</div></div>
+      <div class="cp-stat"><div class="cp-stat-label">RÔLE</div><div class="cp-stat-val">${char.role||'—'}</div></div>
+    </div>
+
+    <div class="cp-stat" style="margin-bottom:14px">
+      <div class="cp-stat-label">AFFILIATION</div>
+      <div class="cp-stat-val" style="font-weight:400;font-size:0.82rem;color:var(--text-dim)">${affil}</div>
+    </div>
+
+    ${char.fruit ? `<div class="cp-fruit">
+      <span class="cp-fruit-icon">🍎</span>
+      <div><div class="cp-fruit-label">FRUIT DU DÉMON</div><div class="cp-fruit-name">${char.fruit}</div></div>
+    </div>` : ''}
+
+    ${char.bounty && char.bounty !== 'inconnu' ? `<div class="cp-bounty">
+      <span class="cp-bounty-icon">💰</span>
+      <div><div class="cp-bounty-label">PRIME</div><div class="cp-bounty-val">${char.bounty} Berrys</div></div>
+    </div>` : ''}
+
+    <div class="cp-description">${char.description||''}</div>
+
+    ${(char.tags||[]).length ? `<div class="cp-tags">${char.tags.map(t=>`<span class="cp-tag">${t}</span>`).join('')}</div>` : ''}
+
+    <div class="cp-events-title">▸ ÉVÉNEMENTS LIÉS — ${evList.length} trouvé${evList.length!==1?'s':''}</div>
+    <div>
+      ${evList.length ? evList.map(ev => `
+        <div class="cp-event-item" onclick="jumpToEvent('${ev.id}')">
+          <div class="cp-ev-dot" style="background:${TYPE_C[ev.type]||'#888'}"></div>
+          <div class="cp-ev-info">
+            <div class="cp-ev-date">${ev.date_label||''}</div>
+            <div class="cp-ev-title">${ev.title}</div>
+            ${(ev.locations||[]).some(l=>findLocKey(l)) ? `<div class="cp-ev-chars">${(ev.locations||[]).filter(l=>findLocKey(l)).map(l=>`<span class="cp-ev-char-tag" onclick="event.stopPropagation();goToMapLocation('${l.replace(/'/g,"\\'")}')">📍 ${l}</span>`).join('')}</div>` : ''}
+            ${ev.source ? `<div class="cp-ev-source">${ev.source}</div>` : ''}
+          </div>
+          <div class="cp-ev-arrow">›</div>
+        </div>`).join('')
+      : '<div style="color:var(--text-faint);font-size:0.85rem;padding:12px 0">Aucun événement lié trouvé.</div>'}
+    </div>
+    <div class="cp-source-note">Sources : Library of Ohara v5.0 · Wiki One Piece · SBS · Vivre Cards</div>
+  `;
+
+  document.getElementById('char-panel').classList.add('open');
+  document.getElementById('chars-view').classList.add('panel-open');
+}
+
+function closeCharPanel() {
+  selectedCharId = null;
+  document.getElementById('char-panel').classList.remove('open');
+  document.getElementById('chars-view').classList.remove('panel-open');
+  renderChars();
+}
+
+function jumpToEvent(evId) {
+  closeCharPanel();
+  setView('list');
+  selectedEventId = evId;
+  const ev = DATA.events.find(e=>e.id===evId);
+  if (ev) {
+    eraCollapsed = {};
+    render();
+    setTimeout(() => {
+      openPanel(ev);
+      const el = document.querySelector(`[data-id="${evId}"], .event-card.selected`);
+      if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+    }, 100);
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  FRISE — CONSTANTS & STATE
+// ══════════════════════════════════════════════════════════
+const MAX_YB = 5500;  // years_before cap — commence à l'Arbre de la Toute-Connaissance (~5000 ans)
+
+const ERA_RANGES = [
+  { key:'prehistoric',  start: MAX_YB, end: 1524, color:'rgba(100,70,40,0.45)',  border:'#7a4a28' },
+  { key:'antiquite',    start: 1524,   end: 924,  color:'rgba(30,80,50,0.45)',   border:'#2a7a4a' },
+  { key:'vide',         start: 924,    end: 824,  color:'rgba(70,30,100,0.55)',  border:'#6a2a9a' },
+  { key:'post_vide',    start: 824,    end: 124,  color:'rgba(20,50,80,0.45)',   border:'#1a4a7a' },
+  { key:'rocks',        start: 124,    end: 38,   color:'rgba(100,20,20,0.45)',  border:'#8a2020' },
+  { key:'roger',        start: 38,     end: 24,   color:'rgba(100,80,10,0.55)',  border:'#c9a227' },
+  { key:'pre_histoire', start: 24,     end: 2.5,  color:'rgba(20,25,80,0.45)',   border:'#2a30a0' },
+  { key:'histoire',     start: 2.5,    end: 0,    color:'rgba(10,40,80,0.5)',    border:'#1a60d0' },
+];
+
+const TYPE_C = {
+  ere:'#c9a227', naissance:'#00b4d8', mort:'#e63946', guerre:'#f4a261',
+  politique:'#9b5de5', mystere:'#4361ee', aventure:'#52b788', piraterie:'#ffd60a'
+};
+
+// Viewport state: years_before (0=present, large=ancient), LEFT=ancient, RIGHT=recent
+const VS = { start: 0, end: MAX_YB };
+
+let friseW = 0, friseH = 0;
+let friseInited = false;
+let isDragging = false, dragStartX = 0, dragStartVS = 0, dragStartVE = 0;
+let isMiniDragging = false, miniDragMode = 'pan'; // 'pan' | 'left' | 'right'
+let hoveredEvId = null;
+let rafId = null;
+
+// ── COORDINATE TRANSFORMS ──────────────────────────────────
+
+// Era-proportional scale: chaque ère occupe 1/N de la largeur du minimap
+// Bien plus lisible que la log — l'histoire récente n'est plus écrasée
+function eraX(yb, W) {
+  const N = ERA_RANGES.length;
+  const ew = W / N;
+  for (let i = 0; i < N; i++) {
+    const er = ERA_RANGES[i];
+    if (yb <= er.start && yb >= er.end) {
+      const frac = (er.start - yb) / (er.start - er.end);
+      return i * ew + frac * ew;
+    }
+  }
+  return yb > ERA_RANGES[0].start ? 0 : W;
+}
+
+function eraXInverse(x, W) {
+  const N = ERA_RANGES.length;
+  const ew = W / N;
+  const i = Math.min(N - 1, Math.max(0, Math.floor(x / ew)));
+  const er = ERA_RANGES[i];
+  const frac = (x - i * ew) / ew;
+  return er.start - frac * (er.start - er.end);
+}
+
+// Garde logX pour compatibilité interne si besoin
+function logX(yb, w) { return eraX(yb, w); }
+
+function linearX(yb) {
+  const range = VS.end - VS.start;
+  if (range === 0) return friseW / 2;
+  return (1 - (yb - VS.start) / range) * friseW;
+}
+function xToYB(x) {
+  const range = VS.end - VS.start;
+  return VS.end - (x / friseW) * range;
+}
+
+// ── ZOOM / PAN ─────────────────────────────────────────────
+function friseZoom(factor, pivotX) {
+  pivotX = pivotX ?? friseW / 2;
+  const range = VS.end - VS.start;
+  const newRange = Math.min(MAX_YB, Math.max(1/365.25, range * factor));
+  const pivotYB = xToYB(pivotX);
+  const ratio = pivotX / friseW;  // 0=left/ancient 1=right/recent
+  VS.end = Math.min(MAX_YB, pivotYB + ratio * newRange);
+  VS.start = Math.max(0, VS.end - newRange);
+  if (VS.end > MAX_YB) { VS.end = MAX_YB; }
+  if (VS.start < 0) { VS.start = 0; }
+  drawAll();
+}
+function friseZoomBtn(factor) { friseZoom(factor); }
+function friseReset() {
+  VS.start = 0; VS.end = MAX_YB;
+  drawAll();
+}
+function jumpViewToEra(eraKey) {
+  const er = ERA_RANGES.find(e => e.key === eraKey);
+  if (!er) return;
+  const margin = (er.start - er.end) * 0.15 + 1;
+  VS.start = Math.max(0, er.end - margin);
+  VS.end = Math.min(MAX_YB, er.start + margin);
+  drawAll();
+}
+
+// ══════════════════════════════════════════════════════════
+//  MINIMAP
+// ══════════════════════════════════════════════════════════
+function drawMinimap() {
+  const svg = document.getElementById('minimap-svg');
+  const W = svg.getBoundingClientRect().width || svg.parentElement.clientWidth - 48;
+  const H = 56;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  let html = '';
+
+  // Era bands
+  ERA_RANGES.forEach(er => {
+    const x1 = logX(er.start, W);
+    const x2 = logX(er.end, W);
+    const x = Math.min(x1, x2), w = Math.abs(x2 - x1);
+    html += `<rect x="${x}" y="4" width="${w}" height="${H-8}" fill="${er.color}" stroke="${er.border}" stroke-width="0.5" rx="2"/>`;
+  });
+
+  // Era labels (only if wide enough)
+  ERA_RANGES.forEach(er => {
+    const x1 = logX(er.start, W);
+    const x2 = logX(er.end, W);
+    const cx = (x1 + x2) / 2;
+    const bw = Math.abs(x2 - x1);
+    const meta = ERA_META[er.key];
+    if (bw > 28) {
+      const label = bw > 60 ? meta.name : meta.icon;
+      html += `<text x="${cx}" y="${H/2 + 4}" text-anchor="middle" font-family="Cinzel,serif" font-size="9" fill="rgba(200,180,140,0.7)" style="pointer-events:none">${label}</text>`;
+    }
+  });
+
+  // Event dots
+  const eventsToShow = getFilteredEvents();
+  eventsToShow.forEach(ev => {
+    const x = logX(ev.years_before || 0, W);
+    const col = TYPE_C[ev.type] || '#888';
+    html += `<circle cx="${x}" cy="${H/2}" r="2.5" fill="${col}" opacity="0.85" data-id="${ev.id}" style="cursor:pointer"/>`;
+  });
+
+  // Viewport rectangle
+  const vx1 = logX(VS.end, W);
+  const vx2 = logX(VS.start, W);
+  const vx = Math.min(vx1, vx2);
+  const vw = Math.abs(vx2 - vx1);
+  html += `<rect id="mm-vp" x="${vx}" y="2" width="${Math.max(2,vw)}" height="${H-4}" fill="rgba(201,162,39,0.08)" stroke="#c9a227" stroke-width="1.5" rx="3" style="cursor:grab"/>`;
+  // Handles
+  html += `<line id="mm-vp-l" x1="${vx}" y1="2" x2="${vx}" y2="${H-2}" stroke="#c9a227" stroke-width="2.5" style="cursor:ew-resize"/>`;
+  html += `<line id="mm-vp-r" x1="${vx+vw}" y1="2" x2="${vx+vw}" y2="${H-2}" stroke="#c9a227" stroke-width="2.5" style="cursor:ew-resize"/>`;
+
+  // Year markers
+  const markers = [[100000000,'100M'], [10000000,'10M'], [1000000,'1M'], [100000,'100k'],
+                   [10000,'10k'], [1000,'1000'], [500,'500'], [200,'200'], [100,'100'],
+                   [50,'50'], [20,'20'], [5,'5'], [0,'Présent']];
+  markers.forEach(([yb, lbl]) => {
+    const mx = logX(yb, W);
+    html += `<line x1="${mx}" y1="${H-4}" x2="${mx}" y2="${H}" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>`;
+    html += `<text x="${mx}" y="${H+0}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(100,130,160,0.7)" style="pointer-events:none">${lbl}</text>`;
+  });
+
+  svg.innerHTML = html;
+
+  // Minimap click events on dots
+  svg.querySelectorAll('circle[data-id]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const ev = DATA.events.find(x => x.id === el.dataset.id);
+      if (ev) { selectEvent(ev.id); setView('list'); }
+    });
+  });
+}
+
+// Minimap drag interaction
+function initMinimapDrag() {
+  const svg = document.getElementById('minimap-svg');
+  const W = svg.getBoundingClientRect().width || svg.parentElement.clientWidth - 48;
+
+  let mmDragging = false, mmMode = 'pan', mmStartX = 0, mmStartVS = 0, mmStartVE = 0;
+  const HANDLE_HIT = 8;
+
+  svg.addEventListener('mousedown', (e) => {
+    const rect = svg.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const vx1 = logX(VS.end, W);
+    const vx2 = logX(VS.start, W);
+
+    mmDragging = true;
+    mmStartX = e.clientX;
+    mmStartVS = VS.start;
+    mmStartVE = VS.end;
+
+    if (Math.abs(mx - vx1) < HANDLE_HIT) mmMode = 'left';
+    else if (Math.abs(mx - vx2) < HANDLE_HIT) mmMode = 'right';
+    else if (mx > vx1 && mx < vx2) mmMode = 'pan';
+    else {
+      // Click outside viewport: jump there
+      const clickYB = mmLogInverse(mx, W);
+      const range = VS.end - VS.start;
+      VS.start = Math.max(0, clickYB - range / 2);
+      VS.end = Math.min(MAX_YB, VS.start + range);
+      drawAll();
+      mmDragging = false;
+    }
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!mmDragging) return;
+    const rect = svg.getBoundingClientRect();
+    const dx = e.clientX - mmStartX;
+    const dYB = mmPixelsToDeltaYB(dx, W, mmStartVS, mmStartVE);
+    const origRange = mmStartVE - mmStartVS;
+
+    if (mmMode === 'pan') {
+      VS.start = Math.max(0, mmStartVS - dYB);
+      VS.end = Math.min(MAX_YB, VS.start + origRange);
+      VS.start = VS.end - origRange;
+    } else if (mmMode === 'left') {
+      const newEnd = Math.min(MAX_YB, Math.max(VS.start + 1, mmStartVE - dYB));
+      VS.end = newEnd;
+    } else if (mmMode === 'right') {
+      const newStart = Math.max(0, Math.min(VS.end - 1, mmStartVS - dYB));
+      VS.start = newStart;
+    }
+    drawAll();
+  });
+
+  window.addEventListener('mouseup', () => { mmDragging = false; });
+}
+
+function mmLogInverse(x, W) {
+  return eraXInverse(x, W);
+}
+
+function mmPixelsToDeltaYB(dx, W, vsStart, vsEnd) {
+  const cx  = (eraX(vsEnd, W) + eraX(vsStart, W)) / 2;
+  const cx2 = cx + dx;
+  const yb1 = eraXInverse(Math.max(0, Math.min(W, cx)),  W);
+  const yb2 = eraXInverse(Math.max(0, Math.min(W, cx2)), W);
+  return yb1 - yb2;
+}
+
+// ══════════════════════════════════════════════════════════
+//  MAIN CANVAS
+// ══════════════════════════════════════════════════════════
+function drawFrise() {
+  const canvas = document.getElementById('frise-canvas');
+  const container = document.getElementById('frise-main');
+  friseW = container.clientWidth;
+  friseH = container.clientHeight;
+  canvas.width = friseW;
+  canvas.height = friseH;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#050810';
+  ctx.fillRect(0, 0, friseW, friseH);
+
+  const cy = friseH / 2;  // center line Y
+  const visibleEvents = getFilteredEvents().filter(ev => {
+    const yb = ev.years_before || 0;
+    return yb >= VS.start - 1 && yb <= VS.end + 1;
+  });
+  const range = VS.end - VS.start;
+
+  // ── Era bands ──
+  ERA_RANGES.forEach(er => {
+    const bandStart = Math.min(er.start, VS.end);
+    const bandEnd = Math.max(er.end, VS.start);
+    if (bandStart <= VS.start || bandEnd >= VS.end) return;
+    const x1 = linearX(Math.min(er.start, VS.end));
+    const x2 = linearX(Math.max(er.end, VS.start));
+    const left = Math.min(x1, x2);
+    const w = Math.abs(x2 - x1);
+    ctx.fillStyle = er.color;
+    ctx.fillRect(left, 0, w, friseH);
+  });
+
+  // ── Era labels on bands ──
+  ERA_RANGES.forEach(er => {
+    const overlapStart = Math.min(er.start, VS.end);
+    const overlapEnd = Math.max(er.end, VS.start);
+    if (overlapStart <= VS.start && overlapEnd >= VS.end) return;
+    const x1 = Math.max(0, Math.min(friseW, linearX(Math.min(er.start, VS.end))));
+    const x2 = Math.max(0, Math.min(friseW, linearX(Math.max(er.end, VS.start))));
+    const cx = (x1 + x2) / 2;
+    const bw = Math.abs(x2 - x1);
+    if (bw < 40) return;
+    const meta = ERA_META[er.key];
+    ctx.font = '600 11px Cinzel, serif';
+    ctx.fillStyle = 'rgba(200,170,100,0.25)';
+    ctx.textAlign = 'center';
+    const lbl = bw > 120 ? meta.name.toUpperCase() : meta.icon;
+    ctx.fillText(lbl, cx, 22);
+  });
+
+  // ── Era border lines ──
+  ERA_RANGES.forEach(er => {
+    [er.start, er.end].forEach(yb => {
+      if (yb < VS.start || yb > VS.end) return;
+      const x = linearX(yb);
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 6]);
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, friseH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  });
+
+  // ── Timeline axis ──
+  const grad = ctx.createLinearGradient(0, cy, friseW, cy);
+  grad.addColorStop(0, 'rgba(201,162,39,0.05)');
+  grad.addColorStop(0.5, 'rgba(201,162,39,0.5)');
+  grad.addColorStop(1, 'rgba(201,162,39,0.05)');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, cy);
+  ctx.lineTo(friseW, cy);
+  ctx.stroke();
+
+  // ── Ticks — axe Kaienreki ──────────────────────────────
+  // Tailles d'intervalles : années puis fractions (mois, semaines)
+  const TICK_SPACINGS = [
+    2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1,
+    1/2, 1/4, 1/12,          // semestre, trimestre, mois
+    7/365.25, 1/365.25       // semaine, jour
+  ];
+  const idealSpacing = range / 8;
+  let tickInterval = TICK_SPACINGS.find(s => s <= idealSpacing) || 1/365.25;
+
+  const showMonths = range < 2;       // afficher mois sur l'axe
+  const showDays   = range < 0.15;    // afficher jours sur l'axe
+  const firstTick  = Math.ceil(VS.start / tickInterval) * tickInterval;
+
+  ctx.textAlign = 'center';
+  for (let yb = firstTick; yb <= VS.end + tickInterval * 0.5; yb += tickInterval) {
+    const x = linearX(yb);
+    if (x < -20 || x > friseW + 20) continue;
+
+    const kd = ybToKdate(yb);
+    if (kd.year <= 0) continue;
+
+    // Tick vertical
+    const isMajor = (tickInterval >= 1) || (showMonths && kd.day === 1) || (showDays && kd.day % 7 === 1);
+    ctx.strokeStyle = isMajor ? 'rgba(100,140,180,0.35)' : 'rgba(100,140,180,0.12)';
+    ctx.lineWidth = isMajor ? 1 : 0.5;
+    ctx.beginPath();
+    ctx.moveTo(x, cy - (isMajor ? 10 : 5));
+    ctx.lineTo(x, cy + (isMajor ? 10 : 5));
+    ctx.stroke();
+
+    if (!isMajor) continue;
+
+    // Labels
+    if (showDays) {
+      // Niveau jour : "12 Avr." / "An 1522"
+      ctx.font = '500 10px Cinzel, serif';
+      ctx.fillStyle = 'rgba(200,215,230,0.8)';
+      ctx.fillText(`${kd.day} ${MONTHS_FR[kd.month-1]}.`, x, cy + 20);
+      if (kd.day <= 7) {
+        ctx.font = '400 9px JetBrains Mono, monospace';
+        ctx.fillStyle = 'rgba(120,150,180,0.5)';
+        ctx.fillText(`An ${kd.year}`, x, cy + 31);
+      }
+    } else if (showMonths) {
+      // Niveau mois : "Fév." / "An 1522"
+      const isNewYear = kd.month === 1;
+      ctx.font = isNewYear ? '600 11px Cinzel, serif' : '500 10px Cinzel, serif';
+      ctx.fillStyle = isNewYear ? 'rgba(201,162,39,0.9)' : 'rgba(180,205,230,0.75)';
+      ctx.fillText(isNewYear ? `An ${kd.year}` : MONTHS_FR[kd.month-1] + '.', x, cy + 20);
+      if (!isNewYear) {
+        ctx.font = '400 8px JetBrains Mono, monospace';
+        ctx.fillStyle = 'rgba(100,130,160,0.4)';
+        ctx.fillText(`${kd.year}`, x, cy + 30);
+      }
+    } else {
+      // Niveau année : "An 1522"
+      const isRound = kd.year % 100 === 0;
+      ctx.font = isRound ? '600 11px Cinzel, serif' : '400 10px JetBrains Mono, monospace';
+      ctx.fillStyle = isRound ? 'rgba(201,162,39,0.8)' : 'rgba(110,145,180,0.6)';
+      ctx.fillText(`An ${kd.year}`, x, cy + 22);
+    }
+  }
+
+  // ── Compute event positions & stacking ──
+  const STEM_UP = -(friseH * 0.28);
+  const STEM_DOWN = friseH * 0.28;
+  const STEM_UP2 = -(friseH * 0.44);
+  const STEM_DOWN2 = friseH * 0.44;
+  const DOT_R_BASE = range > 500 ? 4 : 6;
+  const showLabels = range < 400;
+  const showAbbrev = range < 3000;
+  const MIN_X_GAP = showLabels ? 100 : (showAbbrev ? 50 : 18);
+
+  // Sort by x position
+  const positioned = visibleEvents.map(ev => ({
+    ev,
+    x: linearX(ev.years_before || 0),
+    col: TYPE_C[ev.type] || '#888',
+  })).sort((a,b) => a.x - b.x);
+
+  // Assign lanes: alternating up/down with collision avoidance
+  const lanes = []; // {x, lane}
+  positioned.forEach(p => {
+    let lane = 0;
+    for (let l = 0; l < 4; l++) {
+      const conflict = lanes.find(prev => Math.abs(prev.x - p.x) < MIN_X_GAP && prev.lane === l);
+      if (!conflict) { lane = l; break; }
+      if (l === 3) lane = l;
+    }
+    p.lane = lane;
+    lanes.push({x: p.x, lane});
+  });
+
+  const stemOffsets = [STEM_UP, STEM_DOWN, STEM_UP2, STEM_DOWN2];
+
+  // ── Draw stems ──
+  positioned.forEach(p => {
+    const stemY = cy + stemOffsets[p.lane];
+    ctx.strokeStyle = p.col + '55';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(p.x, cy);
+    ctx.lineTo(p.x, stemY);
+    ctx.stroke();
+  });
+
+  // ── Draw dots & labels ──
+  positioned.forEach(p => {
+    const isHovered = p.ev.id === hoveredEvId;
+    const isSelected = p.ev.id === selectedEventId;
+    const stemY = cy + stemOffsets[p.lane];
+    const r = isHovered || isSelected ? DOT_R_BASE + 2.5 : DOT_R_BASE;
+
+    // Glow on hover/select
+    if (isHovered || isSelected) {
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = p.col;
+    }
+
+    // Outer ring
+    ctx.beginPath();
+    ctx.arc(p.x, stemY, r + 2, 0, Math.PI * 2);
+    ctx.fillStyle = p.col + '22';
+    ctx.fill();
+
+    // Dot
+    ctx.beginPath();
+    ctx.arc(p.x, stemY, r, 0, Math.PI * 2);
+    ctx.fillStyle = isSelected ? '#fff' : p.col;
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+
+    // Label
+    if (showLabels || (showAbbrev && p.lane < 2)) {
+      const above = stemY < cy;
+      const textY = above ? stemY - r - 5 : stemY + r + 14;
+      const maxLen = showLabels ? 28 : 16;
+      const title = p.ev.title.length > maxLen ? p.ev.title.slice(0, maxLen)+'…' : p.ev.title;
+
+      ctx.font = isSelected ? '600 11px Cinzel, serif' : '400 10px Cinzel, serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = isSelected ? '#fff' : (isHovered ? p.col : 'rgba(200,215,230,0.8)');
+
+      // Background pill for selected
+      if (isSelected || isHovered) {
+        const tw = ctx.measureText(title).width;
+        ctx.fillStyle = 'rgba(5,8,16,0.85)';
+        ctx.beginPath();
+        ctx.roundRect(p.x - tw/2 - 5, textY - 12, tw + 10, 16, 3);
+        ctx.fill();
+        ctx.fillStyle = isSelected ? '#fff' : p.col;
+      }
+
+      ctx.fillText(title, p.x, textY);
+
+      if (showLabels && p.ev.date_label) {
+        const dateY = above ? textY - 13 : textY + 13;
+        ctx.font = '300 9px JetBrains Mono, monospace';
+        ctx.fillStyle = 'rgba(150,170,200,0.5)';
+        const dl = p.ev.date_label.length > 22 ? p.ev.date_label.slice(0,22)+'…' : p.ev.date_label;
+        ctx.fillText(dl, p.x, dateY);
+      }
+    }
+  });
+
+  // ── Store positioned for hit testing ──
+  window._frisePositioned = positioned;
+  window._friseStemOffsets = stemOffsets;
+  window._friseCY = cy;
+
+  // ── Update viewport info ──
+  const rangeLabel = range >= 1000000 ? (range/1000000).toFixed(1)+'M ans' :
+                     range >= 1000 ? Math.round(range/1000)+'k ans' : Math.round(range)+' ans';
+  const fromLabel  = VS.end >= 1000000 ? (VS.end/1000000).toFixed(0)+'M' :
+                     VS.end >= 1000 ? (VS.end/1000).toFixed(0)+'k' : VS.end;
+  const toLabel    = VS.start === 0 ? 'Présent' : VS.start+'';
+  document.getElementById('viewport-info').textContent =
+    `Vue : il y a ${fromLabel} → ${toLabel} ans  ·  Étendue : ${rangeLabel}  ·  ${visibleEvents.length} événements`;
+
+  // ── Update minimap hint ──
+  document.getElementById('minimap-hint-text').textContent =
+    `${visibleEvents.length}/${DATA.events.length} events · Molette = zoom · Drag = pan`;
+}
+
+// ── Canvas mouse interactions ──────────────────────────────
+function initCanvasMouse() {
+  const canvas = document.getElementById('frise-canvas');
+
+  canvas.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartVS = VS.start;
+    dragStartVE = VS.end;
+    canvas.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    if (isDragging) {
+      const dx = e.clientX - dragStartX;
+      const range = dragStartVE - dragStartVS;
+      const dYB = (dx / friseW) * range;
+      VS.start = Math.max(0, dragStartVS + dYB);
+      VS.end   = Math.min(MAX_YB, dragStartVE + dYB);
+      drawAll();
+      return;
+    }
+
+    // Hit test for tooltip
+    const cy = window._friseCY || friseH / 2;
+    const offsets = window._friseStemOffsets || [];
+    const positioned = window._frisePositioned || [];
+    const DOT_R = 8;
+    let found = null;
+    for (let i = positioned.length - 1; i >= 0; i--) {
+      const p = positioned[i];
+      const stemY = cy + offsets[p.lane];
+      if (Math.abs(mx - p.x) < DOT_R + 4 && Math.abs(my - stemY) < DOT_R + 4) {
+        found = p;
+        break;
+      }
+    }
+
+    if (found && found.ev.id !== hoveredEvId) {
+      hoveredEvId = found.ev.id;
+      showFriseTooltip(found.ev, e.clientX, e.clientY);
+      drawFrise();
+    } else if (!found && hoveredEvId) {
+      hoveredEvId = null;
+      hideFriseTooltip();
+      drawFrise();
+    } else if (found) {
+      // Just update tooltip position
+      moveFriseTooltip(e.clientX, e.clientY);
+    }
+
+    canvas.style.cursor = found ? 'pointer' : (isDragging ? 'grabbing' : 'grab');
+  });
+
+  canvas.addEventListener('mouseup', () => {
+    isDragging = false;
+    canvas.style.cursor = hoveredEvId ? 'pointer' : 'grab';
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    isDragging = false;
+    hoveredEvId = null;
+    hideFriseTooltip();
+    drawFrise();
+  });
+
+  canvas.addEventListener('click', (e) => {
+    if (Math.abs(e.clientX - (dragStartX || e.clientX)) > 5) return; // was dragging
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const cy = window._friseCY || friseH / 2;
+    const offsets = window._friseStemOffsets || [];
+    const positioned = window._frisePositioned || [];
+    for (let i = positioned.length - 1; i >= 0; i--) {
+      const p = positioned[i];
+      const stemY = cy + offsets[p.lane];
+      if (Math.abs(mx - p.x) < 10 && Math.abs(my - stemY) < 10) {
+        selectedEventId = p.ev.id;
+        openPanel(p.ev);
+        drawFrise();
+        return;
+      }
+    }
+  });
+
+  canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const factor = e.deltaY > 0 ? 1.4 : 0.65;
+    friseZoom(factor, mx);
+  }, { passive: false });
+
+  // Double click to zoom in
+  canvas.addEventListener('dblclick', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    friseZoom(0.35, e.clientX - rect.left);
+  });
+}
+
+// ── Tooltip ───────────────────────────────────────────────
+function showFriseTooltip(ev, cx, cy) {
+  const tt = document.getElementById('frise-tooltip');
+  const badge = document.getElementById('tt-badge');
+  badge.textContent = TYPE_LABELS[ev.type] || ev.type;
+  badge.className = 'tt-badge badge-' + ev.type;
+  document.getElementById('tt-date').textContent = (ev.approx?'~':'') + (ev.date_label||'');
+  document.getElementById('tt-title').textContent = ev.title;
+  tt.style.display = 'block';
+  moveFriseTooltip(cx, cy);
+}
+function moveFriseTooltip(cx, cy) {
+  const tt = document.getElementById('frise-tooltip');
+  const tw = tt.offsetWidth || 240;
+  const th = tt.offsetHeight || 80;
+  const mx = Math.min(cx + 16, window.innerWidth - tw - 8);
+  const my = Math.min(cy - 10, window.innerHeight - th - 8);
+  tt.style.left = mx + 'px';
+  tt.style.top  = Math.max(8, my) + 'px';
+}
+function hideFriseTooltip() {
+  document.getElementById('frise-tooltip').style.display = 'none';
+}
+
+// ── Era legend ────────────────────────────────────────────
+function updateEraLegend() {
+  const colors = { prehistoric:'#7a4a28', antiquite:'#2a7a4a', vide:'#6a2a9a',
+    post_vide:'#1a4a7a', rocks:'#8a2020', roger:'#c9a227', pre_histoire:'#2a30a0', histoire:'#1a60d0' };
+  const el = document.getElementById('era-legend');
+  el.innerHTML = ERAS_ORDER.map(k => {
+    const m = ERA_META[k];
+    return `<div class="era-legend-item"><div class="era-legend-dot" style="background:${colors[k]}"></div>${m.icon} ${m.name}</div>`;
+  }).join('');
+}
+
+// ── Draw everything ───────────────────────────────────────
+function drawAll() {
+  drawFrise();
+  drawMinimap();
+}
+
+// ── Init ──────────────────────────────────────────────────
+function initFrise() {
+  if (!friseInited) {
+    friseInited = true;
+    initCanvasMouse();
+    initMinimapDrag();
+    updateEraLegend();
+    window.addEventListener('resize', () => { if (currentView === 'frise') drawAll(); });
+    // Vue par défaut : histoire principale (~3 ans) — plus lisible que de tout afficher
+    VS.start = 0;
+    VS.end = 3;
+  }
+  setTimeout(drawAll, 50);
+}
+
+// ══════════════════════════════════════════════════════════
+//  MAP — WORLD OF ONE PIECE
+// ══════════════════════════════════════════════════════════
+
+// ── World layout (canvas 1000 × 600) ─────────────────────
+// Red Line  : x = 500 (vertical)
+// Grand Line: y = 268 → 332 (horizontal strip)
+// Calm Belt N: y = 240 → 268
+// Calm Belt S: y = 332 → 360
+// Paradis   : x = 505 → 1000, y = 268 → 332
+// New World : x = 0 → 495,   y = 268 → 332
+// North Blue: x = 0 → 495,   y = 0 → 240
+// South Blue: x = 505 → 1000, y = 0 → 240
+// West Blue : x = 0 → 495,   y = 360 → 600
+// East Blue : x = 505 → 1000, y = 360 → 600
+
+const MAP_W = 1000, MAP_H = 600;
+const RL_X = 500;   // Red Line x
+const GL_Y1 = 268, GL_Y2 = 332; // Grand Line y bounds
+const CB_N1 = 240,  CB_N2 = GL_Y1; // Calm Belt North
+const CB_S1 = GL_Y2, CB_S2 = 360;  // Calm Belt South
+
+// ── Locations database ────────────────────────────────────
+const LOCS = {
+  // ── Grand Line — Paradis (x 505→990, y ~300) ───────────
+  "Twin Cape":             {x:960, y:296, zone:"Entrée Grand Line"},
+  "Reverse Mountain":      {x:958, y:300, zone:"Entrée Grand Line"},
+  "Whisky Peak":           {x:905, y:288, zone:"Grand Line · Paradis"},
+  "Little Garden":         {x:875, y:305, zone:"Grand Line · Paradis"},
+  "Drum Island":           {x:840, y:292, zone:"Grand Line · Paradis"},
+  "Alabasta":              {x:800, y:288, zone:"Grand Line · Paradis"},
+  "Alubarna":              {x:800, y:288, zone:"Grand Line · Paradis"},
+  "Rainbase":              {x:800, y:288, zone:"Grand Line · Paradis"},
+  "Jaya":                  {x:755, y:305, zone:"Grand Line · Paradis"},
+  "Mock Town":             {x:755, y:305, zone:"Grand Line · Paradis"},
+  "Skypiea":               {x:755, y:252, zone:"Grand Line · Ciel"},
+  "Shandora":              {x:755, y:278, zone:"Grand Line · Ciel (Jaya)"},
+  "Long Ring Long Land":   {x:712, y:305, zone:"Grand Line · Paradis"},
+  "Water 7":               {x:672, y:290, zone:"Grand Line · Paradis"},
+  "Enies Lobby":           {x:660, y:300, zone:"Grand Line · Paradis"},
+  "Florian Triangle":      {x:615, y:310, zone:"Grand Line · Paradis"},
+  "Thriller Bark":         {x:612, y:306, zone:"Grand Line · Paradis"},
+  "Sabaody":               {x:548, y:291, zone:"Grand Line · Paradis"},
+  "Archipel Sabaody":      {x:548, y:291, zone:"Grand Line · Paradis"},
+
+  // ── Red Line / Centre ────────────────────────────────────
+  "Mary Geoise":           {x:500, y:262, zone:"Red Line (sommet)"},
+  "Pangée":                {x:500, y:262, zone:"Red Line (sommet)"},
+  "Marineford":            {x:484, y:250, zone:"Calm Belt (Quartier Général)"},
+  "Impel Down":            {x:500, y:354, zone:"Fond marin · Red Line"},
+  "Île des Hommes-Poissons":{x:500, y:418, zone:"Fond marin · Red Line"},
+
+  // ── Grand Line — New World (x 0→495, y ~300) ────────────
+  "Punk Hazard":           {x:438, y:290, zone:"Grand Line · Nouveau Monde"},
+  "Dressrosa":             {x:384, y:300, zone:"Grand Line · Nouveau Monde"},
+  "Green Bit":             {x:382, y:300, zone:"Grand Line · Nouveau Monde"},
+  "Zou":                   {x:338, y:280, zone:"Grand Line · Nouveau Monde"},
+  "Whole Cake Island":     {x:282, y:308, zone:"Grand Line · Nouveau Monde"},
+  "Totto Land":            {x:282, y:308, zone:"Grand Line · Nouveau Monde"},
+  "Wano":                  {x:195, y:278, zone:"Grand Line · Nouveau Monde (fermé)"},
+  "Onigashima":            {x:192, y:288, zone:"Grand Line · Nouveau Monde"},
+  "Egghead":               {x:148, y:295, zone:"Grand Line · Nouveau Monde"},
+  "Laugh Tale":            {x:58,  y:296, zone:"Grand Line · Bout du Monde"},
+  "Lode Star":             {x:78,  y:285, zone:"Grand Line · Nouveau Monde"},
+  "Hachinosu":             {x:360, y:248, zone:"Calm Belt (Île des Pirates)"},
+  "God Valley":            {x:422, y:254, zone:"Calm Belt (disparue)"},
+  "Lulusia":               {x:240, y:145, zone:"Nouveau Monde (détruite)"},
+
+  // ── East Blue (x 505→1000, y 360→600) ───────────────────
+  "East Blue":             {x:780, y:490, zone:"East Blue"},
+  "Foosha":                {x:828, y:505, zone:"East Blue"},
+  "Foosha Village":        {x:828, y:505, zone:"East Blue"},
+  "Orange Town":           {x:785, y:475, zone:"East Blue"},
+  "Syrup Village":         {x:808, y:492, zone:"East Blue"},
+  "Baratie":               {x:758, y:462, zone:"East Blue"},
+  "Arlong Park":           {x:795, y:484, zone:"East Blue"},
+  "Cocoyasi":              {x:795, y:484, zone:"East Blue"},
+  "Loguetown":             {x:722, y:448, zone:"East Blue"},
+  "Goa":                   {x:822, y:500, zone:"East Blue"},
+  "Barb Alley":            {x:820, y:498, zone:"East Blue"},
+
+  // ── North Blue (x 0→495, y 0→240) ───────────────────────
+  "North Blue":            {x:210, y:128, zone:"North Blue"},
+  "Lvneel":                {x:185, y:108, zone:"North Blue"},
+  "Edd War":               {x:420, y:148, zone:"North Blue"},
+  "Sphinx":                {x:288, y:152, zone:"North Blue"},
+  "Sorbet":                {x:358, y:148, zone:"North Blue"},
+  "Dress Rosa":            {x:384, y:300, zone:"Grand Line · Nouveau Monde"},
+
+  // ── South Blue (x 505→1000, y 0→240) ────────────────────
+  "South Blue":            {x:755, y:128, zone:"South Blue"},
+  "Germa":                 {x:735, y:108, zone:"South Blue (nomade)"},
+  "Tequila Wolf":          {x:890, y:148, zone:"South Blue"},
+  "Flevance":              {x:820, y:132, zone:"South Blue (détruite)"},
+
+  // ── West Blue (x 0→495, y 360→600) ──────────────────────
+  "West Blue":             {x:185, y:490, zone:"West Blue"},
+  "Ohara":                 {x:158, y:492, zone:"West Blue (détruite)"},
+
+  // ── Calm Belt ────────────────────────────────────────────
+  "Amazon Lily":           {x:488, y:370, zone:"Calm Belt (Sud)"},
+  "Rusukaina":             {x:488, y:380, zone:"Calm Belt (Sud)"},
+
+  // ── Elbaf ────────────────────────────────────────────────
+  "Elbaf":                 {x:222, y:110, zone:"North Blue (île des géants)"},
+
+  // ── Ciel / Lune ──────────────────────────────────────────
+  "Lune":                  {x:500, y:28,  zone:"Espace"},
+  "Birka":                 {x:500, y:28,  zone:"Lune"},
+  "Weatheria":             {x:600, y:248, zone:"Île céleste"},
+
+
+  // ── Lieux manquants ──────────────────────────────────────
+  "Capitale des Fleurs":    {x:195, y:268, zone:"Wano (Capitale)"},
+  "Shimotsuki Village":     {x:852, y:510, zone:"East Blue"},
+  "Triangle de Florian":    {x:615, y:310, zone:"Grand Line · Paradise"},
+  "Marine Ford":            {x:484, y:250, zone:"Calm Belt (QG Marine)"},
+  "Moby Dick":              {x:250, y:296, zone:"Grand Line"},
+  "District des Hommes-Poissons": {x:500, y:430, zone:"Fond marin"},
+  "Grand Royaume":          {x:500, y:300, zone:"Ancien Monde (Siècle Oublié)"},
+  "Pays des Glaces":        {x:88,  y:148, zone:"North Blue"},
+  "Royaume de Vodka":       {x:155, y:162, zone:"North Blue"},
+  "Lvneel":                 {x:185, y:108, zone:"North Blue"},
+  "Flevance":               {x:820, y:132, zone:"South Blue (détruite)"},
+  "Gray Terminal":          {x:822, y:498, zone:"East Blue · Goa"},
+  "Whisky Peak":            {x:905, y:288, zone:"Grand Line · Paradise"},
+  "Little Garden":          {x:875, y:305, zone:"Grand Line · Paradise"},
+
+  // ── Grand Line générique ─────────────────────────────────
+  "Grand Line":            {x:720, y:296, zone:"Grand Line"},
+  "Nouveau Monde":         {x:300, y:296, zone:"Nouveau Monde"},
+  "Twin Capes":            {x:960, y:296, zone:"Entrée Grand Line"},
+  "Moby Dick":             {x:250, y:296, zone:"Grand Line"},
+};
+
+// ── Map state ─────────────────────────────────────────────
+let mapInited = false;
+let mapScale = 1, mapOffX = 0, mapOffY = 0;
+let mapDragging = false, mapDragStartX, mapDragStartY, mapDragOX, mapDragOY;
+let mapHoveredLoc = null, mapSelectedLoc = null;
+let mapEraFilter = 'all';
+let mapActiveTypes = new Set(Object.keys(TYPE_C));
+let mapW = 0, mapH = 0;
+
+// ── Coordinate transform ──────────────────────────────────
+function mapToScreen(wx, wy) {
+  const sx = (wx - MAP_W/2) * mapScale + mapW/2 + mapOffX;
+  const sy = (wy - MAP_H/2) * mapScale + mapH/2 + mapOffY;
+  return [sx, sy];
+}
+function screenToMap(sx, sy) {
+  const wx = (sx - mapW/2 - mapOffX) / mapScale + MAP_W/2;
+  const wy = (sy - mapH/2 - mapOffY) / mapScale + MAP_H/2;
+  return [wx, wy];
+}
+
+// ── Get events for a location ─────────────────────────────
+function getLocEvents(locName) {
+  const aliases = new Set([locName.toLowerCase()]);
+  // extra aliases
+  const ALIAS_MAP = {
+    "foosha":["foosha village","village de foosha"], "alabasta":["alubarna","rainbase"],
+    "water 7":["enies lobby"], "jaya":["mock town","shandora"],
+    "wano":["onigashima","capitale des fleurs","pays de wano"],
+    "whole cake island":["totto land"], "sabaody":["archipel sabaody"],
+    "mary geoise":["pangée","trône vide"], "marineford":["quartier général"],
+    "arlong park":["cocoyasi"], "goa":["barb alley"],
+    "grand line":["grand line","twin cape","twin capes"],
+  };
+  const key = locName.toLowerCase().replace("île des ","");
+  Object.entries(ALIAS_MAP).forEach(([k,vs]) => {
+    if (locName.toLowerCase().includes(k) || k.includes(locName.toLowerCase())) {
+      aliases.add(k); vs.forEach(v => aliases.add(v));
+    }
+  });
+
+  return DATA.events.filter(ev => {
+    if (mapEraFilter !== 'all' && ev.era !== mapEraFilter) return false;
+    if (!mapActiveTypes.has(ev.type)) return false;
+    return (ev.locations||[]).some(l => {
+      const ll = l.toLowerCase();
+      return aliases.has(ll) || ll.includes(locName.toLowerCase()) || locName.toLowerCase().includes(ll);
+    });
+  }).sort((a,b) => b.years_before - a.years_before);
+}
+
+// ── Build location groups ─────────────────────────────────
+function buildLocGroups() {
+  const groups = {};
+  DATA.events.forEach(ev => {
+    if (mapEraFilter !== 'all' && ev.era !== mapEraFilter) return;
+    if (!mapActiveTypes.has(ev.type)) return;
+    (ev.locations||[]).forEach(locName => {
+      // Find matching LOCS key
+      const key = Object.keys(LOCS).find(k =>
+        k.toLowerCase() === locName.toLowerCase() ||
+        locName.toLowerCase().includes(k.toLowerCase()) ||
+        k.toLowerCase().includes(locName.toLowerCase())
+      );
+      if (!key) return;
+      if (!groups[key]) groups[key] = { loc: LOCS[key], events: [], types: {} };
+      groups[key].events.push(ev);
+      groups[key].types[ev.type] = (groups[key].types[ev.type]||0) + 1;
+    });
+  });
+  return groups;
+}
+
+// ── Draw the world map ────────────────────────────────────
+function drawMap() {
+  const canvas = document.getElementById('map-canvas');
+  const wrap   = document.getElementById('map-canvas-wrap');
+  mapW = wrap.clientWidth; mapH = wrap.clientHeight;
+  canvas.width  = mapW; canvas.height = mapH;
+  const ctx = canvas.getContext('2d');
+
+  ctx.clearRect(0, 0, mapW, mapH);
+
+  // ── Helper: map point → screen ──
+  const S = (wx, wy) => mapToScreen(wx, wy);
+
+  // ── Background ──────────────────────────────────────────
+  ctx.fillStyle = '#04090f';
+  ctx.fillRect(0, 0, mapW, mapH);
+
+  // ── Draw sea zones ───────────────────────────────────────
+  const zones = [
+    { name:'NORTH BLUE', wx:0, wy:0, ww:RL_X, wh:CB_N1, fill:'rgba(12,28,68,0.9)',   label:{wx:RL_X/2, wy:CB_N1/2} },
+    { name:'SOUTH BLUE', wx:RL_X, wy:0, ww:MAP_W-RL_X, wh:CB_N1, fill:'rgba(8,32,75,0.9)',  label:{wx:RL_X+(MAP_W-RL_X)/2, wy:CB_N1/2} },
+    { name:'WEST BLUE',  wx:0, wy:CB_S2, ww:RL_X, wh:MAP_H-CB_S2, fill:'rgba(10,24,55,0.9)', label:{wx:RL_X/2, wy:CB_S2+(MAP_H-CB_S2)/2} },
+    { name:'EAST BLUE',  wx:RL_X, wy:CB_S2, ww:MAP_W-RL_X, wh:MAP_H-CB_S2, fill:'rgba(8,28,65,0.9)', label:{wx:RL_X+(MAP_W-RL_X)/2, wy:CB_S2+(MAP_H-CB_S2)/2} },
+  ];
+
+  zones.forEach(z => {
+    const [x,y] = S(z.wx, z.wy);
+    const [x2,y2] = S(z.wx+z.ww, z.wy+z.wh);
+    ctx.fillStyle = z.fill;
+    ctx.fillRect(x, y, x2-x, y2-y);
+  });
+
+  // ── Calm Belts ───────────────────────────────────────────
+  [[CB_N1, CB_N2],[CB_S1, CB_S2]].forEach(([y1,y2]) => {
+    const [, sy1] = S(0, y1);
+    const [, sy2] = S(0, y2);
+    const grad = ctx.createLinearGradient(0, sy1, 0, sy2);
+    grad.addColorStop(0, 'rgba(3,5,10,0)');
+    grad.addColorStop(0.5, 'rgba(3,5,10,0.97)');
+    grad.addColorStop(1, 'rgba(3,5,10,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, sy1, mapW, sy2-sy1);
+  });
+
+  // ── Grand Line ───────────────────────────────────────────
+  const [, sgl1] = S(0, GL_Y1);
+  const [, sgl2] = S(0, GL_Y2);
+  const glGrad = ctx.createLinearGradient(0, sgl1, 0, sgl2);
+  glGrad.addColorStop(0, 'rgba(20,45,35,0.0)');
+  glGrad.addColorStop(0.3, 'rgba(18,42,32,0.88)');
+  glGrad.addColorStop(0.7, 'rgba(18,42,32,0.88)');
+  glGrad.addColorStop(1, 'rgba(20,45,35,0.0)');
+  ctx.fillStyle = glGrad;
+  ctx.fillRect(0, sgl1, mapW, sgl2-sgl1);
+
+  // Thin bright border for Grand Line
+  ctx.strokeStyle = 'rgba(80,140,100,0.35)';
+  ctx.lineWidth = 1;
+  [[GL_Y1],[GL_Y2]].forEach(([y]) => {
+    const [,sy] = S(0,y);
+    ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(mapW, sy); ctx.stroke();
+  });
+
+  // ── New World label ──────────────────────────────────────
+  {
+    const [sx, sy] = S(250, 300);
+    ctx.font = `bold ${Math.max(8, 11*mapScale)}px Cinzel, serif`;
+    ctx.fillStyle = 'rgba(150,80,80,0.25)';
+    ctx.textAlign = 'center';
+    ctx.fillText('NOUVEAU MONDE', sx, sy);
+  }
+  {
+    const [sx, sy] = S(750, 300);
+    ctx.font = `bold ${Math.max(8, 11*mapScale)}px Cinzel, serif`;
+    ctx.fillStyle = 'rgba(60,100,80,0.25)';
+    ctx.textAlign = 'center';
+    ctx.fillText('PARADIS', sx, sy);
+  }
+
+  // ── Red Line ─────────────────────────────────────────────
+  const [rl_sx] = S(RL_X, 0);
+  const rlW = Math.max(4, 12 * mapScale);
+  const rlGrad = ctx.createLinearGradient(rl_sx - rlW/2, 0, rl_sx + rlW/2, 0);
+  rlGrad.addColorStop(0, 'rgba(80,55,35,0)');
+  rlGrad.addColorStop(0.3, 'rgba(120,85,55,0.95)');
+  rlGrad.addColorStop(0.5, 'rgba(155,110,70,1)');
+  rlGrad.addColorStop(0.7, 'rgba(120,85,55,0.95)');
+  rlGrad.addColorStop(1, 'rgba(80,55,35,0)');
+  ctx.fillStyle = rlGrad;
+  ctx.fillRect(rl_sx - rlW/2, 0, rlW, mapH);
+
+  // ── Sea zone labels ──────────────────────────────────────
+  zones.forEach(z => {
+    const [lx, ly] = S(z.label.wx, z.label.wy);
+    ctx.font = `600 ${Math.max(9, 13*mapScale)}px Cinzel, serif`;
+    ctx.fillStyle = 'rgba(100,140,200,0.22)';
+    ctx.textAlign = 'center';
+    ctx.fillText(z.name, lx, ly);
+  });
+
+  // ── Calm Belt labels ─────────────────────────────────────
+  [[CB_N1+(CB_N2-CB_N1)/2, 'CALM BELT'], [CB_S1+(CB_S2-CB_S1)/2, 'CALM BELT']].forEach(([wy, lbl]) => {
+    const [lx, ly] = S(250, wy);
+    ctx.font = `400 ${Math.max(7, 9*mapScale)}px JetBrains Mono, monospace`;
+    ctx.fillStyle = 'rgba(80,100,120,0.35)';
+    ctx.textAlign = 'center';
+    ctx.fillText(lbl, lx, ly);
+  });
+
+  // ── Island shapes (decorative blobs for major locations) ─
+  const ISLAND_SHAPES = [
+    // [wx, wy, rx, ry, label, col]
+    [800, 288, 28, 18, 'Alabasta',    '#d4a853'],
+    [755, 278, 22, 16, 'Jaya',        '#5a8a60'],
+    [672, 290, 20, 15, 'Water 7',     '#4a7aaa'],
+    [500, 258, 0,  0,  '',            ''],  // Red Line crossing — skip blob
+    [195, 278, 26, 18, 'Wano',        '#8a5545'],
+    [148, 295, 16, 12, 'Egghead',     '#5a6aaa'],
+    [828, 505, 18, 14, 'Foosha',      '#5a9a65'],
+    [158, 492, 16, 12, 'Ohara',       '#8a7a55'],
+    [222, 110, 20, 15, 'Elbaf',       '#8a6045'],
+    [438, 290, 18, 12, 'Punk Hazard', '#8a4a3a'],
+    [384, 300, 22, 16, 'Dressrosa',   '#9a5a8a'],
+    [282, 308, 24, 16, 'Whole Cake',  '#c9a0b8'],
+    [338, 280, 18, 14, 'Zou',         '#6a8a7a'],
+    [548, 291, 12, 8,  'Sabaody',     '#7a9a7a'],
+    [840, 292, 20, 14, 'Drum Island', '#5a78a8'],
+  ];
+
+  ISLAND_SHAPES.forEach(([wx, wy, rx, ry, label, col]) => {
+    if (!rx) return;
+    const [sx, sy] = S(wx, wy);
+    const srx = rx * mapScale, sry = ry * mapScale;
+    if (sx < -srx*2 || sx > mapW+srx*2 || sy < -sry*2 || sy > mapH+sry*2) return;
+    ctx.beginPath();
+    ctx.ellipse(sx, sy, srx, sry, 0, 0, Math.PI*2);
+    ctx.fillStyle = col + '28';
+    ctx.fill();
+    ctx.strokeStyle = col + '55';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // ── Mary Geoise star ─────────────────────────────────────
+  {
+    const [sx, sy] = S(500, 262);
+    if (sx > -20 && sx < mapW+20) {
+      drawStar(ctx, sx, sy, 5, 7*mapScale, 3*mapScale, 'rgba(201,162,39,0.8)');
+    }
+  }
+
+  // ── Marineford anchor icon ────────────────────────────────
+  {
+    const [sx, sy] = S(484, 250);
+    ctx.font = `${Math.max(8, 14*mapScale)}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(67,97,238,0.7)';
+    ctx.fillText('⚓', sx, sy);
+  }
+
+  // ── Grand Line decorative line ────────────────────────────
+  {
+    const [,sgy] = S(0, (GL_Y1+GL_Y2)/2);
+    ctx.strokeStyle = 'rgba(80,160,110,0.12)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([6,10]);
+    ctx.beginPath(); ctx.moveTo(0, sgy); ctx.lineTo(mapW, sgy); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // ── Location markers ─────────────────────────────────────
+  const groups = buildLocGroups();
+  const markers = [];
+
+  Object.entries(groups).forEach(([locName, grp]) => {
+    const cnt = grp.events.length;
+    if (cnt === 0) return;
+
+    const [sx, sy] = S(grp.loc.x, grp.loc.y);
+    if (sx < -40 || sx > mapW+40 || sy < -40 || sy > mapH+40) return;
+
+    // Dominant type
+    const domType = Object.entries(grp.types).sort((a,b)=>b[1]-a[1])[0][0];
+    const col = TYPE_C[domType] || '#888';
+    const r = Math.max(5, Math.min(18, 5 + Math.sqrt(cnt) * 2.8)) * mapScale;
+    const isHovered  = mapHoveredLoc === locName;
+    const isSelected = mapSelectedLoc === locName;
+
+    // Pulse ring on hover/selected
+    if (isHovered || isSelected) {
+      ctx.beginPath();
+      ctx.arc(sx, sy, r + 5*mapScale, 0, Math.PI*2);
+      ctx.fillStyle = col + '22';
+      ctx.fill();
+    }
+
+    // Glow
+    ctx.shadowBlur = isHovered || isSelected ? 14 : 6;
+    ctx.shadowColor = col;
+
+    // Outer ring
+    ctx.beginPath();
+    ctx.arc(sx, sy, r + 2, 0, Math.PI*2);
+    ctx.fillStyle = col + '30';
+    ctx.fill();
+
+    // Main dot
+    ctx.beginPath();
+    ctx.arc(sx, sy, r, 0, Math.PI*2);
+    ctx.fillStyle = isSelected ? '#fff' : col + 'dd';
+    ctx.fill();
+    ctx.strokeStyle = isSelected ? col : col + '88';
+    ctx.lineWidth = isSelected ? 2 : 1;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Event count
+    if (cnt > 1) {
+      ctx.font = `600 ${Math.max(7, 8*mapScale)}px JetBrains Mono, monospace`;
+      ctx.fillStyle = isSelected ? '#000' : '#fff';
+      ctx.textAlign = 'center';
+      ctx.fillText(cnt, sx, sy + Math.max(3, 3*mapScale));
+    }
+
+    // Label when zoomed in enough or hovered
+    if (mapScale > 1.4 || isHovered || isSelected) {
+      const label = locName.length > 16 ? locName.slice(0,15)+'…' : locName;
+      ctx.font = `${isSelected?'600':'400'} ${Math.max(8, 10*mapScale)}px Cinzel, serif`;
+      ctx.fillStyle = isSelected ? '#fff' : 'rgba(210,225,245,0.85)';
+      ctx.textAlign = 'center';
+      // Shadow for readability
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = '#000';
+      ctx.fillText(label, sx, sy - r - 4);
+      ctx.shadowBlur = 0;
+    }
+
+    markers.push({ locName, sx, sy, r: r + 5, col, cnt, zone: grp.loc.zone });
+  });
+
+  window._mapMarkers = markers;
+
+  // ── Info badge ────────────────────────────────────────────
+  const totalVisible = Object.values(groups).reduce((acc, g) => acc + g.events.length, 0);
+  const locCount = Object.keys(groups).length;
+  document.getElementById('map-info-badge').textContent =
+    `${locCount} lieux · ${totalVisible} événements · zoom ${mapScale.toFixed(1)}×`;
+}
+
+function drawStar(ctx, cx, cy, points, outerR, innerR, color) {
+  ctx.beginPath();
+  for (let i = 0; i < points * 2; i++) {
+    const r = i % 2 === 0 ? outerR : innerR;
+    const a = (i * Math.PI) / points - Math.PI/2;
+    i === 0 ? ctx.moveTo(cx + r*Math.cos(a), cy + r*Math.sin(a))
+            : ctx.lineTo(cx + r*Math.cos(a), cy + r*Math.sin(a));
+  }
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+// ── Map type legend ───────────────────────────────────────
+function initMapLegend() {
+  const el = document.getElementById('map-type-legend');
+  el.innerHTML = Object.entries(TYPE_C).map(([type, col]) => `
+    <div class="map-legend-row active" data-type="${type}" onclick="toggleMapType('${type}')">
+      <div class="map-legend-dot" style="background:${col}"></div>
+      ${TYPE_LABELS[type]||type}
+    </div>`).join('');
+}
+function toggleMapType(type) {
+  if (mapActiveTypes.has(type)) mapActiveTypes.delete(type);
+  else mapActiveTypes.add(type);
+  document.querySelector(`.map-legend-row[data-type="${type}"]`)?.classList.toggle('active', mapActiveTypes.has(type));
+  drawMap();
+}
+
+// ── Map zoom / pan ────────────────────────────────────────
+function mapZoom(factor, pivotSX, pivotSY) {
+  pivotSX = pivotSX ?? mapW/2;
+  pivotSY = pivotSY ?? mapH/2;
+  const newScale = Math.max(0.5, Math.min(8, mapScale * factor));
+  // Keep pivot fixed
+  mapOffX = pivotSX - mapW/2 - (pivotSX - mapW/2 - mapOffX) * (newScale/mapScale);
+  mapOffY = pivotSY - mapH/2 - (pivotSY - mapH/2 - mapOffY) * (newScale/mapScale);
+  mapScale = newScale;
+  drawMap();
+}
+function mapResetView() {
+  mapScale = 1; mapOffX = 0; mapOffY = 0;
+  drawMap();
+}
+
+// ── Map mouse interactions ────────────────────────────────
+function initMapMouse() {
+  const canvas = document.getElementById('map-canvas');
+
+  canvas.addEventListener('mousedown', e => {
+    mapDragging = true;
+    mapDragStartX = e.clientX; mapDragStartY = e.clientY;
+    mapDragOX = mapOffX; mapDragOY = mapOffY;
+    canvas.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    if (mapDragging) {
+      mapOffX = mapDragOX + (e.clientX - mapDragStartX);
+      mapOffY = mapDragOY + (e.clientY - mapDragStartY);
+      drawMap();
+      return;
+    }
+
+    // Hit test markers
+    const markers = window._mapMarkers || [];
+    let found = null;
+    for (let i = markers.length-1; i >= 0; i--) {
+      const m = markers[i];
+      if (Math.hypot(mx-m.sx, my-m.sy) < m.r + 4) { found = m; break; }
+    }
+
+    if (found && found.locName !== mapHoveredLoc) {
+      mapHoveredLoc = found.locName;
+      showMapTooltip(found, e.clientX, e.clientY);
+      drawMap();
+    } else if (!found && mapHoveredLoc) {
+      mapHoveredLoc = null;
+      hideMapTooltip();
+      drawMap();
+    } else if (found) {
+      moveMapTooltip(e.clientX, e.clientY);
+    }
+    canvas.style.cursor = found ? 'pointer' : 'grab';
+  });
+
+  canvas.addEventListener('mouseup', e => {
+    const wasDragging = Math.hypot(e.clientX-mapDragStartX, e.clientY-mapDragStartY) > 5;
+    mapDragging = false;
+    canvas.style.cursor = mapHoveredLoc ? 'pointer' : 'grab';
+    if (!wasDragging) {
+      // Click: select location
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      const markers = window._mapMarkers || [];
+      for (let i = markers.length-1; i >= 0; i--) {
+        const m = markers[i];
+        if (Math.hypot(mx-m.sx, my-m.sy) < m.r + 4) {
+          selectMapLocation(m.locName);
+          return;
+        }
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    mapDragging = false;
+    mapHoveredLoc = null;
+    hideMapTooltip();
+    drawMap();
+  });
+
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    mapZoom(e.deltaY > 0 ? 0.8 : 1.25, e.clientX - rect.left, e.clientY - rect.top);
+  }, { passive:false });
+
+  canvas.addEventListener('dblclick', e => {
+    const rect = canvas.getBoundingClientRect();
+    mapZoom(0.5, e.clientX - rect.left, e.clientY - rect.top);
+  });
+
+  window.addEventListener('resize', () => { if (currentView === 'map') drawMap(); });
+}
+
+// ── Tooltip ───────────────────────────────────────────────
+function showMapTooltip(m, cx, cy) {
+  document.getElementById('mtt-name').textContent = m.locName;
+  document.getElementById('mtt-zone').textContent = m.zone;
+  document.getElementById('mtt-count').textContent = `${m.cnt} événement${m.cnt>1?'s':''}`;
+  const tt = document.getElementById('map-tooltip');
+  tt.style.display = 'block';
+  moveMapTooltip(cx, cy);
+}
+function moveMapTooltip(cx, cy) {
+  const tt = document.getElementById('map-tooltip');
+  tt.style.left = Math.min(cx+16, window.innerWidth - 240) + 'px';
+  tt.style.top  = Math.max(8, cy-10) + 'px';
+}
+function hideMapTooltip() {
+  document.getElementById('map-tooltip').style.display = 'none';
+}
+
+// ── Location panel ────────────────────────────────────────
+function selectMapLocation(locName) {
+  mapSelectedLoc = locName;
+  const events = getLocEvents(locName);
+  const loc = LOCS[locName];
+
+  document.getElementById('mp-loc-name').textContent = locName;
+  document.getElementById('mp-loc-zone').textContent = loc?.zone || '';
+
+  const panel = document.getElementById('map-panel-events');
+  panel.innerHTML = events.length ? events.map(ev => `
+    <div class="mp-event-item" onclick="jumpToEventFromMap('${ev.id}')">
+      <div class="mp-ev-dot" style="background:${TYPE_C[ev.type]||'#888'}"></div>
+      <div style="flex:1;min-width:0">
+        <div class="mp-ev-date">${ev.date_label||ev.year_k||''}</div>
+        <div class="mp-ev-title">${ev.title}</div>
+        <div class="mp-ev-type">${TYPE_LABELS[ev.type]||ev.type}</div>
+        ${(ev.characters||[]).some(c=>findCharByName(c)) ? `<div class="cp-ev-chars" style="margin-top:4px">${(ev.characters||[]).filter(c=>findCharByName(c)).slice(0,4).map(c=>`<span class="cp-ev-char-tag" onclick="event.stopPropagation();goToCharacter('${c.replace(/'/g,"\\'")}')">☽ ${c}</span>`).join('')}</div>` : ''}
+        ${ev.source ? `<div class="mp-ev-source">${ev.source}</div>` : ''}
+      </div>
+    </div>`).join('') + `<div class="mp-source-footer">📖 Library of Ohara v5.0 · Wiki One Piece · SBS · Vivre Cards</div>`
+  : '<div style="color:var(--text-faint);font-size:0.85rem;padding:16px 8px">Aucun événement visible pour ce lieu avec les filtres actifs.</div>';
+
+  document.getElementById('map-panel').classList.add('open');
+  drawMap();
+}
+
+function closeMapPanel() {
+  mapSelectedLoc = null;
+  document.getElementById('map-panel').classList.remove('open');
+  drawMap();
+}
+
+function jumpToEventFromMap(evId) {
+  closeMapPanel();
+  setView('list');
+  selectedEventId = evId;
+  const ev = DATA.events.find(e=>e.id===evId);
+  if (ev) {
+    eraCollapsed = {};
+    render();
+    setTimeout(() => {
+      openPanel(ev);
+      document.querySelector('.event-card.selected')?.scrollIntoView({behavior:'smooth',block:'center'});
+    }, 100);
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────
+function initMap() {
+  if (!mapInited) {
+    mapInited = true;
+    initMapMouse();
+    initMapLegend();
+  }
+  setTimeout(drawMap, 50);
+}
+
+// ── Patch setView ─────────────────────────────────────────
+function setView(mode) {
+  // ④ Fermer tous les panels ouverts au changement de vue
+  if (mode !== 'list')  { selectedEventId = null; document.getElementById('detail-panel')?.classList.remove('open'); document.getElementById('timeline-container')?.classList.remove('panel-open'); }
+  if (mode !== 'chars') { selectedCharId = null;  document.getElementById('char-panel')?.classList.remove('open');   document.getElementById('chars-view')?.classList.remove('panel-open'); }
+  if (mode !== 'map')   { mapSelectedLoc = null;  document.getElementById('map-panel')?.classList.remove('open'); }
+
+  document.getElementById('main').style.display        = mode==='list'  ? 'flex' : 'none';
+  document.getElementById('frise-view').style.display  = mode==='frise' ? 'flex' : 'none';
+  document.getElementById('chars-view').style.display  = mode==='chars' ? 'flex' : 'none';
+  document.getElementById('map-view').style.display    = mode==='map'   ? 'flex' : 'none';
+  document.getElementById('about-view').style.display  = mode==='about' ? 'block': 'none';
+  currentView = mode;
+  ['list','frise','chars','map','about'].forEach(m =>
+    document.getElementById('btn-'+m)?.classList.toggle('active', m===mode));
+
+  // ② Pastilles contextuelles
+  document.getElementById('stats-bar').style.display      = mode==='list'  ? 'flex' : 'none';
+  document.getElementById('chars-stat-bar').style.display = mode==='chars' ? 'flex' : 'none';
+
+  if (mode==='frise') initFrise();
+  if (mode==='chars') renderChars();
+  if (mode==='map')   initMap();
+  if (mode==='about') updateAboutStats();
+}
+
+
+// ══════════════════════════════════════════════════════════
+//  NAVIGATION CROISÉE
+// ══════════════════════════════════════════════════════════
+
+// Trouve le personnage correspondant à un nom (approximatif)
+function findCharByName(name) {
+  const n = name.toLowerCase().trim();
+  return (DATA.characters||[]).find(c => {
+    if (c.name.toLowerCase() === n) return true;
+    if (c.name.toLowerCase().includes(n) || n.includes(c.name.toLowerCase().split(' ').pop())) return true;
+    if ((c.aliases||[]).some(a => a.toLowerCase() === n || a.toLowerCase().includes(n))) return true;
+    return false;
+  });
+}
+
+// Trouve un lieu dans LOCS (approximatif)
+function findLocKey(locName) {
+  const n = locName.toLowerCase().trim();
+  return Object.keys(LOCS).find(k =>
+    k.toLowerCase() === n ||
+    k.toLowerCase().includes(n) ||
+    n.includes(k.toLowerCase())
+  );
+}
+
+// Événement → Fiche personnage
+function goToCharacter(charName) {
+  const char = findCharByName(charName);
+  if (!char) { showNotif('⚠ Fiche introuvable pour : ' + charName); return; }
+  closePanel();
+  closeMapPanel();
+  setView('chars');
+  setTimeout(() => {
+    selectedCharId = char.id;
+    renderChars();
+    openCharPanel(char);
+    // Scroll to card
+    setTimeout(() => {
+      document.querySelector('.char-card.selected')?.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 100);
+  }, 80);
+}
+
+// Événement / Personnage → Carte centrée sur un lieu
+function goToMapLocation(locName) {
+  const key = findLocKey(locName);
+  if (!key) { showNotif('⚠ Lieu non cartographié : ' + locName); return; }
+  closePanel();
+  closeCharPanel();
+  setView('map');
+  setTimeout(() => {
+    const loc = LOCS[key];
+    // Centre la vue sur ce lieu
+    mapOffX = 0; mapOffY = 0;
+    mapScale = 2.2;
+    // Translate so the loc is centered
+    mapOffX = -(loc.x - MAP_W/2) * mapScale;
+    mapOffY = -(loc.y - MAP_H/2) * mapScale;
+    selectMapLocation(key);
+    drawMap();
+  }, 80);
+}
+
+
+// Injecter la version depuis DATA
+document.addEventListener('DOMContentLoaded', () => {
+  const v = document.getElementById('footer-version');
+  if (v && typeof DATA !== 'undefined') {
+    v.textContent = 'v' + (DATA.version || '1.0');
+  }
+});
+
+
+function updateAboutStats() {
+  const el = document.getElementById('about-stats');
+  if (!el || typeof DATA === 'undefined') return;
+  const evCount  = DATA.events.length;
+  const chCount  = (DATA.characters||[]).length;
+  const eraCount = new Set(DATA.events.map(e=>e.era)).size;
+  const locCount = DATA.events.reduce((s,e)=>{ (e.locations||[]).forEach(l=>s.add(l)); return s; }, new Set()).size;
+  const aboutCharEl = document.getElementById('about-char-count');
+  if (aboutCharEl) aboutCharEl.textContent = chCount + ' fiches personnages';
+  el.innerHTML = `<strong>${evCount}</strong> événements documentés<br>
+    <strong>${chCount}</strong> fiches personnages<br>
+    <strong>${eraCount}</strong> ères historiques<br>
+    <strong>${locCount}</strong> lieux référencés<br>
+    Version <strong>${DATA.version||'1.0'}</strong> · Mis à jour ${DATA.lastUpdated||'2026'}`;
+}
+
+
+// ── Onboarding ────────────────────────────────────────────
+function initOnboarding() {
+  if (localStorage.getItem('op_onboarding_seen') === '1') {
+    document.getElementById('onboarding-overlay').classList.add('hidden');
+    return;
+  }
+  // Injecter les vrais chiffres depuis DATA
+  if (typeof DATA !== 'undefined') {
+    const evCount  = DATA.events.length;
+    const chCount  = (DATA.characters||[]).length;
+    const locCount = DATA.events.reduce((s,e)=>{ (e.locations||[]).forEach(l=>s.add(l)); return s; }, new Set()).size;
+    const el_ev   = document.getElementById('ob-ev-count');
+    const el_ch   = document.getElementById('ob-char-count');
+    const el_loc  = document.getElementById('ob-loc-count');
+    if (el_ev)  el_ev.textContent  = `${evCount} événements filtrables par ère et type`;
+    if (el_ch)  el_ch.textContent  = `${chCount} fiches personnages avec événements liés`;
+    if (el_loc) el_loc.textContent = `Carte du monde — ${locCount} lieux référencés`;
+  }
+}
+function closeOnboarding() {
+  if (document.getElementById('ob-never')?.checked) {
+    try { localStorage.setItem('op_onboarding_seen', '1'); } catch(e){}
+  }
+  document.getElementById('onboarding-overlay').classList.add('hidden');
+}
+
+
+// Depuis le panneau événement → basculer sur la frise centrée sur l'événement
+function goToFrise(evId) {
+  const ev = DATA.events.find(e => e.id === evId);
+  if (!ev || !ev.years_before) { setView('frise'); return; }
+  const yb = ev.years_before;
+  // Choisir une plage de zoom adaptée selon la période
+  const span = yb > 100 ? Math.max(50, yb * 0.3)
+             : yb > 10  ? Math.max(5,  yb * 0.4)
+             : yb > 1   ? 1.5
+             :             0.15;
+  VS.start = Math.max(0,          yb - span * 0.6);
+  VS.end   = Math.min(MAX_YB,     yb + span * 0.4);
+  selectedEventId = evId;
+  closePanel();
+  setView('frise');
+}
+
+// ─────────────────────────────────────────────────────────
+render();
+initOnboarding();
+</script>
+</body>
+</html>
