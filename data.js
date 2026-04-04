@@ -935,7 +935,7 @@ var DATA = {
   date_label:"An 1522 — East Blue",
   title:"Recrutement de Zoro — La Prison de la Marine",
   description:"Luffy libère Roronoa Zoro d'une prison de la Marine où il était retenu. Zoro rejoint l'équipage à condition que Luffy l'aide à devenir le plus grand épéiste.",
-  characters:["Luffy","Zoro"], locations:["Marine Ford","East Blue"], source:"Chapitre 3-5", tags:["Zoro","recrutement","Chapeau de Paille"] },
+  characters:["Luffy","Zoro"], locations:["East Blue"], source:"Chapitre 3-5", tags:["Zoro","recrutement","Chapeau de Paille","Shells Town"] },
 
 { id:"hx002", era:"histoire", type:"piraterie", year_k:1522, years_before:2, approx:false,
   date_label:"An 1522 — East Blue",

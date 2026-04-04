@@ -50,6 +50,7 @@
 
 body {
   font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -76,7 +77,7 @@ body {
 
 .app-title {
   font-family: 'Cinzel', serif;
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--gold);
   letter-spacing: 0.08em;
@@ -139,14 +140,14 @@ body {
 
 .filter-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   letter-spacing: 0.15em;
   color: var(--text-faint);
   margin-right: 4px;
 }
 
 .type-pill {
-  font-size: 0.72rem;
+  font-size: 1.07rem;
   font-family: 'Cinzel', serif;
   letter-spacing: 0.06em;
   padding: 3px 12px;
@@ -187,7 +188,7 @@ body {
 
 .era-btn {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
+  font-size: 1.07rem;
   letter-spacing: 0.06em;
   padding: 4px 12px;
   background: transparent;
@@ -249,19 +250,19 @@ body {
 .era-title-block {}
 .era-name {
   font-family: 'Cinzel', serif;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--gold);
   letter-spacing: 0.06em;
 }
 .era-range {
-  font-size: 0.82rem;
+  font-size: 1.07rem;
   color: var(--text-dim);
   font-style: italic;
 }
 .era-count {
   margin-left: auto;
-  font-size: 0.75rem;
+  font-size: 1.15rem;
   color: var(--text-faint);
   font-family: 'JetBrains Mono', monospace;
 }
@@ -336,20 +337,22 @@ body {
 
 .event-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   color: var(--text-faint);
-  white-space: nowrap;
-  flex-shrink: 0;
+    flex-shrink: 0;
+  flex-basis: 130px;
+  min-width: 130px;
+  max-width: 130px;
   padding-top: 2px;
-  min-width: 110px;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  align-self: flex-start;
 }
 
 .ev-year-k {
   font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--gold);
   letter-spacing: 0.04em;
@@ -357,12 +360,12 @@ body {
 
 .ev-years-ago {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--text-faint);
 }
 
 .ev-date-only {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   color: var(--text-dim);
 }
 
@@ -389,7 +392,7 @@ body {
 }
 
 .event-preview {
-  font-size: 0.82rem;
+  font-size: 1.07rem;
   color: var(--text-dim);
   line-height: 1.4;
   overflow: hidden;
@@ -405,7 +408,7 @@ body {
   margin-top: 6px;
 }
 .tag {
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   padding: 1px 6px;
   border-radius: 3px;
   background: rgba(255,255,255,0.05);
@@ -454,7 +457,7 @@ body {
 
 .panel-type-badge {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   letter-spacing: 0.12em;
   padding: 3px 10px;
   border-radius: 4px;
@@ -465,14 +468,14 @@ body {
 
 .panel-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
+  font-size: 1.07rem;
   color: var(--gold);
   margin-bottom: 8px;
 }
 
 .panel-title {
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
+  font-size: 1.30rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.3;
@@ -480,7 +483,7 @@ body {
 }
 
 .panel-description {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: var(--text);
   line-height: 1.7;
   margin-bottom: 20px;
@@ -500,7 +503,7 @@ body {
 .meta-row {
   display: flex;
   gap: 10px;
-  font-size: 0.83rem;
+  font-size: 0.85rem;
 }
 .meta-label {
   font-family: 'Cinzel', serif;
@@ -524,7 +527,7 @@ body {
   border-radius: 20px;
   background: var(--bg3);
   border: 1px solid var(--border);
-  font-size: 0.78rem;
+  font-size: 1.07rem;
   color: var(--c-naissance);
   cursor: pointer;
   transition: all 0.15s;
@@ -553,7 +556,7 @@ body {
   border-radius: 4px;
   background: rgba(82,183,136,0.08);
   border: 1px solid rgba(82,183,136,0.25);
-  font-size: 0.78rem;
+  font-size: 1.07rem;
   color: #52b788;
   cursor: pointer;
   transition: all 0.15s;
@@ -587,7 +590,7 @@ body {
   margin-top: 4px;
 }
 .cp-ev-char-tag {
-  font-size: 0.62rem;
+  font-size: 1.07rem;
   padding: 1px 6px;
   border-radius: 10px;
   background: rgba(0,180,216,0.08);
@@ -600,7 +603,7 @@ body {
 
 /* Tooltip de navigation */
 .nav-hint {
-  font-size: 0.62rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   font-style: italic;
   margin-top: 6px;
@@ -610,7 +613,7 @@ body {
 
 
 .panel-source {
-  font-size: 0.78rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   font-style: italic;
   padding: 10px 14px;
@@ -625,12 +628,12 @@ body {
 .panel-source::before {
   content: '📖';
   font-style: normal;
-  font-size: 0.85rem;
+  font-size: 1.15rem;
 }
 
 /* Source badge on event cards */
 .ev-source-badge {
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-faint);
   margin-top: 5px;
@@ -644,7 +647,7 @@ body {
 
 /* Source in character panel */
 .cp-source-note {
-  font-size: 0.72rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   font-style: italic;
   padding: 10px 14px;
@@ -670,7 +673,7 @@ body {
 /* Source in map info panel */
 .mp-source-footer {
   padding: 12px 16px;
-  font-size: 0.68rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   font-style: italic;
   border-top: 1px solid var(--border);
@@ -728,7 +731,7 @@ body {
   border-radius: 6px;
   padding: 10px 18px;
   font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
+  font-size: 1.15rem;
   letter-spacing: 0.08em;
   color: var(--gold);
   z-index: 200;
@@ -762,7 +765,7 @@ body {
 }
 .view-btn {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   letter-spacing: 0.1em;
   padding: 6px 16px;
   border: none;
@@ -804,7 +807,7 @@ body {
   color: var(--text-faint);
 }
 .minimap-hint {
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   color: var(--text-faint);
   font-style: italic;
 }
@@ -860,7 +863,7 @@ body {
   bottom: 20px;
   left: 24px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   z-index: 10;
   pointer-events: none;
@@ -881,7 +884,7 @@ body {
 }
 .tt-badge {
   font-family: 'Cinzel', serif;
-  font-size: 0.58rem;
+  font-size: 1.07rem;
   letter-spacing: 0.12em;
   padding: 2px 8px;
   border-radius: 3px;
@@ -890,26 +893,17 @@ body {
   margin-bottom: 5px;
 }
 .tt-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); margin-bottom: 3px; }
-.tt-title { font-size: 0.92rem; font-family: 'Cinzel', serif; font-weight: 600; color: #fff; line-height: 1.3; }
-.tt-hint { font-size: 0.75rem; color: var(--text-faint); margin-top: 5px; font-style: italic; }
+.tt-title { font-size: 1.07rem; font-family: 'Cinzel', serif; font-weight: 600; color: #fff; line-height: 1.3; }
+.tt-hint { font-size: 1.15rem; color: var(--text-faint); margin-top: 5px; font-style: italic; }
 
 /* Era legend in frise */
-#era-legend {
-  position: absolute;
-  top: 12px;
-  left: 24px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  z-index: 10;
-  pointer-events: none;
-}
+#era-legend { display: none; }
 .era-legend-item {
   display: flex;
   align-items: center;
   gap: 4px;
   font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
+  font-size: 1.15rem;
   letter-spacing: 0.08em;
   color: var(--text-faint);
 }
@@ -955,7 +949,7 @@ body {
   border-radius: 6px;
   color: var(--text);
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   letter-spacing: 0.06em;
   padding: 5px 10px;
   outline: none;
@@ -978,7 +972,7 @@ body {
   align-items: center;
   gap: 6px;
   font-family: 'Cinzel', serif;
-  font-size: 0.58rem;
+  font-size: 1.07rem;
   letter-spacing: 0.06em;
   color: var(--text-dim);
   cursor: pointer;
@@ -1015,7 +1009,7 @@ body {
   position: absolute;
   bottom: 20px; right: 12px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   color: var(--text-faint);
   background: rgba(5,8,16,0.8);
   border: 1px solid var(--border);
@@ -1038,9 +1032,9 @@ body {
   max-width: 220px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
-.mtt-name  { font-family: 'Cinzel', serif; font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
-.mtt-zone  { font-size: 0.72rem; color: var(--text-faint); font-style: italic; margin-bottom: 6px; }
-.mtt-count { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); }
+.mtt-name  { font-family: 'Cinzel', serif; font-size: 1.07rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.mtt-zone  { font-size: 1.07rem; color: var(--text-faint); font-style: italic; margin-bottom: 6px; }
+.mtt-count { font-family: 'JetBrains Mono', monospace; font-size: 1.07rem; color: var(--gold); }
 .mtt-hint  { font-size: 0.7rem; color: var(--text-faint); margin-top: 4px; }
 
 /* Map side panel */
@@ -1072,7 +1066,7 @@ body {
   color: #fff;
 }
 .mp-loc-zone {
-  font-size: 0.78rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   font-style: italic;
   margin-top: 2px;
@@ -1109,8 +1103,8 @@ body {
 }
 .mp-event-item:hover { background: rgba(255,255,255,0.04); border-color: var(--border); }
 .mp-ev-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-.mp-ev-date { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--text-faint); margin-bottom: 2px; }
-.mp-ev-title { font-family: 'Cinzel', serif; font-size: 0.82rem; color: var(--text); line-height: 1.3; }
+.mp-ev-date { font-family: 'JetBrains Mono', monospace; font-size: 1.07rem; color: var(--text-faint); margin-bottom: 2px; }
+.mp-ev-title { font-family: 'Cinzel', serif; font-size: 1.07rem; color: var(--text); line-height: 1.3; }
 .mp-ev-type { font-size: 0.6rem; font-family: 'Cinzel', serif; letter-spacing: 0.08em; color: var(--text-faint); margin-top: 2px; }
 
 /* ─── CHARACTERS VIEW ─── */
@@ -1143,7 +1137,7 @@ body {
   padding: 6px 12px;
   color: var(--text);
   font-family: 'Crimson Pro', serif;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   outline: none;
 }
 #chars-search:focus { border-color: var(--gold); }
@@ -1151,7 +1145,7 @@ body {
 
 .cat-pill {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
+  font-size: 1.07rem;
   letter-spacing: 0.1em;
   padding: 4px 12px;
   border-radius: 20px;
@@ -1229,7 +1223,7 @@ body {
 
 .char-cat-badge {
   font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
+  font-size: 0.62rem;
   letter-spacing: 0.1em;
   padding: 2px 7px;
   border-radius: 3px;
@@ -1262,7 +1256,7 @@ body {
 }
 
 .char-aliases {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--text-dim);
   font-style: italic;
   margin-bottom: 8px;
@@ -1276,20 +1270,21 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.72rem;
+  font-size: 0.80rem;
   color: var(--text-faint);
   margin-bottom: 3px;
 }
 .char-meta-line strong { color: var(--text-dim); }
 
 .char-fruit-tag {
-  font-size: 0.65rem;
+  font-size: 0.70rem;
   padding: 2px 7px;
   border-radius: 3px;
   background: rgba(67,97,238,0.12);
   border: 1px solid rgba(67,97,238,0.3);
   color: #8aadff;
   margin-top: 6px;
+  margin-bottom: 6px;
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
@@ -1298,11 +1293,11 @@ body {
 }
 
 .char-ev-count {
-  position: absolute;
-  bottom: 12px; right: 12px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   color: var(--text-faint);
+  margin-top: 6px;
+  text-align: right;
 }
 
 /* ─── CHARACTER PROFILE PANEL ─── */
@@ -1347,7 +1342,7 @@ body {
 
 .cp-cat-badge {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
+  font-size: 1.07rem;
   letter-spacing: 0.1em;
   padding: 3px 10px;
   border-radius: 4px;
@@ -1366,7 +1361,7 @@ body {
 }
 
 .cp-aliases {
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   color: var(--text-dim);
   font-style: italic;
 }
@@ -1388,13 +1383,13 @@ body {
 }
 .cp-stat-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.58rem;
+  font-size: 1.07rem;
   letter-spacing: 0.12em;
   color: var(--text-faint);
   margin-bottom: 4px;
 }
 .cp-stat-val {
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   color: var(--text);
   font-weight: 600;
 }
@@ -1412,7 +1407,7 @@ body {
 }
 .cp-fruit-icon { font-size: 1.2rem; }
 .cp-fruit-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-faint); }
-.cp-fruit-name { font-size: 0.88rem; color: #8aadff; line-height: 1.3; }
+.cp-fruit-name { font-size: 1.07rem; color: #8aadff; line-height: 1.3; }
 
 .cp-bounty {
   display: inline-flex;
@@ -1427,10 +1422,10 @@ body {
 }
 .cp-bounty-icon { font-size: 1.1rem; }
 .cp-bounty-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-faint); }
-.cp-bounty-val { font-size: 0.95rem; color: #ffd60a; font-family: 'JetBrains Mono', monospace; }
+.cp-bounty-val { font-size: 1.15rem; color: #ffd60a; font-family: 'JetBrains Mono', monospace; }
 
 .cp-description {
-  font-size: 0.92rem;
+  font-size: 1.07rem;
   line-height: 1.7;
   color: var(--text);
   margin-bottom: 20px;
@@ -1443,7 +1438,7 @@ body {
   margin-bottom: 20px;
 }
 .cp-tag {
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   padding: 2px 8px;
   border-radius: 4px;
   background: rgba(255,255,255,0.04);
@@ -1453,7 +1448,7 @@ body {
 
 .cp-events-title {
   font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
+  font-size: 1.07rem;
   letter-spacing: 0.12em;
   color: var(--gold);
   margin-bottom: 12px;
@@ -1482,12 +1477,12 @@ body {
 .cp-ev-info { flex: 1; min-width: 0; }
 .cp-ev-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   color: var(--text-faint);
   margin-bottom: 2px;
 }
 .cp-ev-title {
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   font-family: 'Cinzel', serif;
   color: var(--text);
   line-height: 1.3;
@@ -1509,7 +1504,7 @@ body {
   gap: 16px;
 }
 .footer-credit {
-  font-size: 0.68rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   white-space: nowrap;
   overflow: hidden;
@@ -1524,7 +1519,7 @@ body {
 }
 .kofi-btn {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   letter-spacing: 0.08em;
   padding: 4px 12px;
   background: rgba(255,94,0,0.12);
@@ -1536,7 +1531,7 @@ body {
 }
 .kofi-btn:hover { background: rgba(255,94,0,0.22); border-color: #ff7a35; }
 .footer-link {
-  font-size: 0.65rem;
+  font-size: 1.15rem;
   color: var(--text-faint);
   text-decoration: none;
   transition: color 0.15s;
@@ -1620,14 +1615,14 @@ body {
 .about-card-icon { font-size: 1.6rem; margin-bottom: 10px; }
 .about-card h3 {
   font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--gold);
   letter-spacing: 0.08em;
   margin-bottom: 10px;
 }
 .about-card p {
-  font-size: 0.88rem;
+  font-size: 1.07rem;
   color: var(--text-dim);
   line-height: 1.7;
 }
@@ -1647,7 +1642,7 @@ body {
   border-radius: 6px;
   color: #ff7a35 !important;
   font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
+  font-size: 1.07rem;
   letter-spacing: 0.08em;
   text-decoration: none !important;
   transition: all 0.15s;
@@ -1738,7 +1733,7 @@ body {
   margin-bottom: 8px;
 }
 .ob-sub {
-  font-size: 0.88rem;
+  font-size: 1.07rem;
   color: var(--text-dim);
   font-style: italic;
   margin-bottom: 24px;
@@ -1758,7 +1753,7 @@ body {
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   color: var(--text-dim);
 }
 .ob-feat span:first-child {
@@ -1778,7 +1773,7 @@ body {
 }
 .ob-btn {
   font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   letter-spacing: 0.1em;
   padding: 12px 32px;
   background: var(--gold-dim);
@@ -1793,7 +1788,7 @@ body {
 }
 .ob-btn:hover { background: rgba(201,162,39,0.25); }
 .ob-nevershow {
-  font-size: 0.72rem;
+  font-size: 1.07rem;
   color: var(--text-faint);
   cursor: pointer;
   display: flex;
@@ -1815,7 +1810,7 @@ body {
   border-radius: 6px;
   color: var(--gold);
   font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
+  font-size: 1.07rem;
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: all 0.15s;
@@ -1825,6 +1820,94 @@ body {
 .panel-frise-btn:hover {
   background: rgba(201,162,39,0.18);
   border-color: var(--gold);
+}
+
+
+/* ─── LISTE DES LIEUX (Carte) ─── */
+#map-locs-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  font-family: 'Cinzel', serif;
+  font-size: 0.70rem;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  background: rgba(5,8,16,0.88);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+#map-locs-btn:hover { border-color: var(--gold); color: var(--gold); }
+#map-locs-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+#map-locs-panel {
+  position: absolute;
+  top: 46px;
+  right: 12px;
+  width: 240px;
+  max-height: calc(100% - 100px);
+  background: rgba(5,8,16,0.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-y: auto;
+  z-index: 10;
+  display: block;  /* ouvert par défaut */
+  backdrop-filter: blur(8px);
+}
+#map-locs-panel.open { display: block; }
+
+.map-locs-search {
+  position: sticky;
+  top: 0;
+  padding: 8px 10px;
+  background: rgba(5,8,16,0.98);
+  border-bottom: 1px solid var(--border);
+}
+.map-locs-search input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 9px;
+  color: var(--text);
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.88rem;
+  outline: none;
+}
+.map-locs-search input:focus { border-color: var(--gold); }
+
+.map-loc-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition: background 0.1s;
+}
+.map-loc-item:hover { background: rgba(255,255,255,0.05); }
+.map-loc-item:last-child { border-bottom: none; }
+
+.map-loc-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+.map-loc-zone {
+  font-size: 0.62rem;
+  color: var(--text-faint);
+  margin-top: 1px;
+}
+.map-loc-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-left: 8px;
 }
 
 </style>
@@ -1993,6 +2076,11 @@ body {
       </select>
       <div class="map-type-legend" id="map-type-legend"></div>
     </div>
+    <button id="map-locs-btn" class="active" onclick="toggleLocsList()">≡ Lieux</button>
+    <div id="map-locs-panel">
+      <div class="map-locs-search"><input type="text" id="map-locs-search-input" placeholder="Chercher un lieu…" oninput="renderLocsList()" /></div>
+      <div id="map-locs-list"></div>
+    </div>
     <div id="map-zoom-controls">
       <button class="map-ctrl-btn" onclick="mapZoom(1.4)" title="Zoom +">+</button>
       <button class="map-ctrl-btn" onclick="mapZoom(0.7)" title="Zoom −">−</button>
@@ -2041,7 +2129,6 @@ body {
   </div>
   <div id="frise-main">
     <canvas id="frise-canvas"></canvas>
-    <div id="era-legend"></div>
     <div id="frise-controls">
       <button class="frise-ctrl-btn" onclick="friseZoomBtn(0.4)" title="Zoom +">+</button>
       <button class="frise-ctrl-btn" onclick="friseZoomBtn(2.5)" title="Zoom −">−</button>
@@ -3484,7 +3571,6 @@ function initFrise() {
     friseInited = true;
     initCanvasMouse();
     initMinimapDrag();
-    updateEraLegend();
     window.addEventListener('resize', () => { if (currentView === 'frise') drawAll(); });
     // Vue par défaut : histoire principale (~3 ans) — plus lisible que de tout afficher
     VS.start = 0;
@@ -3509,123 +3595,122 @@ function initFrise() {
 // West Blue : x = 0 → 495,   y = 360 → 600
 // East Blue : x = 505 → 1000, y = 360 → 600
 
-const MAP_W = 1000, MAP_H = 600;
-const RL_X = 500;   // Red Line x
-const GL_Y1 = 268, GL_Y2 = 332; // Grand Line y bounds
-const CB_N1 = 240,  CB_N2 = GL_Y1; // Calm Belt North
-const CB_S1 = GL_Y2, CB_S2 = 360;  // Calm Belt South
+const MAP_W = 2000, MAP_H = 1200;
+const RL_X = 1000;  // Red Line x
+const GL_Y1 = 536, GL_Y2 = 664; // Grand Line y bounds
+const CB_N1 = 480,  CB_N2 = GL_Y1; // Calm Belt North
+const CB_S1 = GL_Y2, CB_S2 = 720;  // Calm Belt South
 
 // ── Locations database ────────────────────────────────────
 const LOCS = {
   // ── Grand Line — Paradis (x 505→990, y ~300) ───────────
-  "Twin Cape":             {x:960, y:296, zone:"Entrée Grand Line"},
-  "Reverse Mountain":      {x:958, y:300, zone:"Entrée Grand Line"},
-  "Whisky Peak":           {x:905, y:288, zone:"Grand Line · Paradis"},
-  "Little Garden":         {x:875, y:305, zone:"Grand Line · Paradis"},
-  "Drum Island":           {x:840, y:292, zone:"Grand Line · Paradis"},
-  "Alabasta":              {x:800, y:288, zone:"Grand Line · Paradis"},
-  "Alubarna":              {x:800, y:288, zone:"Grand Line · Paradis"},
-  "Rainbase":              {x:800, y:288, zone:"Grand Line · Paradis"},
-  "Jaya":                  {x:755, y:305, zone:"Grand Line · Paradis"},
-  "Mock Town":             {x:755, y:305, zone:"Grand Line · Paradis"},
-  "Skypiea":               {x:755, y:252, zone:"Grand Line · Ciel"},
-  "Shandora":              {x:755, y:278, zone:"Grand Line · Ciel (Jaya)"},
-  "Long Ring Long Land":   {x:712, y:305, zone:"Grand Line · Paradis"},
-  "Water 7":               {x:672, y:290, zone:"Grand Line · Paradis"},
-  "Enies Lobby":           {x:660, y:300, zone:"Grand Line · Paradis"},
-  "Florian Triangle":      {x:615, y:310, zone:"Grand Line · Paradis"},
-  "Thriller Bark":         {x:612, y:306, zone:"Grand Line · Paradis"},
-  "Sabaody":               {x:548, y:291, zone:"Grand Line · Paradis"},
-  "Archipel Sabaody":      {x:548, y:291, zone:"Grand Line · Paradis"},
+  "Twin Cape":             {x:1920, y:592, zone:"Entrée Grand Line"},
+  "Reverse Mountain":      {x:1916, y:600, zone:"Entrée Grand Line"},
+  "Whisky Peak":           {x:1810, y:576, zone:"Grand Line · Paradis"},
+  "Little Garden":         {x:1750, y:610, zone:"Grand Line · Paradis"},
+  "Drum Island":           {x:1680, y:584, zone:"Grand Line · Paradis"},
+  "Alabasta":              {x:1600, y:576, zone:"Grand Line · Paradis"},
+  "Alubarna":              {x:1600, y:576, zone:"Grand Line · Paradis"},
+  "Rainbase":              {x:1600, y:576, zone:"Grand Line · Paradis"},
+  "Jaya":                  {x:1510, y:610, zone:"Grand Line · Paradis"},
+  "Mock Town":             {x:1510, y:610, zone:"Grand Line · Paradis"},
+  "Skypiea":               {x:1510, y:504, zone:"Grand Line · Ciel"},
+  "Shandora":              {x:1510, y:556, zone:"Grand Line · Ciel (Jaya)"},
+  "Long Ring Long Land":   {x:1424, y:610, zone:"Grand Line · Paradis"},
+  "Water 7":               {x:1344, y:580, zone:"Grand Line · Paradis"},
+  "Enies Lobby":           {x:1320, y:600, zone:"Grand Line · Paradis"},
+  "Florian Triangle":      {x:1230, y:620, zone:"Grand Line · Paradis"},
+  "Thriller Bark":         {x:1224, y:612, zone:"Grand Line · Paradis"},
+  "Sabaody":               {x:1096, y:582, zone:"Grand Line · Paradis"},
+  "Archipel Sabaody":      {x:1096, y:582, zone:"Grand Line · Paradis"},
 
   // ── Red Line / Centre ────────────────────────────────────
-  "Mary Geoise":           {x:500, y:262, zone:"Red Line (sommet)"},
-  "Pangée":                {x:500, y:262, zone:"Red Line (sommet)"},
-  "Marineford":            {x:484, y:250, zone:"Calm Belt (Quartier Général)"},
-  "Impel Down":            {x:500, y:354, zone:"Fond marin · Red Line"},
-  "Île des Hommes-Poissons":{x:500, y:418, zone:"Fond marin · Red Line"},
+  "Mary Geoise":           {x:1000, y:524, zone:"Red Line (sommet)"},
+  "Pangée":                {x:1000, y:524, zone:"Red Line (sommet)"},
+  "Marineford":            {x:968, y:500, zone:"Calm Belt (Quartier Général)"},
+  "Impel Down":            {x:1000, y:708, zone:"Fond marin · Red Line"},
+  "Île des Hommes-Poissons":{x:1000, y:836, zone:"Fond marin · Red Line"},
 
   // ── Grand Line — New World (x 0→495, y ~300) ────────────
-  "Punk Hazard":           {x:438, y:290, zone:"Grand Line · Nouveau Monde"},
-  "Dressrosa":             {x:384, y:300, zone:"Grand Line · Nouveau Monde"},
-  "Green Bit":             {x:382, y:300, zone:"Grand Line · Nouveau Monde"},
-  "Zou":                   {x:338, y:280, zone:"Grand Line · Nouveau Monde"},
-  "Whole Cake Island":     {x:282, y:308, zone:"Grand Line · Nouveau Monde"},
-  "Totto Land":            {x:282, y:308, zone:"Grand Line · Nouveau Monde"},
-  "Wano":                  {x:195, y:278, zone:"Grand Line · Nouveau Monde (fermé)"},
-  "Onigashima":            {x:192, y:288, zone:"Grand Line · Nouveau Monde"},
-  "Egghead":               {x:148, y:295, zone:"Grand Line · Nouveau Monde"},
-  "Laugh Tale":            {x:58,  y:296, zone:"Grand Line · Bout du Monde"},
-  "Lode Star":             {x:78,  y:285, zone:"Grand Line · Nouveau Monde"},
-  "Hachinosu":             {x:360, y:248, zone:"Calm Belt (Île des Pirates)"},
-  "God Valley":            {x:422, y:254, zone:"Calm Belt (disparue)"},
-  "Lulusia":               {x:240, y:145, zone:"Nouveau Monde (détruite)"},
+  "Punk Hazard":           {x:876, y:580, zone:"Grand Line · Nouveau Monde"},
+  "Dressrosa":             {x:768, y:600, zone:"Grand Line · Nouveau Monde"},
+  "Green Bit":             {x:764, y:600, zone:"Grand Line · Nouveau Monde"},
+  "Zou":                   {x:676, y:560, zone:"Grand Line · Nouveau Monde"},
+  "Whole Cake Island":     {x:564, y:616, zone:"Grand Line · Nouveau Monde"},
+  "Totto Land":            {x:564, y:616, zone:"Grand Line · Nouveau Monde"},
+  "Wano":                  {x:390, y:556, zone:"Grand Line · Nouveau Monde (fermé)"},
+  "Onigashima":            {x:384, y:576, zone:"Grand Line · Nouveau Monde"},
+  "Egghead":               {x:296, y:590, zone:"Grand Line · Nouveau Monde"},
+  "Laugh Tale":            {x:116, y:592, zone:"Grand Line · Bout du Monde"},
+  "Lode Star":             {x:156, y:570, zone:"Grand Line · Nouveau Monde"},
+  "Hachinosu":             {x:720, y:496, zone:"Calm Belt (Île des Pirates)"},
+  "God Valley":            {x:844, y:508, zone:"Calm Belt (disparue)"},
+  "Lulusia":               {x:480, y:290, zone:"Nouveau Monde (détruite)"},
 
   // ── East Blue (x 505→1000, y 360→600) ───────────────────
-  "East Blue":             {x:780, y:490, zone:"East Blue"},
-  "Foosha":                {x:828, y:505, zone:"East Blue"},
-  "Foosha Village":        {x:828, y:505, zone:"East Blue"},
-  "Orange Town":           {x:785, y:475, zone:"East Blue"},
-  "Syrup Village":         {x:808, y:492, zone:"East Blue"},
-  "Baratie":               {x:758, y:462, zone:"East Blue"},
-  "Arlong Park":           {x:795, y:484, zone:"East Blue"},
-  "Cocoyasi":              {x:795, y:484, zone:"East Blue"},
-  "Loguetown":             {x:722, y:448, zone:"East Blue"},
-  "Goa":                   {x:822, y:500, zone:"East Blue"},
-  "Barb Alley":            {x:820, y:498, zone:"East Blue"},
+  "East Blue":             {x:1560, y:980, zone:"East Blue"},
+  "Foosha":                {x:1656, y:1010, zone:"East Blue"},
+  "Foosha Village":        {x:1656, y:1010, zone:"East Blue"},
+  "Orange Town":           {x:1570, y:950, zone:"East Blue"},
+  "Syrup Village":         {x:1616, y:984, zone:"East Blue"},
+  "Baratie":               {x:1516, y:924, zone:"East Blue"},
+  "Arlong Park":           {x:1590, y:968, zone:"East Blue"},
+  "Cocoyasi":              {x:1590, y:968, zone:"East Blue"},
+  "Loguetown":             {x:1444, y:896, zone:"East Blue"},
+  "Goa":                   {x:1644, y:1000, zone:"East Blue"},
+  "Barb Alley":            {x:1640, y:996, zone:"East Blue"},
 
   // ── North Blue (x 0→495, y 0→240) ───────────────────────
-  "North Blue":            {x:210, y:128, zone:"North Blue"},
-  "Lvneel":                {x:185, y:108, zone:"North Blue"},
-  "Edd War":               {x:420, y:148, zone:"North Blue"},
-  "Sphinx":                {x:288, y:152, zone:"North Blue"},
-  "Sorbet":                {x:358, y:148, zone:"North Blue"},
-  "Dress Rosa":            {x:384, y:300, zone:"Grand Line · Nouveau Monde"},
+  "North Blue":            {x:420, y:256, zone:"North Blue"},
+  "Lvneel":                {x:370, y:216, zone:"North Blue"},
+  "Edd War":               {x:840, y:296, zone:"North Blue"},
+  "Sphinx":                {x:576, y:304, zone:"North Blue"},
+  "Sorbet":                {x:716, y:296, zone:"North Blue"},
+  "Dress Rosa":            {x:768, y:600, zone:"Grand Line · Nouveau Monde"},
 
   // ── South Blue (x 505→1000, y 0→240) ────────────────────
-  "South Blue":            {x:755, y:128, zone:"South Blue"},
-  "Germa":                 {x:735, y:108, zone:"South Blue (nomade)"},
-  "Tequila Wolf":          {x:890, y:148, zone:"South Blue"},
-  "Flevance":              {x:820, y:132, zone:"South Blue (détruite)"},
+  "South Blue":            {x:1510, y:256, zone:"South Blue"},
+  "Germa":                 {x:1470, y:216, zone:"South Blue (nomade)"},
+  "Tequila Wolf":          {x:1780, y:296, zone:"South Blue"},
+  "Flevance":              {x:1640, y:264, zone:"South Blue (détruite)"},
 
   // ── West Blue (x 0→495, y 360→600) ──────────────────────
-  "West Blue":             {x:185, y:490, zone:"West Blue"},
-  "Ohara":                 {x:158, y:492, zone:"West Blue (détruite)"},
+  "West Blue":             {x:370, y:980, zone:"West Blue"},
+  "Ohara":                 {x:316, y:984, zone:"West Blue (détruite)"},
 
   // ── Calm Belt ────────────────────────────────────────────
-  "Amazon Lily":           {x:488, y:370, zone:"Calm Belt (Sud)"},
-  "Rusukaina":             {x:488, y:380, zone:"Calm Belt (Sud)"},
+  "Amazon Lily":           {x:976, y:740, zone:"Calm Belt (Sud)"},
+  "Rusukaina":             {x:976, y:760, zone:"Calm Belt (Sud)"},
 
   // ── Elbaf ────────────────────────────────────────────────
-  "Elbaf":                 {x:222, y:110, zone:"North Blue (île des géants)"},
+  "Elbaf":                 {x:444, y:220, zone:"North Blue (île des géants)"},
 
   // ── Ciel / Lune ──────────────────────────────────────────
-  "Lune":                  {x:500, y:28,  zone:"Espace"},
-  "Birka":                 {x:500, y:28,  zone:"Lune"},
-  "Weatheria":             {x:600, y:248, zone:"Île céleste"},
+  "Lune":                  {x:1000, y:56,  zone:"Espace"},
+  "Birka":                 {x:1000, y:56,  zone:"Lune"},
+  "Weatheria":             {x:1200, y:496, zone:"Île céleste"},
 
 
   // ── Lieux manquants ──────────────────────────────────────
-  "Capitale des Fleurs":    {x:195, y:268, zone:"Wano (Capitale)"},
-  "Shimotsuki Village":     {x:852, y:510, zone:"East Blue"},
-  "Triangle de Florian":    {x:615, y:310, zone:"Grand Line · Paradise"},
-  "Marine Ford":            {x:484, y:250, zone:"Calm Belt (QG Marine)"},
-  "Moby Dick":              {x:250, y:296, zone:"Grand Line"},
-  "District des Hommes-Poissons": {x:500, y:430, zone:"Fond marin"},
-  "Grand Royaume":          {x:500, y:300, zone:"Ancien Monde (Siècle Oublié)"},
-  "Pays des Glaces":        {x:88,  y:148, zone:"North Blue"},
-  "Royaume de Vodka":       {x:155, y:162, zone:"North Blue"},
-  "Lvneel":                 {x:185, y:108, zone:"North Blue"},
-  "Flevance":               {x:820, y:132, zone:"South Blue (détruite)"},
-  "Gray Terminal":          {x:822, y:498, zone:"East Blue · Goa"},
-  "Whisky Peak":            {x:905, y:288, zone:"Grand Line · Paradise"},
-  "Little Garden":          {x:875, y:305, zone:"Grand Line · Paradise"},
+  "Capitale des Fleurs":    {x:390, y:536, zone:"Wano (Capitale)"},
+  "Shimotsuki Village":     {x:1704, y:1020, zone:"East Blue"},
+  "Triangle de Florian":    {x:1230, y:620, zone:"Grand Line · Paradise"},
+  "Moby Dick":              {x:500, y:592, zone:"Grand Line"},
+  "District des Hommes-Poissons": {x:1000, y:860, zone:"Fond marin"},
+  "Grand Royaume":          {x:1000, y:600, zone:"Ancien Monde (Siècle Oublié)"},
+  "Pays des Glaces":        {x:176, y:296, zone:"North Blue"},
+  "Royaume de Vodka":       {x:310, y:324, zone:"North Blue"},
+  "Lvneel":                 {x:370, y:216, zone:"North Blue"},
+  "Flevance":               {x:1640, y:264, zone:"South Blue (détruite)"},
+  "Gray Terminal":          {x:1644, y:996, zone:"East Blue · Goa"},
+  "Whisky Peak":            {x:1810, y:576, zone:"Grand Line · Paradise"},
+  "Little Garden":          {x:1750, y:610, zone:"Grand Line · Paradise"},
 
   // ── Grand Line générique ─────────────────────────────────
-  "Grand Line":            {x:720, y:296, zone:"Grand Line"},
-  "Nouveau Monde":         {x:300, y:296, zone:"Nouveau Monde"},
-  "Twin Capes":            {x:960, y:296, zone:"Entrée Grand Line"},
-  "Moby Dick":             {x:250, y:296, zone:"Grand Line"},
+  "Grand Line":            {x:1440, y:592, zone:"Grand Line"},
+  "Nouveau Monde":         {x:600, y:592, zone:"Nouveau Monde"},
+  "Twin Capes":            {x:1920, y:592, zone:"Entrée Grand Line"},
+  "Moby Dick":             {x:500, y:592, zone:"Grand Line"},
 };
 
 // ── Map state ─────────────────────────────────────────────
@@ -3813,21 +3898,21 @@ function drawMap() {
   // ── Island shapes (decorative blobs for major locations) ─
   const ISLAND_SHAPES = [
     // [wx, wy, rx, ry, label, col]
-    [800, 288, 28, 18, 'Alabasta',    '#d4a853'],
-    [755, 278, 22, 16, 'Jaya',        '#5a8a60'],
-    [672, 290, 20, 15, 'Water 7',     '#4a7aaa'],
-    [500, 258, 0,  0,  '',            ''],  // Red Line crossing — skip blob
-    [195, 278, 26, 18, 'Wano',        '#8a5545'],
-    [148, 295, 16, 12, 'Egghead',     '#5a6aaa'],
-    [828, 505, 18, 14, 'Foosha',      '#5a9a65'],
-    [158, 492, 16, 12, 'Ohara',       '#8a7a55'],
-    [222, 110, 20, 15, 'Elbaf',       '#8a6045'],
-    [438, 290, 18, 12, 'Punk Hazard', '#8a4a3a'],
-    [384, 300, 22, 16, 'Dressrosa',   '#9a5a8a'],
-    [282, 308, 24, 16, 'Whole Cake',  '#c9a0b8'],
-    [338, 280, 18, 14, 'Zou',         '#6a8a7a'],
-    [548, 291, 12, 8,  'Sabaody',     '#7a9a7a'],
-    [840, 292, 20, 14, 'Drum Island', '#5a78a8'],
+    [1600, 576, 56, 36, 'Alabasta',    '#d4a853'],
+    [1510, 556, 44, 32, 'Jaya',        '#5a8a60'],
+    [1344, 580, 40, 30, 'Water 7',     '#4a7aaa'],
+    [1000, 516, 0, 0,  '',            ''],  // Red Line crossing — skip blob
+    [390, 556, 52, 36, 'Wano',        '#8a5545'],
+    [296, 590, 32, 24, 'Egghead',     '#5a6aaa'],
+    [1656, 1010, 36, 28, 'Foosha',      '#5a9a65'],
+    [316, 984, 32, 24, 'Ohara',       '#8a7a55'],
+    [444, 220, 40, 30, 'Elbaf',       '#8a6045'],
+    [876, 580, 36, 24, 'Punk Hazard', '#8a4a3a'],
+    [768, 600, 44, 32, 'Dressrosa',   '#9a5a8a'],
+    [564, 616, 48, 32, 'Whole Cake',  '#c9a0b8'],
+    [676, 560, 36, 28, 'Zou',         '#6a8a7a'],
+    [1096, 582, 24, 16,  'Sabaody',     '#7a9a7a'],
+    [1680, 584, 40, 28, 'Drum Island', '#5a78a8'],
   ];
 
   ISLAND_SHAPES.forEach(([wx, wy, rx, ry, label, col]) => {
@@ -4154,7 +4239,7 @@ function initMap() {
     initMapMouse();
     initMapLegend();
   }
-  setTimeout(drawMap, 50);
+  setTimeout(() => { drawMap(); renderLocsList(); }, 50);
 }
 
 // ── Patch setView ─────────────────────────────────────────
@@ -4316,6 +4401,62 @@ function goToFrise(evId) {
   selectedEventId = evId;
   closePanel();
   setView('frise');
+}
+
+
+// ── Liste des lieux ───────────────────────────────────────
+function toggleLocsList() {
+  const panel = document.getElementById('map-locs-panel');
+  const btn   = document.getElementById('map-locs-btn');
+  const open  = panel.classList.toggle('open');
+  btn.classList.toggle('active', open);
+  if (open) renderLocsList();
+}
+
+function renderLocsList() {
+  const q = (document.getElementById('map-locs-search-input')?.value || '').toLowerCase();
+  const groups = buildLocGroups();
+
+  // Tous les lieux de LOCS, triés alpha, avec leur compte d'événements
+  let items = Object.entries(LOCS).map(([key, loc]) => ({
+    key,
+    zone: loc.zone,
+    count: groups[key]?.events?.length || 0,
+  }));
+
+  // Filtrer par recherche
+  if (q) items = items.filter(i => i.key.toLowerCase().includes(q) || i.zone.toLowerCase().includes(q));
+
+  // Trier : d'abord ceux qui ont des événements (par count desc), puis les autres alpha
+  items.sort((a, b) => {
+    if (b.count !== a.count) return b.count - a.count;
+    return a.key.localeCompare(b.key, 'fr');
+  });
+
+  const list = document.getElementById('map-locs-list');
+  list.innerHTML = items.length ? items.map(i => `
+    <div class="map-loc-item" onclick="goToLocFromList('${i.key.replace(/'/g,"\\'")}')">
+      <div>
+        <div class="map-loc-name">${i.key}</div>
+        <div class="map-loc-zone">${i.zone}</div>
+      </div>
+      ${i.count ? `<span class="map-loc-count">${i.count}</span>` : ''}
+    </div>`).join('')
+  : '<div style="padding:16px;color:var(--text-faint);font-size:0.82rem;text-align:center">Aucun lieu trouvé</div>';
+}
+
+function goToLocFromList(locName) {
+  // Fermer la liste
+  document.getElementById('map-locs-panel').classList.remove('open');
+  document.getElementById('map-locs-btn').classList.remove('active');
+  // Centrer la carte et ouvrir le panneau
+  const loc = LOCS[locName];
+  if (!loc) return;
+  mapScale = 2.5;
+  mapOffX  = -(loc.x - MAP_W/2) * mapScale;
+  mapOffY  = -(loc.y - MAP_H/2) * mapScale;
+  selectMapLocation(locName);
+  drawMap();
 }
 
 // ─────────────────────────────────────────────────────────
