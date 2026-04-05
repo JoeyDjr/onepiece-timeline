@@ -38,8 +38,8 @@ var DATA = {
   description:"Des hominidés ailés colonisent la Lune et fondent la cité de Birka. Leur civilisation prospère grâce à leur technologie avancée, et ils créent une race d'androïdes : les automates horlogers.",
   characters:[], locations:["Lune","Birka"], source:"Chapitre 470", tags:["Lune","Skypiea"] },
 
-{ id:"a002", era:"antiquite", type:"ere", year_k:null, years_before:1100, approx:true,
-  date_label:"Il y a >1 120 ans",
+{ id:"a002", era:"antiquite", type:"ere", year_k:null, years_before:1122, approx:true,
+  date_label:"Il y a >1 122 ans",
   title:"Départ des Peuples de la Lune",
   description:"Faute de ressources naturelles, les habitants de la Lune descendent sur la planète. Les trois tribus se séparent et fondront un jour les cités de Birka (ciel), Skypiea et Shandora.",
   characters:[], locations:["Lune","Skypiea","Shandora"], source:"Chapitre 472", tags:["Lune","Shandians"] },
@@ -452,26 +452,26 @@ var DATA = {
   description:"Fisher Tiger est mortellement blessé lors d'une embuscade de la Marine. Refusant une transfusion de sang humain par principe, il meurt de ses blessures. Sa mort marque profondément la communauté des Hommes-Poissons.",
   characters:["Fisher Tiger"], locations:[], source:"Chapitre 622", tags:["Fisher Tiger","mort","Hommes-Poissons"] },
 
-{ id:"ph011", era:"pre_histoire", type:"aventure", year_k:1509, years_before:13, approx:true,
-  date_label:"An ~1509 — Il y a ~13 ans",
+{ id:"ph011", era:"pre_histoire", type:"aventure", year_k:1509, years_before:15, approx:true,
+  date_label:"An ~1509 — Il y a ~15 ans",
   title:"Luffy mange le Gomu Gomu no Mi",
   description:"Le jeune Luffy mange accidentellement le Gomu Gomu no Mi (le Fruit Nika), fruit de la collection de Shanks. Il devient un homme de caoutchouc mais perd la capacité de nager.",
   characters:["Luffy","Shanks"], locations:["Foosha"], source:"Chapitre 1", tags:["Luffy","Gomu Gomu no Mi","Nika","Fruit du Démon"] },
 
-{ id:"ph012", era:"pre_histoire", type:"guerre", year_k:1509, years_before:13, approx:true,
-  date_label:"An ~1509 — Il y a ~13 ans",
+{ id:"ph012", era:"pre_histoire", type:"guerre", year_k:1509, years_before:15, approx:true,
+  date_label:"An ~1509 — Il y a ~15 ans",
   title:"Shanks perd son bras pour Luffy",
   description:"Un énorme crocodile de mer (Neptunien) attaque le bateau où est enfermé Luffy. Shanks le sauve en sacrifiant son bras gauche, lui transmettant son chapeau de paille.",
   characters:["Shanks","Luffy","Higuma"], locations:["Foosha","East Blue"], source:"Chapitre 1", tags:["Shanks","Luffy","Chapeau de Paille"] },
 
-{ id:"ph013", era:"pre_histoire", type:"mort", year_k:1512, years_before:10, approx:true,
-  date_label:"An ~1512 — Il y a ~10 ans",
+{ id:"ph013", era:"pre_histoire", type:"mort", year_k:1512, years_before:12, approx:true,
+  date_label:"An ~1512 — Il y a ~12 ans",
   title:"'Mort' de Sabo",
   description:"Sabo, frère juré de Luffy et Ace, tente de fuir sa famille noble sur un bateau. Son embarcation est détruite par un boulet de canon d'un Dragon Céleste. Il est présumé mort — mais survit, recueilli par Dragon.",
   characters:["Sabo","Dragon","Luffy","Ace"], locations:["Goa"], source:"Chapitre 589, 731", tags:["Sabo","Révolutionnaires","Luffy","Ace"] },
 
-{ id:"ph014", era:"pre_histoire", type:"piraterie", year_k:1518, years_before:6, approx:true,
-  date_label:"An ~1518 — Il y a ~6 ans",
+{ id:"ph014", era:"pre_histoire", type:"piraterie", year_k:1520, years_before:4, approx:true,
+  date_label:"An ~1520 — Il y a ~4 ans",
   title:"Ace rejoint les Pirates de Barbe-Blanche",
   description:"Portgas D. Ace, après avoir refusé trois fois l'invitation de Barbe-Blanche, finit par rejoindre son équipage. Il devient Commandant de la 2ème Division.",
   characters:["Ace","Barbe-Blanche"], locations:["Grand Line"], source:"Chapitre 158, 551", tags:["Ace","Barbe-Blanche","Pirates de Barbe-Blanche"] },
@@ -515,7 +515,7 @@ var DATA = {
 
 { id:"h006", era:"histoire", type:"aventure", year_k:1522, years_before:2, approx:false,
   date_label:"An 1522 — Grand Line",
-  title:"Arc Alabasta — Defeat de Baroque Works",
+  title:"Arc Alabasta — Défaite de Baroque Works",
   description:"L'équipage escorte la princesse Vivi à travers la Grand Line pour arrêter la guerre civile à Alabasta, orchestrée par Sir Crocodile et son organisation Baroque Works.",
   characters:["Luffy","Vivi","Crocodile","Bon Clay"], locations:["Alabasta","Rainbase"], source:"Chapitres 100-217", tags:["Alabasta","Crocodile","Vivi","Baroque Works"] },
 
@@ -610,12 +610,6 @@ var DATA = {
   title:"Naissance de Sengoku",
   description:"Sengoku naît. Il deviendra l'un des plus grands amiraux de la Marine avant de prendre le poste de Maréchal en Chef, surnommé 'Sengoku le Bouddha'.",
   characters:["Sengoku"], locations:[], source:"SBS Vol. 82", tags:["Sengoku","Marine","Maréchal"] },
-
-{ id:"nb002", era:"rocks", type:"naissance", year_k:1445, years_before:79, approx:false,
-  date_label:"An 1445 — Il y a 79 ans (9 mai)",
-  title:"Naissance de Monkey D. Garp (rappel)",
-  description:"Monkey D. Garp naît le même jour que Sengoku. Les deux deviendront les piliers légendaires de la Marine pendant des décennies.",
-  characters:["Garp","Sengoku"], locations:[], source:"SBS Vol. 82", tags:["Garp","Marine"] },
 
 { id:"nb003", era:"rocks", type:"naissance", year_k:1448, years_before:76, approx:false,
   date_label:"An 1448 — Il y a 76 ans (26 mars)",
@@ -746,11 +740,6 @@ var DATA = {
   characters:["Urouge"], locations:[], source:"SBS Vol. 68", tags:["Urouge","Supernovas"] },
 
 // ── NAISSANCES ÉQUIPAGE CHAPEAUX DE PAILLE ───────────────
-{ id:"cs001", era:"pre_histoire", type:"naissance", year_k:1504, years_before:20, approx:false,
-  date_label:"An 1504 — Il y a 20 ans (6 mai)",
-  title:"Naissance de Nami (précision)",
-  description:"Nami naît. Orpheline, elle sera adoptée par la Marine Bell-Mère à Cocoyasi. Son génie pour la navigation et la météorologie en fera la cartographe la plus douée de la Grand Line.",
-  characters:["Nami","Bell-Mère"], locations:["Cocoyasi","East Blue"], source:"SBS", tags:["Nami","Chapeau de Paille","cartographie"] },
 
 { id:"cs002", era:"pre_histoire", type:"naissance", year_k:1500, years_before:24, approx:false,
   date_label:"An 1500 — Il y a 24 ans (9 octobre)",
@@ -976,7 +965,7 @@ var DATA = {
 { id:"hx008", era:"histoire", type:"mort", year_k:1522, years_before:2, approx:false,
   date_label:"An 1522 — Marineford",
   title:"Barbe-Noire vole les pouvoirs de Barbe-Blanche",
-  description:"Après la mort de Barbe-Blanche à Marineford, Barbe-Noire et son équipage couvrent le corps d'un manteau. Un phénomène impossible se produit : Barbe-Noire absorbe les pouvoirs du Gura Gura no Mi, devenant le seul homme à posséder deux Fruits du Démon.",
+  description:"Après la mort de Barbe-Blanche à Marineford, Barbe-Noire et son équipage couvrent le corps d'un manteau. Un phénomène impossible se produit : Barbe-Noire absorbe les pouvoirs du Gura Gura no Mi, devenant le seul être connu à posséder deux Fruits du Démon simultanément — en plus du Yami Yami no Mi qu'il avait déjà.",
   characters:["Barbe-Noire","Barbe-Blanche"], locations:["Marineford"], source:"Chapitre 577", tags:["Barbe-Noire","Barbe-Blanche","deux Fruits","mystère"] },
 
 { id:"hx009", era:"histoire", type:"politique", year_k:1522, years_before:2, approx:false,
@@ -996,12 +985,6 @@ var DATA = {
   title:"Retour de Sabo — L'Héritier de la Volonté de Feu",
   description:"Lors du tournoi de Dressrosa, Sabo révèle qu'il est vivant. Il mange l'Ace Ace no Mi (Mera Mera no Mi) au nom d'Ace et devient l'héritier de la 'Volonté de Feu'. Luffy retrouve son frère perdu.",
   characters:["Sabo","Luffy","Ace"], locations:["Dressrosa"], source:"Chapitre 731, 756", tags:["Sabo","Dressrosa","Ace","Révolutionnaires","Mera Mera no Mi"] },
-
-{ id:"hx012", era:"histoire", type:"politique", year_k:1524, years_before:0, approx:false,
-  date_label:"An 1524 — Reverie",
-  title:"La Reverie — Les Rois du Monde Réunis",
-  description:"Les rois du monde se réunissent à Mary Geoise pour la Reverie. Im choisit une cible à 'effacer'. Cobra questionne l'histoire du Siècle Oublié et est tué. Sabo tente de sauver Vivi. Les Révolutionnaires attaquent les Celestial Dragons.",
-  characters:["Cobra","Im","Vivi","Sabo","Sengoku"], locations:["Mary Geoise"], source:"Chapitres 905-908", tags:["Reverie","Im","Gouvernement","Cobra","Vivi"] },
 
 { id:"hx013", era:"histoire", type:"mort", year_k:1524, years_before:0, approx:false,
   date_label:"An 1524 — Wano",
@@ -1384,21 +1367,21 @@ var DATA = {
   source:"Chapitres 1085, 1090", tags:["Vivi","disparition","Im","mystère","Reverie","après"] }
 
 // ── BACKSTORY ACE — Séquence Barbe-Blanche ───────────────
-,{ id:"ace001", era:"pre_histoire", type:"piraterie", year_k:1518, years_before:6, approx:true,
-  date_label:"An ~1518 — Il y a ~6 ans",
+,{ id:"ace001", era:"pre_histoire", type:"piraterie", year_k:1519, years_before:5, approx:true,
+  date_label:"An ~1519 — Il y a ~5 ans",
   title:"Ace défie Barbe-Blanche trois fois",
   description:"Portgas D. Ace, cherchant à prouver sa valeur, défie Barbe-Blanche à trois reprises. À chaque fois, il est vaincu et s'endort d'épuisement avant la fin du combat. Barbe-Blanche finit par le prendre sous son aile, le considérant comme son fils.",
   characters:["Ace","Barbe-Blanche","Marco"], locations:["Grand Line","Moby Dick"],
   source:"Chapitre 552, 568", tags:["Ace","Barbe-Blanche","défi","Marco","famille","Moby Dick"] }
 
-,{ id:"ace002", era:"pre_histoire", type:"piraterie", year_k:1520, years_before:4, approx:true,
+,{ id:"ace002", era:"histoire", type:"piraterie", year_k:1520, years_before:4, approx:true,
   date_label:"An ~1520 — Il y a ~4 ans",
   title:"Ace rencontre Luffy — Retrouvailles à Alabasta",
   description:"Ace retrouve Luffy et son équipage à Alabasta, juste après leur victoire sur Crocodile. C'est leur première retrouvaille depuis qu'ils ont quitté East Blue. Ace leur annonce qu'il traque Barbe-Noire, qui a tué Thatch pour lui voler son Fruit du Démon.",
   characters:["Ace","Luffy","Nami","Zoro"], locations:["Alabasta"],
   source:"Chapitre 217-219", tags:["Ace","Luffy","retrouvailles","Alabasta","Barbe-Noire","Thatch"] }
 
-,{ id:"ace003", era:"pre_histoire", type:"piraterie", year_k:1521, years_before:3, approx:true,
+,{ id:"ace003", era:"histoire", type:"piraterie", year_k:1521, years_before:3, approx:true,
   date_label:"An ~1521 — Il y a ~3 ans",
   title:"Ace et Luffy à Sabaody — Dernière rencontre avant Marineford",
   description:"Ace et Luffy se croisent brièvement à Sabaody. C'est la dernière fois qu'ils se voient avant la tragédie de Marineford. Ace est fier du parcours de son petit frère et de sa prime grandissante.",
@@ -1447,13 +1430,7 @@ var DATA = {
 // ══════════════════════════════════════════════════════════
 
 // ── Chapeaux de Paille (manquants) ──────────────────────
-,{ id:"b_usopp", era:"pre_histoire", type:"naissance", year_k:1504, years_before:20, approx:false,
-  date_label:"An 1504 — Il y a 20 ans (1er avr.)", month_k:4, day_k:1,
-  title:"Naissance d'Usopp",
-  description:"Usopp naît à Syrup Village dans East Blue, fils du tireur d'élite Yasopp des Pirates de Shanks. Abandonné par son père parti en mer, il invente chaque jour un mensonge pour faire croire à sa mère mourante que Yasopp revient. Son rêve : devenir un grand guerrier des mers.",
-  characters:["Usopp","Yasopp"], locations:["Syrup Village","East Blue"],
-  source:"SBS", tags:["Usopp","Chapeau de Paille","Yasopp","Syrup Village"] }
-
+,
 // ── Marines ──────────────────────────────────────────────
 ,{ id:"b_tashigi", era:"pre_histoire", type:"naissance", year_k:1502, years_before:22, approx:false,
   date_label:"An 1502 — Il y a 22 ans (6 oct.)", month_k:10, day_k:6,
@@ -1635,6 +1612,333 @@ var DATA = {
   description:"Nami dessine des cartes depuis son plus jeune âge, nourrie par son rêve de cartographier le monde entier. Sous la coupe d'Arlong, elle est forcée de faire des cartes pour lui pendant des années en échange de la promesse de racheter son village.",
   characters:["Nami","Arlong","Bell-Mère","Nojiko"], locations:["Cocoyasi","East Blue"],
   source:"Chapitres 77-78", tags:["Nami","cartes","Arlong","Bell-Mère","rêve","East Blue"] }
+
+  
+// ══════════════════════════════════════════════════════════
+//  NOUVELLES DONNÉES — ANTIQUITÉ & POST-SIÈCLE OUBLIÉ
+// ══════════════════════════════════════════════════════════
+
+// ── Antiquité — fondations manquantes ──────────────────
+,{ id:"ant001", era:"antiquite", type:"ere", year_k:null, years_before:900, approx:true,
+  date_label:"Il y a >800 ans",
+  title:"Fondation de l'Île des Hommes-Poissons",
+  description:"Persécutés par les humains, les Hommes-Poissons et Sirènes fondent l'Île des Hommes-Poissons au fond de la mer, là où les racines de l'Arbre du Soleil Eve laissent passer la lumière. Ce refuge sous-marin deviendra le royaume de Ryuuguu.",
+  characters:[], locations:["Île des Hommes-Poissons"],
+  source:"Chapitre 612", tags:["Île des Hommes-Poissons","fondation","discrimination","Hommes-Poissons"] }
+
+,{ id:"ant002", era:"antiquite", type:"ere", year_k:null, years_before:900, approx:true,
+  date_label:"Il y a >800 ans",
+  title:"Fondation de Wano autour du volcan",
+  description:"Le Pays de Wano se forme autour du mont Fuji (Onigashima) et de ses rives. Le Clan Kouzuki s'y établit comme famille régnante. La nature volcanique de l'île façonnera la culture unique de ses habitants.",
+  characters:[], locations:["Wano"],
+  source:"Chapitre 1055", tags:["Wano","fondation","Kouzuki","Mont Fuji"] }
+
+,{ id:"ant003", era:"antiquite", type:"ere", year_k:null, years_before:900, approx:true,
+  date_label:"Il y a >800 ans",
+  title:"Construction de Water 7 — Naissance d'une cité de charpentiers",
+  description:"La ville de Water 7 est construite sur l'île Zousenjima. Elle deviendra l'île des charpentiers navals la plus réputée du monde, future berceau de Pluton et de Tom's Workers.",
+  characters:[], locations:["Water 7"],
+  source:"Chapitre 344, 1055", tags:["Water 7","fondation","charpentiers","Pluton"] }
+
+// ── Siècle Oublié — manquants ────────────────────────────
+,{ id:"vo001", era:"vide", type:"naissance", year_k:null, years_before:870, approx:true,
+  date_label:"Siècle Oublié — Il y a ~870 ans",
+  title:"Naissance de Nefertari D. Lily",
+  description:"Nefertari D. Lily naît à Alabasta — héritière du trône et, sans le savoir, membre du Clan D. C'est elle qui dispersera les Ponéglyphes à travers le monde à la fin du Siècle Oublié, avant de mystérieusement disparaître. Sa lettre guidera ses descendants royaux pendant 800 ans.",
+  characters:["Lily","Cobra"], locations:["Alabasta"],
+  source:"Chapitre 1085", tags:["Lily","Alabasta","Clan D.","Siècle Oublié","dispersion Ponéglyphes"] }
+
+,{ id:"vo002", era:"vide", type:"mystere", year_k:null, years_before:824, approx:true,
+  date_label:"Il y a ~800 ans — Fin du Siècle Oublié",
+  title:"Dispersion des Ponéglyphes par Lily — La Grande Erreur",
+  description:"Sur ordre des alliés, Nefertari D. Lily disperse les Ponéglyphes à travers le monde afin qu'ils ne tombent pas aux mains des 20 rois. Im considérera cela comme une 'grande erreur', ignorant que Lily est elle-même membre du Clan D. Peu après, Lily disparaît mystérieusement — laissant une lettre à son jeune frère pour protéger le Ponéglyphe d'Alabasta au nom de l'Aube.",
+  characters:["Lily","Im"], locations:["Mary Geoise","Alabasta"],
+  source:"Chapitre 1085", tags:["Lily","Ponéglyphes","dispersion","Im","Clan D.","disparition"] }
+
+,{ id:"vo003", era:"vide", type:"politique", year_k:null, years_before:824, approx:true,
+  date_label:"Il y a ~800 ans — Fin du Siècle Oublié",
+  title:"Condamnation de la Race des Buccaneers",
+  description:"Les 20 rois alliés condamnent la Race des Buccaneers pour un 'péché capital' lié à leur désir de devenir Nika. Saturn implique que le premier porteur du Fruit Nika était peut-être un Buccaneer. Pendant les siècles suivants, la race sera réduite en esclavage et presque exterminée.",
+  characters:["Saturn"], locations:[],
+  source:"Chapitre 1096", tags:["Buccaneers","Kuma","esclavage","Nika","péché","condamnation"] }
+
+,{ id:"vo004", era:"vide", type:"mort", year_k:null, years_before:824, approx:true,
+  date_label:"Il y a ~800 ans — Fin du Siècle Oublié",
+  title:"Zunisha condamné à marcher — Son crime contre Joyboy",
+  description:"Zunisha, compagnon de Joyboy, commet un crime grave non révélé. Pour ce crime, il est condamné à errer les mers à jamais, portant les Minks sur son dos, jusqu'à ce qu'un nouveau Joyboy lui ordonne d'agir. Momonosuke sera le seul à entendre sa voix.",
+  characters:["Zunisha","Momonosuke"], locations:["Zou"],
+  source:"Chapitre 821", tags:["Zunisha","crime","condamnation","Joyboy","Minks"] }
+
+,{ id:"vo005", era:"vide", type:"politique", year_k:null, years_before:824, approx:true,
+  date_label:"Il y a ~800 ans — Fin du Siècle Oublié",
+  title:"Les Minks s'isolent sur Zunisha",
+  description:"Les Minks, alliés du Grand Royaume et du Clan Kouzuki, s'isolent sur le dos de l'éléphant géant Zunisha et coupent tout contact avec le monde humain. Ils gardent secrètement l'un des Road Ponéglyphes en attendant l'Aube du Monde.",
+  characters:["Inuarashi","Nekomamushi"], locations:["Zou"],
+  source:"Chapitre 802", tags:["Minks","isolement","Zunisha","Ponéglyphe","Aube"] }
+
+,{ id:"vo006", era:"vide", type:"ere", year_k:null, years_before:850, approx:true,
+  date_label:"Il y a ~850 ans — Siècle Oublié",
+  title:"Le Pays des Dieux des Lunarians",
+  description:"La race Lunaria prospère au sommet de la Red Line, dans un lieu surnommé 'le Pays des Dieux'. Capables de générer des flammes tout en résistant à toute blessure, ils sont considérés comme des divinités. Après la victoire du Gouvernement Mondial, les Lunarians seront exterminés et leur existence effacée des livres d'histoire. King (Alber) sera le dernier survivant connu.",
+  characters:["King"], locations:["Mary Geoise"],
+  source:"Chapitre 1023", tags:["Lunaria","Pays des Dieux","King","extermination","Red Line"] }
+
+// ── Post-Siècle Oublié — manquants ──────────────────────
+,{ id:"pv001", era:"post_vide", type:"aventure", year_k:null, years_before:700, approx:true,
+  date_label:"Il y a ~700 ans",
+  title:"Shimotsuki Ryuma tue le Dragon de Wano",
+  description:"Des siècles après la fermeture de Wano, un dragon attaque la Capitale des Fleurs. Le samouraï Shimotsuki Ryuma l'abat en plein vol, protégeant son pays. Cet acte fait de lui le 'Dieu des Lames', vénéré comme trésor national. Son corps et son sabre Shusui seront ensevelis et gardés comme reliques sacrées.",
+  characters:["Ryuma"], locations:["Wano","Capitale des Fleurs"],
+  source:"Chapitre 937", tags:["Ryuma","dragon","Wano","Shusui","légende","Dieu des Lames"] }
+
+,{ id:"pv002", era:"post_vide", type:"ere", year_k:700, years_before:824, approx:true,
+  date_label:"An 700 — Il y a ~824 ans",
+  title:"Montée des Eaux autour de Water 7",
+  description:"Suite à l'utilisation d'une Arme Ancestrale près d'Enies Lobby, le niveau de la mer autour de Water 7 commence à monter inexorablement. Les habitants construiront des bâtiments sur les anciens, transformant peu à peu la ville en cité lacustre et amphibie.",
+  characters:[], locations:["Water 7","Enies Lobby"],
+  source:"Chapitre 350, 1055", tags:["Water 7","montée des eaux","Arme Ancestrale","Enies Lobby"] }
+
+,{ id:"pv003", era:"post_vide", type:"ere", year_k:700, years_before:824, approx:true,
+  date_label:"An 700 — Il y a ~824 ans",
+  title:"La Famille Riku reprend Dressrosa",
+  description:"Après l'ascension des Donquixote au rang de Dragons Célestes, le trône de Dressrosa est vacant. La Famille Riku s'impose comme nouveaux souverains. Le Roi Riku Ier s'agenouille devant les Tontatta pour s'excuser des siècles d'esclavage sous les Donquixote, lançant 800 ans de paix.",
+  characters:["Riku"], locations:["Dressrosa"],
+  source:"Chapitre 726", tags:["Dressrosa","Riku","Tontatta","réconciliation","Donquixote"] }
+
+,{ id:"pv004", era:"post_vide", type:"mort", year_k:null, years_before:700, approx:true,
+  date_label:"Il y a ~700 ans",
+  title:"Ryuma enseveli avec Shusui — Trésor National de Wano",
+  description:"À sa mort, Shimotsuki Ryuma est enseveli avec son sabre Shusui, élevé au rang de trésor national inviolable de Wano. Des siècles plus tard, Gecko Moria volera son cadavre momifié pour en faire un zombie combattant à Thriller Bark.",
+  characters:["Ryuma","Moria","Zoro"], locations:["Wano"],
+  source:"Chapitre 937", tags:["Ryuma","Shusui","mort","trésor national","Wano","Moria"] }
+
+  
+// ══════════════════════════════════════════════════════════
+//  NOUVELLES DONNÉES — NAISSANCES POST-VIDE ET ÈRE ROCKS
+// ══════════════════════════════════════════════════════════
+
+// ── Naissances clés post-vide ────────────────────────────
+,{ id:"nb_oars", era:"post_vide", type:"naissance", year_k:865, years_before:659, approx:false,
+  date_label:"An 865 — Il y a 659 ans",
+  title:"Naissance d'Oars",
+  description:"L'immense géant Oars naît dans North Blue. Il deviendra le 'Tirepays', l'un des êtres les plus terrifiants de son époque, capable de déplacer des îles entières. Sa légende traversera les siècles et son cadavre sera utilisé par Gecko Moria.",
+  characters:["Oars"], locations:["North Blue"],
+  source:"Vivre Card", tags:["Oars","géant","North Blue","légende"] }
+
+,{ id:"nb_dorry", era:"post_vide", type:"naissance", year_k:1364, years_before:160, approx:false,
+  date_label:"An 1364 — Il y a 160 ans (2 oct.)", month_k:10, day_k:2,
+  title:"Naissance de Dorry",
+  description:"Dorry naît à Elbaf. Il deviendra co-capitaine des Pirates Géants Warriors avec Brogy, avant que leur duel centenaire sur Little Garden ne les immobilise pendant 100 ans.",
+  characters:["Dorry","Brogy"], locations:["Elbaf"],
+  source:"SBS Vol. 19", tags:["Dorry","géant","Elbaf","Pirates Géants"] }
+
+,{ id:"nb_brogy", era:"post_vide", type:"naissance", year_k:1364, years_before:160, approx:false,
+  date_label:"An 1364 — Il y a 160 ans (1er fév.)", month_k:2, day_k:1,
+  title:"Naissance de Brogy",
+  description:"Brogy naît à Elbaf. Il deviendra le compagnon inséparable de Dorry, co-capitaine des Pirates Géants Warriors. Leur dispute légendaire les condamne à un duel qui durera un siècle sur l'île préhistorique Little Garden.",
+  characters:["Brogy","Dorry"], locations:["Elbaf"],
+  source:"SBS Vol. 19", tags:["Brogy","géant","Elbaf","Pirates Géants"] }
+
+,{ id:"nb_morley", era:"post_vide", type:"naissance", year_k:1364, years_before:160, approx:false,
+  date_label:"An 1364 — Il y a 160 ans (11 sep.)", month_k:9, day_k:11,
+  title:"Naissance de Morley",
+  description:"Morley naît. Ce géant utilisateur de l'Oshi Oshi no Mi sera emprisonné à Impel Down, y creusera le Niveau 5.5 et s'en échappera. Il rejoindra l'Armée Révolutionnaire de Dragon.",
+  characters:["Morley"], locations:[],
+  source:"SBS Vol. 91", tags:["Morley","géant","Révolutionnaire","Impel Down"] }
+
+,{ id:"nb_carmel", era:"post_vide", type:"naissance", year_k:1381, years_before:143, approx:false,
+  date_label:"An 1381 — Il y a 143 ans (21 déc.)", month_k:12, day_k:21,
+  title:"Naissance de Mère Caramel",
+  description:"Caramel naît. Religieuse en apparence, elle est en réalité une trafiquante d'enfants pour le Gouvernement Mondial. Elle fondera la Maison des Agneaux à Elbaf et sera mangée accidentellement par Big Mom lors de son 6e anniversaire — lui transmettant peut-être son Fruit de l'Âme.",
+  characters:["Caramel","Big Mom"], locations:[],
+  source:"Chapitre 866-867", tags:["Caramel","Big Mom","trafic","Elbaf","Gouvernement"] }
+
+,{ id:"nb_kureha", era:"post_vide", type:"naissance", year_k:1383, years_before:141, approx:false,
+  date_label:"An 1383 — Il y a 141 ans (8 sep.)", month_k:9, day_k:8,
+  title:"Naissance du Dr Kureha",
+  description:"Le Dr Kureha naît. Cette médecin exceptionnelle de Drum Island vivra jusqu'à 141 ans et sera la maîtresse de Tony Tony Chopper. Son secret de longévité reste un mystère.",
+  characters:["Kureha","Chopper"], locations:["Drum Island"],
+  source:"Chapitre 134", tags:["Kureha","Drum Island","médecin","longévité"] }
+
+,{ id:"nb_saul", era:"post_vide", type:"naissance", year_k:1397, years_before:127, approx:false,
+  date_label:"An 1397 — Il y a 127 ans (6 mar.)", month_k:3, day_k:6,
+  title:"Naissance de Jaguar D. Saul",
+  description:"Jaguar D. Saul naît. Vice-Amiral de la Marine puis déserteur, il sauvera la jeune Nico Robin lors du Buster Call sur Ohara, au prix de sa vie. Sa phrase 'Deeeen !' et son rire deviendront légendaires. Il réapparaît à Elbaf des décennies plus tard, mystérieusement survécu.",
+  characters:["Saul","Robin"], locations:[],
+  source:"Vivre Card", tags:["Saul","Robin","Ohara","Marine","déserteur","Clan D."] }
+
+,{ id:"nb_hiriluk", era:"rocks", type:"naissance", year_k:1448, years_before:76, approx:false,
+  date_label:"An 1448 — Il y a 76 ans (12 jan.)", month_k:1, day_k:12,
+  title:"Naissance d'Hiluluk",
+  description:"Hiluluk naît. Ancien escroc devenu médecin autoproclamé à Drum Island, il consacrera sa vie à un rêve impossible : guérir les maladies par les cerisiers en fleur. Son sacrifice inspirera Chopper et son idéal : 'Une maladie n'existe pas qu'on ne peut pas guérir.'",
+  characters:["Hiriluk","Chopper","Kureha"], locations:["Drum Island"],
+  source:"Vivre Card", tags:["Hiriluk","Drum Island","cerisiers","sacrifice","Chopper"] }
+
+,{ id:"nb_tom", era:"rocks", type:"naissance", year_k:1447, years_before:77, approx:false,
+  date_label:"An 1447 — Il y a 77 ans (16 mar.)", month_k:3, day_k:16,
+  title:"Naissance de Tom",
+  description:"Tom naît. Ce maître charpentier de Water 7, fondateur de Tom's Workers, construira l'Oro Jackson pour Gol D. Roger et le Sea Train Puffing Tom pour relier Water 7 à Enies Lobby. Il sera exécuté par la Marine suite à la trahison de Spandam.",
+  characters:["Tom","Roger","Franky","Iceburg"], locations:["Water 7"],
+  source:"Vivre Card", tags:["Tom","Water 7","Oro Jackson","Sea Train","charpentier"] }
+
+,{ id:"nb_stussy", era:"rocks", type:"naissance", year_k:1448, years_before:76, approx:false,
+  date_label:"An 1448 — Il y a 76 ans (12 avr.)", month_k:4, day_k:12,
+  title:"Naissance de Buckingham Stussy",
+  description:"Buckingham Stussy naît. Ancienne membre de MADS, elle est en réalité le premier clone réussi de Miss Bakkin, créé par Vegapunk. Infiltrée comme agente du CP0, elle trahira finalement le Gouvernement pour protéger Vegapunk à Egghead.",
+  characters:["Stussy","Vegapunk","Miss Bakkin"], locations:[],
+  source:"Vivre Card", tags:["Stussy","MADS","clone","CP0","Egghead","Vegapunk"] }
+
+,{ id:"nb_katakuri", era:"rocks", type:"naissance", year_k:1476, years_before:48, approx:false,
+  date_label:"An 1476 — Il y a 48 ans (25 nov.)", month_k:11, day_k:25,
+  title:"Naissance de Charlotte Katakuri",
+  description:"Charlotte Katakuri naît, deuxième fils de Charlotte Linlin. Dès l'enfance, il cache sa bouche déformée sous une écharpe, traumatisé par les moqueries. Devenu le plus puissant Sweet Commander, il développe un Haki de l'Observation du futur lui conférant une quasi-invincibilité.",
+  characters:["Katakuri","Big Mom"], locations:["Totto Land"],
+  source:"SBS Vol. 87", tags:["Katakuri","Big Mom","Sweet Commander","Haki","Whole Cake"] }
+
+,{ id:"nb_otohime", era:"rocks", type:"naissance", year_k:1478, years_before:46, approx:false,
+  date_label:"An 1478 — Il y a 46 ans (10 jan.)", month_k:1, day_k:10,
+  title:"Naissance d'Otohime",
+  description:"Otohime naît à l'Île des Hommes-Poissons. Elle deviendra reine et militante passionnée pour la coexistence entre humains et Hommes-Poissons, collectant des signatures pour le droit d'émigrer en surface. Son assassinat par Hody Jones (avec l'aide de Caribou) brisera ses enfants.",
+  characters:["Otohime","Neptune","Shirahoshi"], locations:["Île des Hommes-Poissons"],
+  source:"Vivre Card", tags:["Otohime","Île des Hommes-Poissons","coexistence","assassinat","Hody"] }
+
+// ── Ère Rocks — événements manquants ────────────────────
+,{ id:"rocks001", era:"rocks", type:"ere", year_k:null, years_before:60, approx:true,
+  date_label:"Il y a ~60 ans",
+  title:"Fondation de MADS — Le Laboratoire des Géants",
+  description:"Le laboratoire scientifique MADS est fondé, financé secrètement par la riche sainte Dragon Céleste Miss Bakkin. Il réunit les plus grands génies scientifiques de l'époque : Vegapunk, Caesar Clown, Judge Vinsmoke, et Queen. Ensemble, ils repoussent les limites de la science avant que le Gouvernement ne les démantèle.",
+  characters:["Vegapunk","Caesar Clown","Vinsmoke Judge","Queen","Stussy"], locations:[],
+  source:"Chapitre 1074", tags:["MADS","Vegapunk","Caesar","Judge","Queen","science","Gouvernement"] }
+
+,{ id:"rocks002", era:"rocks", type:"ere", year_k:null, years_before:55, approx:true,
+  date_label:"Il y a ~55 ans",
+  title:"Dissolution de MADS par le Gouvernement",
+  description:"Le Gouvernement Mondial démantèle le laboratoire MADS, considérant ses recherches comme trop dangereuses. Vegapunk est capturé et forcé de travailler pour le Gouvernement. Caesar et Judge partent chacun de leur côté, conservant le fruit de leurs recherches communes.",
+  characters:["Vegapunk","Caesar Clown","Vinsmoke Judge","Queen"], locations:[],
+  source:"Chapitre 1074", tags:["MADS","dissolution","Gouvernement","Vegapunk","César","Judge"] }
+
+,{ id:"rocks003", era:"rocks", type:"ere", year_k:null, years_before:44, approx:true,
+  date_label:"Il y a ~44 ans",
+  title:"Les Pirates de Rocks — Base sur Hachinosu",
+  description:"Rocks D. Xebec installe la base des Pirates de Rocks sur l'île de Hachinosu (Île des Pirates). L'équipage rassemble les plus dangereux pirates de l'époque : Barbe-Blanche, Big Mom, Kaidou, Captain John, Silver Axe et d'autres. Leur règne de terreur s'étend sur tout le monde.",
+  characters:["Rocks D. Xebec","Barbe-Blanche","Big Mom","Kaidou"], locations:["Hachinosu"],
+  source:"Chapitre 957", tags:["Rocks","Hachinosu","Xebec","Barbe-Blanche","Big Mom","Kaidou","piraterie"] }
+
+,{ id:"rocks004", era:"rocks", type:"guerre", year_k:null, years_before:44, approx:true,
+  date_label:"Il y a ~44 ans",
+  title:"Vol du Trésor de Hachinosu par les Dragons Célestes",
+  description:"Des Dragons Célestes s'aventurent sur l'île de Hachinosu et volent un trésor appartenant aux Pirates de Rocks. Cet affront déclenchera la chaîne d'événements menant à l'Incident de God Valley.",
+  characters:["Rocks D. Xebec"], locations:["Hachinosu"],
+  source:"Chapitre 957", tags:["Hachinosu","Dragons Célestes","trésor","Rocks","God Valley"] }
+
+,{ id:"rocks005", era:"rocks", type:"aventure", year_k:null, years_before:44, approx:true,
+  date_label:"Il y a ~44 ans",
+  title:"Tom construit l'Oro Jackson pour Roger",
+  description:"Le maître charpentier Tom, à Water 7, construit le légendaire navire Oro Jackson pour l'équipage de Gol D. Roger. Ce navire deviendra le premier et seul à circumnaviguer le monde entier, atteignant Laugh Tale.",
+  characters:["Tom","Roger","Rayleigh"], locations:["Water 7"],
+  source:"Chapitre 357-358", tags:["Tom","Oro Jackson","Roger","Water 7","charpentier","Grand Line"] }
+
+// ── Post-Siècle Oublié — naissances de dates SBS ────────
+,{ id:"nb_noland", era:"post_vide", type:"naissance", year_k:1089, years_before:435, approx:false,
+  date_label:"An 1089 — Il y a 435 ans (9 oct.)", month_k:10, day_k:9,
+  title:"Naissance de Mont Blanc Noland",
+  description:"Mont Blanc Noland naît dans le Royaume de Lvneel (North Blue). Il deviendra un explorateur légendaire, découvrira Shandora et son or, et sera exécuté pour 'mensonge' quand la ville disparaît dans les cieux. Ses descendants porteront le poids de son histoire pendant des siècles.",
+  characters:["Noland","Kalgara"], locations:["Lvneel","North Blue"],
+  source:"Vivre Card", tags:["Noland","Lvneel","North Blue","explorateur","Shandora","Jaya"] }
+
+,{ id:"nb_kalgara", era:"post_vide", type:"naissance", year_k:1088, years_before:436, approx:false,
+  date_label:"An 1088 — Il y a 436 ans (4 oct.)", month_k:10, day_k:4,
+  title:"Naissance de Kalgara",
+  description:"Kalgara naît au sein de la tribu Shandia de Jaya. Guerrier légendaire, il deviendra l'ami juré de Mont Blanc Noland. Sa promesse — faire sonner la cloche de Shandora pour que Noland l'entende — sera accomplie 400 ans plus tard par Luffy.",
+  characters:["Kalgara","Noland"], locations:["Jaya","Shandora"],
+  source:"Vivre Card", tags:["Kalgara","Shandiens","Jaya","Shandora","cloche","promesse"] }
+
+  
+// ══════════════════════════════════════════════════════════
+//  NOUVELLES DONNÉES — POST-VIDE ÉVÉNEMENTS HISTORIQUES
+// ══════════════════════════════════════════════════════════
+
+// ── Épidémie de Fièvre des Arbres ───────────────────────
+,{ id:"pv_fever", era:"post_vide", type:"guerre", year_k:1062, years_before:462, approx:false,
+  date_label:"An 1062 — Il y a 462 ans",
+  title:"Épidémie de la Fièvre des Arbres — Lvneel",
+  description:"La Fièvre des Arbres, une maladie au taux de mortalité de 90 % qui infecte arbres et humains, ravage le Royaume de Lvneel et ses environs, tuant environ 100 000 personnes. Un botaniste de South Blue trouvera un remède lors d'une exploration. Noland en entendra parler et partira pour Jaya croyant pouvoir sauver les Shandiens.",
+  characters:["Noland"], locations:["Lvneel","North Blue"],
+  source:"Chapitre 289", tags:["Lvneel","Fièvre des Arbres","épidémie","Noland","maladie"] }
+
+// ── Histoire de Noland et Kalgara ────────────────────────
+,{ id:"nl_depart", era:"post_vide", type:"aventure", year_k:1120, years_before:404, approx:false,
+  date_label:"An 1120 — Il y a 404 ans",
+  title:"Noland entre dans la Grand Line — Ses premiers voyages",
+  description:"Noland obtient l'autorisation d'entrer dans la Grand Line pour de courtes expéditions. Lors de ces voyages, il rencontre et protège les Tontatta de Green Bit. Il accumule une connaissance des îles de la Grand Line qui lui permettra de retrouver Jaya.",
+  characters:["Noland"], locations:["Grand Line","Lvneel"],
+  source:"Vivre Card — Noland", tags:["Noland","Grand Line","Tontatta","Green Bit","exploration"] }
+
+,{ id:"nl_jaya1", era:"post_vide", type:"aventure", year_k:1122, years_before:402, approx:false,
+  date_label:"An 1122, 12 mai — Il y a 402 ans",
+  title:"Noland arrive sur Jaya — Rencontre avec Kalgara",
+  description:"Noland débarque sur Jaya le 12 mai 1122. Il interrompt un rituel de sacrifice et tue le serpent Kashigami, s'attirant d'abord la colère des Shandiens. Progressivement, Kalgara comprend que Noland cherche à les sauver de la Fièvre des Arbres. Une amitié profonde naît entre les deux hommes.",
+  characters:["Noland","Kalgara"], locations:["Jaya","Shandora"],
+  source:"Chapitre 288-290", tags:["Noland","Kalgara","Jaya","Shandiens","amitié","Fièvre des Arbres"] }
+
+,{ id:"nl_jaya2", era:"post_vide", type:"aventure", year_k:1122, years_before:402, approx:false,
+  date_label:"An 1122, 22 mai — Il y a 402 ans",
+  title:"Kalgara révèle Shandora et la Cloche d'Or à Noland",
+  description:"Dix jours après leur rencontre, Kalgara guide Noland jusqu'à la cité de Shandora et lui montre son beffroy abritant le Ponéglyphe. Noland s'engage à revenir pour faire sonner la cloche ensemble. Cette promesse forgera le lien entre leurs descendants pendant 400 ans.",
+  characters:["Noland","Kalgara"], locations:["Shandora","Jaya"],
+  source:"Chapitre 290", tags:["Shandora","cloche","promesse","Noland","Kalgara","Ponéglyphe"] }
+
+,{ id:"nl_execut", era:"post_vide", type:"mort", year_k:1128, years_before:396, approx:false,
+  date_label:"An 1128, mai — Il y a 396 ans",
+  title:"Exécution de Mont Blanc Noland — 'Noland le Menteur'",
+  description:"De retour avec le roi de Lvneel, Noland ne peut retrouver Shandora — la moitié de Jaya a été projetée dans les cieux par le Knock-Up Stream. Le roi le condamne à mort pour mensonge. Six ans après avoir quitté Jaya, Noland est exécuté. Son histoire devient une comptine moqueuse : 'Noland le Menteur'.",
+  characters:["Noland","Kalgara"], locations:["Lvneel","North Blue"],
+  source:"Chapitre 292", tags:["Noland","exécution","Lvneel","menteur","Shandora","Jaya"] }
+
+// ── Terreur des Pirates Géants ────────────────────────────
+,{ id:"pg001", era:"post_vide", type:"piraterie", year_k:null, years_before:122, approx:true,
+  date_label:"Il y a ~122 ans — début An 1400",
+  title:"Terreur des Pirates Géants Warriors",
+  description:"Les Pirates Géants Warriors, dirigés par Dorry et Brogy depuis Elbaf, terrorisent les mers avec leur force colossale. Ils obtiennent tous deux une prime de 100 millions de Berrys, un montant inédit pour l'époque. Leur époque marque l'âge d'or des pirates géants.",
+  characters:["Dorry","Brogy"], locations:["Grand Line"],
+  source:"Chapitre 118, 866", tags:["Dorry","Brogy","Pirates Géants","Elbaf","terreur"] }
+
+,{ id:"pg002", era:"post_vide", type:"guerre", year_k:1422, years_before:102, approx:false,
+  date_label:"An 1422 — Il y a 102 ans",
+  title:"La Brouille de Dorry et Brogy — Le Duel Centenaire",
+  description:"Dorry et Brogy, les co-capitaines des Pirates Géants, se disputent pour déterminer qui a tué la plus grande balise lors d'une chasse. N'ayant aucun moyen de le déterminer, ils décident de se battre en duel sur l'île préhistorique Little Garden. Ce duel se prolongera pendant 100 ans, les piégeant sur l'île.",
+  characters:["Dorry","Brogy"], locations:["Little Garden"],
+  source:"Chapitre 116, 118", tags:["Dorry","Brogy","duel","Little Garden","honneur","100 ans"] }
+
+,{ id:"pg003", era:"post_vide", type:"politique", year_k:1424, years_before:100, approx:false,
+  date_label:"An 1424 — Il y a 100 ans",
+  title:"Mère Caramel 'sauve' les Pirates Géants — Infiltration à Elbaf",
+  description:"Les restes des Pirates Géants sont capturés et condamnés à Marineford. Mère Caramel plaide publiquement pour leur grâce, semblant miraculeuse. En réalité, c'est un acte de théâtre orchestré par le CP pour lui permettre de s'infiltrer à Elbaf et d'y créer la Maison des Agneaux — couverture pour son trafic d'enfants destinés au Gouvernement.",
+  characters:["Caramel","Sengoku"], locations:["Marineford","Elbaf"],
+  source:"Chapitre 867", tags:["Caramel","Pirates Géants","Elbaf","manipulation","CP","trafic"] }
+
+// ── Wano — événements historiques ────────────────────────
+,{ id:"wano_hist", era:"post_vide", type:"politique", year_k:1443, years_before:81, approx:false,
+  date_label:"An 1443 — Il y a 81 ans",
+  title:"Complot Kurozumi — Naissance de Kouzuki Sukiyaki",
+  description:"Le Clan Kouzuki se retrouve sans héritier. Daimyo Kurozumi empoisonne ses rivaux pour prendre le trône. Mais le 19 mai, Kouzuki Sukiyaki naît, déjouant le plan. Exposé, Daimyo Kurozumi est contraint au seppuku et son clan est persécuté pour des décennies — semant les graines de la vengeance d'Orochi.",
+  characters:["Orochi"], locations:["Wano"],
+  source:"Chapitre 965", tags:["Wano","Kurozumi","Kouzuki","Sukiyaki","seppuku","complot","Orochi"] }
+
+// ── Ginny (lié à Kuma) ────────────────────────────────────
+,{ id:"ginny001", era:"rocks", type:"naissance", year_k:null, years_before:51, approx:true,
+  date_label:"Il y a ~51 ans",
+  title:"Naissance de Ginny",
+  description:"Ginny naît. Elle deviendra la meilleure amie et partenaire de Bartholomew Kuma au sein de l'Armée Révolutionnaire. Capturée et réduite en esclavage par un Dragon Céleste, puis libérée grâce à sa maladie, elle mourra jeune en laissant sa fille Bonney.",
+  characters:["Ginny","Kuma","Bonney"], locations:[],
+  source:"Chapitre 1096", tags:["Ginny","Kuma","Bonney","Révolutionnaire","esclavage","Buccaneers"] }
+
+,{ id:"ginny002", era:"pre_histoire", type:"mort", year_k:null, years_before:22, approx:true,
+  date_label:"Il y a ~22 ans",
+  title:"Mort de Ginny — Bonney orpheline",
+  description:"Ginny, après avoir été libérée de l'esclavage des Dragons Célestes en raison de la maladie génétique des Buccaneers, succombe à cette maladie. Elle laisse derrière elle sa fille Jewelry Bonney, âgée de quelques années, aux soins de Kuma. Bonney héritera de la même maladie.",
+  characters:["Ginny","Kuma","Bonney"], locations:[],
+  source:"Chapitre 1098", tags:["Ginny","mort","Bonney","Kuma","maladie","Buccaneers"] }
 
   ]// end events
 
@@ -2112,6 +2416,64 @@ var DATA = {
  bounty:"200 000 000", fruit:"Bari Bari no Mi (Barrière)",
  description:"Fan absolu de Luffy depuis Loguetown. Son Bari Bari no Mi crée des barrières indestructibles. Sa dévotion comique cache une vraie puissance. Rejoint la Grande Flotte à Dressrosa.",
  tags:["Luffy","fan","Grande Flotte","Dressrosa","Bari Bari","barrière"]}
+
+
+// ── Personnages manquants ─────────────────────────────────
+,{id:"c_noland",   name:"Mont Blanc Noland",      aliases:["Noland le Menteur","Le Botaniste"],
+ cat:"historique", status:"mort", birth_yb:435, death_yb:396,
+ affiliation:["Royaume de Lvneel"], role:"Explorateur / Botaniste",
+ bounty:null, fruit:null,
+ description:"Explorateur légendaire du Royaume de Lvneel, Noland découvrit Shandora et son or, et sauva les Shandiens de la Fièvre des Arbres. À son retour avec le roi, la ville avait disparu dans les cieux. Condamné à mort pour mensonge, son histoire devient une comptine moqueuse. Ses descendants porteront cette honte pendant 400 ans jusqu'à ce que Luffy réhabilite son nom.",
+ tags:["Lvneel","Shandora","Noland","botaniste","exécution","Jaya","400 ans"]}
+
+,{id:"c_kalgara",  name:"Kalgara",                aliases:["Le Guerrier des Shandiens"],
+ cat:"historique", status:"mort", birth_yb:436, death_yb:398,
+ affiliation:["Tribu Shandia de Jaya"], role:"Guerrier / Chef",
+ bounty:null, fruit:null,
+ description:"Guerrier légendaire des Shandiens de Jaya, Kalgara devint l'ami juré de Mont Blanc Noland. Sa promesse de faire sonner la cloche de Shandora pour que Noland l'entende ne put être tenue de son vivant — Jaya ayant été projetée dans les cieux. 400 ans plus tard, Luffy sonnera la cloche depuis les nuages.",
+ tags:["Shandiens","Jaya","Shandora","Noland","promesse","cloche","400 ans"]}
+
+,{id:"c_carmel",   name:"Mère Caramel",            aliases:["La Hag de la Montagne","L'Orpheline"],
+ cat:"autre", status:"mort", birth_yb:143, death_yb:80,
+ affiliation:["Gouvernement Mondial (agent secret)"], role:"Trafiquante / Religieuse",
+ bounty:null, fruit:"Soru Soru no Mi (Âme) — supposé",
+ description:"En apparence une douce religieuse dirigeant la Maison des Agneaux à Elbaf, Caramel était en réalité une trafiquante d'enfants pour le Gouvernement. Elle fut mangée accidentellement par Big Mom lors de son 6e anniversaire, lui transmettant peut-être le Soru Soru no Mi. Sa vraie nature ne fut découverte que bien plus tard.",
+ tags:["Big Mom","Elbaf","trafic","Gouvernement","Soru Soru","Maison des Agneaux"]}
+
+,{id:"c_ryuma",    name:"Shimotsuki Ryuma",        aliases:["Le Dieu des Lames","Ryuma le Zombie"],
+ cat:"historique", status:"mort", birth_yb:700, death_yb:650,
+ affiliation:["Pays de Wano"], role:"Samouraï légendaire",
+ bounty:null, fruit:null,
+ description:"Samouraï légendaire de Wano ayant abattu un dragon au-dessus de la Capitale des Fleurs. Son exploit protégea Wano des forces extérieures pendant des siècles. Il fut enseveli avec son sabre Shusui, trésor national. Des siècles plus tard, Moria vola son cadavre momifié pour en faire un zombie combattant à Thriller Bark.",
+ tags:["Wano","dragon","Shusui","samouraï","légende","Moria","Thriller Bark","Zoro"]}
+
+,{id:"c_ginny",    name:"Ginny",                   aliases:["La Partenaire de Kuma"],
+ cat:"revolutionnaire", status:"mort", birth_yb:51, death_yb:22,
+ affiliation:["Armée Révolutionnaire"], role:"Révolutionnaire",
+ bounty:null, fruit:null,
+ description:"Meilleure amie et partenaire de Bartholomew Kuma au sein de l'Armée Révolutionnaire. Capturée par un Dragon Céleste et réduite en esclavage, elle fut libérée après avoir contracté la maladie génétique des Buccaneers. Elle mourut jeune de cette maladie, laissant sa fille Jewelry Bonney aux soins de Kuma.",
+ tags:["Kuma","Bonney","Révolutionnaire","esclavage","Buccaneers","maladie","Dragon Céleste"]}
+
+,{id:"c_dorry",    name:"Dorry",                   aliases:["Le Géant Bleu"],
+ cat:"pirate", status:"vivant", birth_yb:160, death_yb:null,
+ affiliation:["Pirates Géants Warriors","Alliance des Géants d'Elbaf"], role:"Co-Capitaine",
+ bounty:"100 000 000", fruit:null,
+ description:"Co-capitaine des Pirates Géants Warriors avec Brogy. Leur dispute légendaire sur la taille de leurs proies respectives les condamna à un duel de 100 ans sur l'île préhistorique Little Garden. Libérés par l'équipage du Chapeau de Paille, ils retournèrent à Elbaf pour défendre leurs amis.",
+ tags:["Brogy","Little Garden","Elbaf","duel","géants","100 ans","Chapeau de Paille"]}
+
+,{id:"c_brogy",    name:"Brogy",                   aliases:["Le Grand Guerrier Rouge"],
+ cat:"pirate", status:"vivant", birth_yb:160, death_yb:null,
+ affiliation:["Pirates Géants Warriors","Alliance des Géants d'Elbaf"], role:"Co-Capitaine",
+ bounty:"100 000 000", fruit:null,
+ description:"Co-capitaine des Pirates Géants Warriors avec Dorry. Immobilisé 100 ans sur Little Garden par leur duel d'honneur, il est finalement libéré grâce aux Chapeaux de Paille. Il retourne à Elbaf où il combat aux côtés de Luffy pour protéger ses amis géants.",
+ tags:["Dorry","Little Garden","Elbaf","duel","géants","100 ans","Chapeau de Paille"]}
+
+,{id:"c_saul",     name:"Jaguar D. Saul",          aliases:["Le Vice-Amiral Déserteur","Deeeen !"],
+ cat:"marine", status:"vivant", birth_yb:127, death_yb:null,
+ affiliation:["Marine (ex)"], role:"Vice-Amiral / Déserteur",
+ bounty:null, fruit:"Yuki Yuki no Mi (Glace — supposé)",
+ description:"Vice-Amiral de la Marine qui déserta pour sauver la jeune Nico Robin lors du Buster Call sur Ohara. Présumé mort après avoir été gelé par Aokiji, il réapparut des décennies plus tard à Elbaf — mystérieusement survivant — retrouvant Robin dans la bibliothèque du hibou. Membre du Clan D.",
+ tags:["Robin","Ohara","Marine","déserteur","Clan D.","Aokiji","Elbaf","Deeeen"]}
 
   ]// end characters
 };
